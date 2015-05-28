@@ -7,6 +7,7 @@ var BulletRifle = Bullet.extend({
 
 	initData: function(parent) {
 		this._super(parent);
+		this._viewObj.setPosition(Character.current.getPosition());
 		this._parent.addChild(this._viewObj);
 	},
 

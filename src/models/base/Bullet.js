@@ -16,19 +16,19 @@ var Bullet = cc.Class.extend({
 	},
 
 	unuse: function() {
-        this._viewObj.unscheduleAllCallbacks();
-        this._viewObj.stopAllActions();
-        this._viewObj.retain(); //if in jsb
-        this._viewObj.removeFromParent(true);
-        this._viewObj.visible = false;
-        this.active = false;
-        for (var i = 0, len = Bullet.bulletsOnStage.length; i < len; ++i) {
-            var bullet = Bullet.bulletsOnStage[i];
-            if (bullet.id == this.id) {
-                Bullet.bulletsOnStage.splice(i , 1);
-                break ;
-            }
-        }
+        // this._viewObj.unscheduleAllCallbacks();
+        // this._viewObj.stopAllActions();
+        // this._viewObj.retain(); //if in jsb
+        // this._viewObj.removeFromParent(true);
+        // this._viewObj.visible = false;
+        // this.active = false;
+        // for (var i = 0, len = Bullet.bulletsOnStage.length; i < len; ++i) {
+        //     var bullet = Bullet.bulletsOnStage[i];
+        //     if (bullet.id == this.id) {
+        //         Bullet.bulletsOnStage.splice(i , 1);
+        //         break ;
+        //     }
+        // }
 	},
 
 	release: function() {
