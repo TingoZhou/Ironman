@@ -13,9 +13,10 @@ var AppLayer = cc.Layer.extend({
 
         cc.loader.load(game_resources, function(result, count, loadedCount) {
         }, _.bind(function() {
-            this.schedule(function() {
+            this.schedule(_.bind(function() {
+                this.addPlist();
                 cc.director.runScene(new cc.TransitionFade(0.1, new GameScene()));
-            }, 0.1, 0);
+            }, this), 0.1, 0);
         }, this));
     },
 
@@ -30,5 +31,15 @@ var AppLayer = cc.Layer.extend({
 
         Audio.setMusicVolume(ULS.get(USK.GameInfo).musicVolume);
         Audio.setEffectsVolume(ULS.get(USK.GameInfo).soundVolume);
+    },
+
+    addPlist: function() {
+        for(var i = 0, m = game_resources.length;i < m;i++) {
+            if(game_resources[i].indexOf('.png') > 0) {
+                cc.textureCache.addImage(game_resources[i]);
+            } else if(game_resources[i].indexOf('.plist') > 0) {
+                cc.spriteFrameCache.addSpriteFrames(game_resources[i]);
+            }
+        }
     }
 });

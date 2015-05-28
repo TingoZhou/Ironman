@@ -15,22 +15,40 @@ var GameScene = cc.Scene.extend({
 
     onExitTransitionDidStart: function() {},
 
-    removeListeners: function() {}
+    removeListeners: function() {
+        for (var evtKey in SH.CUSTOMEVENTS) {
+            cc.eventManager.removeCustomListeners(SH.CUSTOMEVENTS[evtKey]);
+        }
+    }
 });
 
-var GameLayer = (function() {
-	var PrivateProperties = function(layer) {
-		var battleLayer = null;
+var GameLayer = cc.Layer.extend({
+    ctor: function() {
+    	this._super();
 
-		this.getBattleLayer = function() {
-			return this.battleLayer;
-		}
+    	this.battleLayer = null;
+    	this.controllLayer = null;
+
+    	this.initBattleLayer();
+    	this.initControllLayer();
+
+    	this.scheduleUpdate();
+    },
+
+    initBattleLayer: function() {
+		var battleLayer = new BattleLayer();
+		this.addChild(battleLayer);
+		this.battleLayer = battleLayer;
+	},
+
+	initControllLayer: function() {
+		var controllLayer = new ControllLayer();
+		this.addChild(controllLayer);
+		this.controllLayer = controllLayer;
+	},
+
+	update: function(dt) {
+		this.battleLayer.update && this.battleLayer.update();
+		this.controllLayer.update && this.controllLayer.update(dt);
 	}
-
-	return cc.Layer.extend({
-	    ctor: function() {
-	    	this._super();
-	    	this.privateProperties = new PrivateProperties(this);
-	    }
-	});
-})()
+});
