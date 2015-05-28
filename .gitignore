@@ -41,3 +41,14 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+nbuilder/
+runtime/
+tools/
+frameworks/cocos2d-html5/
+frameworks/js-bindings/
+frameworks/runtime-src/proj.ios_mac/
+frameworks/runtime-src/proj.linux/
+frameworks/runtime-src/proj.win32/
+frameworks/runtime-src/
+.idea/
