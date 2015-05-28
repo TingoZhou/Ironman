@@ -46,22 +46,23 @@
  }
  *
  */
-
-cc.game.onStart = function(){
-    if(!cc.sys.isNative && document.getElementById("cocosLoading")) //If referenced loading.js, please remove it
-        document.body.removeChild(document.getElementById("cocosLoading"));
-
-    // Pass true to enable retina display, disabled by default to improve performance
-    cc.view.enableRetina(false);
-    // Adjust viewport meta
+cc.game.onStart = function() {
     cc.view.adjustViewPort(true);
-    // Setup the resolution policy and design resolution size
-    cc.view.setDesignResolutionSize(800, 450, cc.ResolutionPolicy.SHOW_ALL);
-    // The game will be resized when browser size change
+    cc.view.setDesignResolutionSize(960, 540, cc.ResolutionPolicy.SHOW_ALL);
     cc.view.resizeWithBrowserSize(true);
-    //load resources
-    cc.LoaderScene.preload(g_resources, function () {
-        cc.director.runScene(new AppScene());
-    }, this);
+
+    cc.director.setProjection(cc.Director.PROJECTION_2D);
+
+    if (cc.sys.isNative) {
+        var searchPaths = jsb.fileUtils.getSearchPaths();
+        searchPaths.push('script');
+        if (cc.sys.os == cc.sys.OS_IOS || cc.sys.os == cc.sys.OS_OSX) {
+            searchPaths.push("res");
+            searchPaths.push("src");
+        }
+        jsb.fileUtils.setSearchPaths(searchPaths);
+    }
+
+    cc.director.runScene(new cc.TransitionFade(0.1, new AppScene()));
 };
 cc.game.run();

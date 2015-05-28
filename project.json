@@ -3,7 +3,7 @@
 
     "debugMode" : 1,
     "showFPS" : true,
-    "frameRate" : 60,
+    "frameRate" : 30,
     "id" : "gameCanvas",
     "renderMode" : 0,
     "engineDir":"frameworks/cocos2d-html5",
@@ -13,6 +13,19 @@
     "jsList" : [
         "src/common/Global.js",
 
+        "src/common/config/UMStorageKey.js",
+        "src/common/config/Config.js",
+        "src/common/config/Global.js",
+        "src/common/Md5.js",
+        "src/common/Common.js",
+        "src/common/Underscore.js",
+        "src/common/Geometry.js",
+        "src/common/UpgradeConfig.js",
+        "src/common/Sha1.js",
+        "src/common/Sprintf.js",
+
+        "src/components/storage/UMLocalStorage.js",
+        "src/components/audio/Audio.js",
         "src/components/joystick/JoyStick.js",
         "src/components/joystick/JoyStickPannel.js",
 
