@@ -12,8 +12,14 @@
 
     "jsList" : [
         "src/common/Global.js",
+
+        "src/components/joystick/JoyStick.js",
+        "src/components/joystick/JoyStickPannel.js",
+
         "src/models/Character.js",
+
         "src/scenes/GameScene.js",
+
         "src/resource.js",
         "src/app.js"
     ]
