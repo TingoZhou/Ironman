@@ -49,7 +49,7 @@
 
 cc.game.onStart = function() {
     cc.view.adjustViewPort(true);
-    cc.view.setDesignResolutionSize(640, 360, cc.ResolutionPolicy.SHOW_ALL);
+    cc.view.setDesignResolutionSize(960, 540, cc.ResolutionPolicy.SHOW_ALL);
     cc.view.resizeWithBrowserSize(true);
     cc.director.setProjection(cc.Director.PROJECTION_2D);
 

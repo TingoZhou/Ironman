@@ -43,6 +43,6 @@ var MainMenuLayer = (function() {
     };
 
     return cc.Layer.extend({
-        
+
     });
 })();
