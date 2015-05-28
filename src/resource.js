@@ -1,10 +1,28 @@
-var res = {
-    HelloWorld_png : "res/HelloWorld.png",
-    CloseNormal_png : "res/CloseNormal.png",
-    CloseSelected_png : "res/CloseSelected.png"
+var MainRes = {};
+var GameRes = {};
+
+var main_resources = [];
+var game_resources = [];
+var loading_resource = [];
+
+var loopRes = function (data, k, resource) {
+    if (_.isObject(data[k])) {
+        for (var j in data[k]) {
+            loopRes(data[k], j, resource);
+        }
+    } else {
+        if (_.indexOf(resource, data[k]) < 0) resource.push(data[k]);
+    }
 };
 
-var g_resources = [];
-for (var i in res) {
-    g_resources.push(res[i]);
-}
+(function () {
+    for (var i in LoadingRes) {
+        loopRes(LoadingRes, i, loading_resource);
+    }
+    for (var i in MainRes) {
+        loopRes(MainRes, i, main_resources);
+    }
+    for (var i in GameRes) {
+        loopRes(GameRes, i, game_resources);
+    }
+})();
