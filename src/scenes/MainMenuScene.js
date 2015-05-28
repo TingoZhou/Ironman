@@ -6,20 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 var MainMenuScene = (function() {
-    /**
-     * 私有属性的处理
-     * @private
-     */
-    var _privateProperties = function() {
-
-    };
-
     return cc.Scene.extend({
-        ctor: function() {
-            this._super();
-            this._properties = new _privateProperties();
-        },
-
         onEnterTransitionDidFinish: function() {
             this._super();
             var layer = new MainMenuLayer();
@@ -43,6 +30,31 @@ var MainMenuLayer = (function() {
     };
 
     return cc.Layer.extend({
+        ctor: function() {
+            this._super();
+            this._properties = new _privateProperties();
 
+            this.init();
+            this.addListeners();
+        },
+
+        init: function() {
+
+        },
+
+        addListeners: function() {
+            // 进入后台
+            cc.eventManager.addCustomListener(cc.game.EVENT_HIDE, _.bind(function () {
+                if (!cc.director.isPaused()) {
+                    cc.director.pause();
+                }
+            }, this));
+            // 返回
+            cc.eventManager.addCustomListener(cc.game.EVENT_SHOW, _.bind(function () {
+                if (cc.director.isPaused()) {
+                    cc.director.resume();
+                }
+            }, this));
+        }
     });
 })();
