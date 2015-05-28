@@ -41,7 +41,6 @@ var AssetsManagerLoaderScene = (function() {
     };
 
     return cc.Scene.extend({
-        _percent:0,
         ctor: function() {
             this._super();
             this._properties = new _privateProperties();
