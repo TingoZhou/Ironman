@@ -1,4 +1,5 @@
 var MainRes = {};
+var LoadingRes = {};
 var GameRes = {
 	test: {
 		i_test: "res/test.png",

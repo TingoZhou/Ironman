@@ -11,11 +11,9 @@
     "modules" : ["cocos2d"],
 
     "jsList" : [
-        "src/common/Global.js",
-
-        "src/common/config/UMStorageKey.js",
-        "src/common/config/Config.js",
         "src/common/config/Global.js",
+        "src/common/config/UMStorageKey.js",
+        
         "src/common/Md5.js",
         "src/common/Common.js",
         "src/common/Underscore.js",

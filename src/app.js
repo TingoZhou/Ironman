@@ -11,10 +11,10 @@ var AppLayer = cc.Layer.extend({
         this._super();
         this.initStorage();
 
-        cc.loader.load(loading_resource, function(result, count, loadedCount) {
+        cc.loader.load(game_resources, function(result, count, loadedCount) {
         }, _.bind(function() {
             this.schedule(function() {
-                cc.director.runScene(new cc.TransitionFade(0.1, new MainLoadingScene()));
+                cc.director.runScene(new cc.TransitionFade(0.1, new GameScene()));
             }, 0.1, 0);
         }, this));
     },
