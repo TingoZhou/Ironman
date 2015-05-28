@@ -25,6 +25,9 @@
         "src/components/storage/UMLocalStorage.js",
         "src/components/audio/Audio.js",
 
+        "src/models/Character.js",
+        "src/scenes/GameScene.js",
+
         "src/resource.js",
         "src/app.js"
     ]
