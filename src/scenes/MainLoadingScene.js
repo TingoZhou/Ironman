@@ -18,38 +18,18 @@ var MainLoadingScene = (function() {
 var MainLoadingLayer = (function() {
     var failCount = 0;
     var maxFailCount = 3;
-    /**
-     * 私有属性的处理
-     * @private
-     */
-    var _privateProperties = function() {
-        var loadingWidget = null;
-        var loadingBg = null;
-        var loadingBar = null;
-        var loadingIcon = null;
-
-        var resourceIndex = 0;
-        var finishIndex = 0;
-
-        this.setResourceIndex = function(val) {
-            resourceIndex = val;
-        }
-        this.getResourceIndex = function() {
-            return resourceIndex;
-        }
-        this.setFinishIndex = function(val) {
-            finishIndex = val;
-        }
-        this.getFinishIndex = function() {
-            return finishIndex;
-        }
-    };
 
     return cc.Layer.extend({
         ctor: function() {
             this._super();
 
-            this._properties = new _privateProperties();
+            this._loadingWidget = null;
+            this._loadingBg = null;
+            this._loadingBar = null;
+            this._loadingIcon = null;
+
+            this._resourceIndex = 0;
+            this._finishIndex = 0;
             this.init();
         },
 
@@ -146,8 +126,8 @@ var MainLoadingLayer = (function() {
 
             cc.loader.loadJs(["src/common/config/businessConfig/BusinessConfigJsList.js"], function() {
                 cc.loader.loadJs(BusinessConfigJsList, function() {
-                    self._properties.setResourceIndex(0);
-                    self._properties.setFinishIndex(0);
+                    self._resourceIndex = 0;
+                    self._finishIndex = 0;
                     self.schedule(function() {
                         self.schedule(self.loadResource);
                     }, 0.5, 0);
@@ -156,16 +136,14 @@ var MainLoadingLayer = (function() {
         },
 
         loadResource: function() {
-            if (!main_resources[this.resourceIndex]) return ;
+            if (!main_resources[this._resourceIndex]) return ;
             var self = this;
-            var resourceIndex = this._properties.getResourceIndex();
-            cc.loader.load(main_resources[resourceIndex], function(result, count, loadedCount) {
+            cc.loader.load(main_resources[this._resourceIndex], function(result, count, loadedCount) {
                 //self.loadingBar.setPercent(40 + Math.floor(50 * (self.resourceIndex / main_resources.length)));
                 //self.loadingIcon.setPositionX(self.loadingBg.getPosition().x - self.loadingBg.width / 2 + self.loadingBar.width * self.loadingBar.getPercent() / 100);
             }, function() {
-                var finishIndex = self._properties.getFinishIndex() + 1;
-                self._properties.setFinishIndex(finishIndex);
-                if (finishIndex >= main_resources.length) {
+                self._finishIndex++;
+                if (self._finishIndex >= main_resources.length) {
                     self.unschedule(self.loadResource);
                     self.initConfig();
                     self.addPlist();
@@ -174,8 +152,7 @@ var MainLoadingLayer = (function() {
                     self.schedule(self.finishedLoading, 0.1, 0);
                 }
             });
-            resourceIndex++;
-            this._properties.setResourceIndex(resourceIndex);
+            self._resourceIndex++;
         },
 
         initConfig: function() {

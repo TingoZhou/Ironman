@@ -21,18 +21,9 @@ var MainMenuScene = (function() {
 })();
 
 var MainMenuLayer = (function() {
-    /**
-     * 私有属性的处理
-     * @private
-     */
-    var _privateProperties = function() {
-
-    };
-
     return cc.Layer.extend({
         ctor: function() {
             this._super();
-            this._properties = new _privateProperties();
 
             this.init();
             this.addListeners();

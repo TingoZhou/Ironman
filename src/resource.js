@@ -6,7 +6,25 @@ var GameRes = {
 		p_test: "res/test.plist",
 		i_textureTransparentPack: "res/textureTransparentPack.png",
 		p_textureTransparentPack: "res/textureTransparentPack.plist"
-	}
+	},
+    shaders: {
+        whiteHit: {
+            fsh: "res/shaders/whiteHit.fsh",
+            vsh: "res/shaders/whiteHit.vsh",
+            vsh_noMVP: "res/shaders/whiteHit_noMVP.vsh"
+        },
+        whiteHitRecover: {
+            fsh: "res/shaders/whiteHitRecover.fsh",
+            vsh: "res/shaders/whiteHitRecover.vsh",
+            vsh_noMVP: "res/shaders/whiteHitRecover_noMVP.vsh"
+        }
+    },
+    monsters: {
+        alpha: {
+            plist: 'res/monsters/alpha.plist',
+            png: 'res/monsters/alpha.png'
+        }
+    }
 };
 
 var main_resources = [];
