@@ -19,3 +19,18 @@ SH.MONSTERSNAME = SH.Creature.Name.Monsters;
 SH.CHARACTERSNAME = SH.Creature.Name.Character;
 
 SH.FPS = 30;
+SH.Character = {
+	Ironman: "Ironman"
+}
+
+SH.Weapon = {
+	Characters: {
+		Rifle: "Rifle"
+	}
+}
+
+SH.Bullet = {
+	Characters: {
+		Rifle: "Rifle"
+	}
+}

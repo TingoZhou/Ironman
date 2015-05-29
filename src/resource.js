@@ -2,6 +2,7 @@ var MainRes = {};
 var LoadingRes = {};
 var GameRes = {
 	test: {
+        i_bg: "res/bg.jpg",
 		i_test: "res/test.png",
 		p_test: "res/test.plist",
 		i_textureTransparentPack: "res/textureTransparentPack.png",
