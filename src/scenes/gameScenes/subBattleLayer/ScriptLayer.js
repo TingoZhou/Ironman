@@ -159,8 +159,7 @@ var ScriptLayer = (function() {
         },
 
         start: function(scriptId) {
-            this.scriptType = ScriptsInfo[scriptId].scriptType;
-            this.scriptConfig = ScriptsConfig[scriptId];
+            this.scriptConfig = ScriptsConfig['1000'];
             this.refreshLevel();
         },
 
@@ -236,13 +235,6 @@ var ScriptLayer = (function() {
                     }
                     if(this.shouldAddMonster && this.monsters4CurLvl.length == 0 && monstersAmountOnStage <= 0 && this.currentLevel >= 0) {
                         var targetLevel = this.currentLevel;
-                        if(this.scriptType == '1') {
-                            if(this.currentLevel + 1 >= this.scriptConfig.length) {
-                                this.currentStatus = 'RoundEnd';
-                                cc.eventManager.dispatchCustomEvent(SC.BATTLE_END);
-                                return;
-                            }
-                        }
                         if(targetLevel >= this.scriptConfig.length) {
                             targetLevel = this.scriptConfig.length - 1;
                         }
