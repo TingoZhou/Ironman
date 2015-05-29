@@ -53,6 +53,9 @@ var Character = cc.Class.extend({
 	_move: function() {
 		this._viewObj.x += this._velocity.x;
 		this._viewObj.y += this._velocity.y;
+
+		this._viewObj.x = Math.min(cc.winSize.width, Math.max(0, this._viewObj.x));
+		this._viewObj.y = Math.min(cc.winSize.height, Math.max(0, this._viewObj.y));
 	},
 
 	_setWeapon: function(weapon) {

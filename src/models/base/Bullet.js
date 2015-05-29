@@ -11,8 +11,6 @@ var Bullet = cc.Class.extend({
 
 	reuse: function(parent) {
 		this.initData(parent);
-        this._viewObj.visible = true;
-        this.active = true;
         Bullet.bulletsOnStage.push(this);
 	},
 
@@ -21,8 +19,6 @@ var Bullet = cc.Class.extend({
         this._viewObj.stopAllActions();
         this._viewObj.retain(); //if in jsb
         this._viewObj.removeFromParent(true);
-        this._viewObj.visible = false;
-        this.active = false;
         for (var i = 0, len = Bullet.bulletsOnStage.length; i < len; ++i) {
             var bullet = Bullet.bulletsOnStage[i];
             if (bullet.getId() == this._id) {
@@ -37,12 +33,30 @@ var Bullet = cc.Class.extend({
 	},
 
     getId: function() {
-        return this._uuid;
+        return this._id;
     },
 
 	update: function() {
 		++this._step;
-	}
+        this._checkOverBorder();
+	},
+
+    _checkOverBorder: function() {
+        var x = this._viewObj.x;
+        var y = this._viewObj.y;
+        if (x < 0 || x > cc.winSize.width || y < 0 || y > cc.winSize.height) {
+            this._destroy();
+            this._disable();
+        }
+    },
+
+    _destroy: function() {
+
+    },
+
+    _disable: function() {
+        cc.pool.putInPool(this);
+    }
 });
 
 Bullet.bulletsOnStage = [];
