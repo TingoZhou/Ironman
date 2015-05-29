@@ -15,7 +15,7 @@ var AppLayer = cc.Layer.extend({
         }, _.bind(function() {
             this.schedule(_.bind(function() {
                 this.addPlist();
-                cc.director.runScene(new cc.TransitionFade(0.1, new GameScene()));
+                cc.director.runScene(new cc.TransitionFade(0.1, new GameLoadingScene()));
             }, this), 0.1, 0);
         }, this));
     },

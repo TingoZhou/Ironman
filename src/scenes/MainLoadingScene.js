@@ -123,16 +123,9 @@ var MainLoadingLayer = (function() {
                 //this.loadingBar.setPercent(percent);
                 //this.loadingIcon.setPositionX(this.loadingBg.getPosition().x - this.loadingBg.width / 2 + this.loadingBar.width * this.loadingBar.getPercent() / 100);
             }, this), 0.05, 7);
-
-            cc.loader.loadJs(["src/common/config/businessConfig/BusinessConfigJsList.js"], function() {
-                cc.loader.loadJs(BusinessConfigJsList, function() {
-                    self._resourceIndex = 0;
-                    self._finishIndex = 0;
-                    self.schedule(function() {
-                        self.schedule(self.loadResource);
-                    }, 0.5, 0);
-                });
-            });
+            self.schedule(function() {
+                self.schedule(self.loadResource);
+            }, 0.5, 0);
         },
 
         loadResource: function() {

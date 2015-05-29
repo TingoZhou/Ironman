@@ -159,7 +159,7 @@ var ScriptLayer = (function() {
         },
 
         start: function(scriptId) {
-            this.scriptConfig = ScriptsConfig['1000'];
+            this.scriptConfig = ScriptsConfig[scriptId];
             this.refreshLevel();
         },
 

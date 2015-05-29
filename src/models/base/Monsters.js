@@ -8,9 +8,8 @@
 var Monsters = (function() {
     return cc.Class.extend({
         ctor: function(parent, data) {
-
             this._framesData = data.framesData;
-            this._viewObj = new cc.Sprite('#' + this._framesData[0]);
+            this._viewObj = new cc.Sprite('#' + this._framesData.Move[0]);
             this._active = false;
             this._id = uuid();
             this._monsterId = '';
@@ -241,8 +240,8 @@ Monsters.create = function (parent, data) {
 };
 
 // 预设
-Monsters.preset = function (parent, data) {
-    MonsterAlpha.preset(parent, data);
+Monsters.preset = function (parent) {
+    MonsterAlpha.preset(parent, MonsterConfig.Alpha);
 };
 
 Monsters.resetAll = function () {

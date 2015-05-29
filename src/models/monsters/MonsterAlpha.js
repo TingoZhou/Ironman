@@ -86,9 +86,9 @@ var MonsterAlpha = (function() {
     });
 })();
 
-MonsterAlpha.preset = function(parent) {
+MonsterAlpha.preset = function(parent, data) {
     for(var i = 0; i < MonsterConfig.Alpha.presetAmount; i++) {
-        MonsterAlpha.create(parent, null, true);
+        MonsterAlpha.create(parent, data, true);
     }
 };
 
