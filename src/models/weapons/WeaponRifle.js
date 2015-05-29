@@ -5,7 +5,7 @@ var WeaponRifle = Weapon.extend({
 
 	update: function() {
 		this._super();
-		if (this._step % 10 == 0) {
+		if (this._step % WeaponConfig.Rifle.shootStep == 0) {
 			this._shoot();
 		}
 	},

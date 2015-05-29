@@ -29,4 +29,4 @@ var SC = SH.CUSTOMEVENTS = {
 
 var SG = SH.GLOBALEVENTS = {
     PAY_CALLBACK: "PAY_CALLBACK"
-}
+};

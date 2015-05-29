@@ -15,10 +15,10 @@ var Character = cc.Class.extend({
 	},
 
 	addListeners: function() {
-		cc.eventManager.addCustomListener(SC.CHRACTER_SET_WEAPON, _.bind(function(e) {
+		cc.eventManager.addCustomListener(SC.CHARACTER_SET_WEAPON, _.bind(function(e) {
             this._setWeapon(e.getUserData().weaponName);
         }, this));
-        cc.eventManager.addCustomListener(SC.CHRACTER_RESET_WEAPON, _.bind(function(e) {
+        cc.eventManager.addCustomListener(SC.CHARACTER_RESET_WEAPON, _.bind(function(e) {
             this._resetWeapon();
         }, this));
 	},
@@ -44,6 +44,10 @@ var Character = cc.Class.extend({
 		return this._viewObj.getBoundingBox();
 	},
 
+	getRotation: function() {
+		return this._viewObj.getRotation();
+	},
+
 	update: function() {
 		this._move();
 		this._changeDirection();
@@ -58,8 +62,8 @@ var Character = cc.Class.extend({
 		this._viewObj.y = Math.min(cc.winSize.height, Math.max(0, this._viewObj.y));
 	},
 
-	_setWeapon: function(weapon) {
-		this._weapon = Weapon.create(SH.Weapon.Characters.Rifle, this._parent);
+	_setWeapon: function(weaponName) {
+		this._weapon = Weapon.create(weaponName, this._parent);
 	},
 
 	_resetWeapon: function() {
@@ -67,7 +71,32 @@ var Character = cc.Class.extend({
 	},
 
 	_changeDirection: function() {
+		var vX = this._velocity.x;
+		var vY = this._velocity.y;
 
+		var rotation = this._viewObj.getRotation();
+
+		if (vX == 0) {
+			if (vY > 0) {
+				rotation = 0;
+			} else if (vY < 0) {
+				rotation = 180;
+			}
+		} else if (vY == 0) {
+			if (vX > 0) {
+				rotation = 90;
+			} else if (vX < 0) {
+				rotation = 270;
+			}
+		} else {
+			if (vX < 0) {
+				rotation = 180 + Math.atan(vY / vX) * 180 / Math.PI;
+			} else {
+				rotation = Math.atan(vY / vX) * 180 / Math.PI;
+			}
+		}
+
+		this._viewObj.setRotation(90 - rotation);
 	}
 });
 

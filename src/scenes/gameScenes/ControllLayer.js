@@ -12,6 +12,7 @@ var ControllLayer = cc.Layer.extend({
     	this.initJoyStick();
     	this.bindJoyStickEvent();
     	this.initRifleShootBtn();
+        this.initRocketShootBtn();
     },
 
 	initJoyStick: function() {
@@ -43,17 +44,37 @@ var ControllLayer = cc.Layer.extend({
     	var button = new ccui.Button();
         button.setTouchEnabled(true);
         button.setPressedActionEnabled(true);
-        button.loadTextures("bombBtn.png", "bombBtn.png", "", ccui.Widget.PLIST_TEXTURE);
-        button.setPosition(cc.p(cc.winSize.width * 4 / 5, 100));
+        button.loadTextures("weaponABtn.png", "weaponABtn.png", "", ccui.Widget.PLIST_TEXTURE);
+        button.setPosition(cc.p(cc.winSize.width * 7 / 8, 100));
         button.addTouchEventListener(function(sender, type) {
         	if (type == ccui.Widget.TOUCH_BEGAN) {
-                cc.eventManager.dispatchCustomEvent(SC.CHRACTER_SET_WEAPON, {
-                    weaponName: SH.Weapon.Rifle
+                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
+                    weaponName: SH.Weapon.Characters.Rifle
                 });
             } else if (type == ccui.Widget.TOUCH_ENDED) {
-                cc.eventManager.dispatchCustomEvent(SC.CHRACTER_RESET_WEAPON);
+                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
             } else if (type == ccui.Widget.TOUCH_CANCELED) {
-                cc.eventManager.dispatchCustomEvent(SC.CHRACTER_RESET_WEAPON);
+                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+            }
+        }, this);
+        this.addChild(button);
+    },
+
+    initRocketShootBtn: function() {
+        var button = new ccui.Button();
+        button.setTouchEnabled(true);
+        button.setPressedActionEnabled(true);
+        button.loadTextures("weaponBBtn.png", "weaponBBtn.png", "", ccui.Widget.PLIST_TEXTURE);
+        button.setPosition(cc.p(cc.winSize.width * 6 / 8, 100));
+        button.addTouchEventListener(function(sender, type) {
+            if (type == ccui.Widget.TOUCH_BEGAN) {
+                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
+                    weaponName: SH.Weapon.Characters.Rocket
+                });
+            } else if (type == ccui.Widget.TOUCH_ENDED) {
+                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+            } else if (type == ccui.Widget.TOUCH_CANCELED) {
+                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
             }
         }, this);
         this.addChild(button);

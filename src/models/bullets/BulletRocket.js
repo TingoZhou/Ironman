@@ -1,7 +1,7 @@
-var BulletRifle = Bullet.extend({
+var BulletRocket = Bullet.extend({
 	ctor: function() {
 		this._super();
-		this._viewObj = cc.Sprite.create(WeaponConfig.Rifle.bullets.res);
+		this._viewObj = cc.Sprite.create(WeaponConfig.Rocket.bullets.res);
 		this._velocity = {x: 0, y: 0};
 	},
 
@@ -29,18 +29,18 @@ var BulletRifle = Bullet.extend({
 	}
 });
 
-BulletRifle.create = function(parent, createOnly) {
+BulletRocket.create = function(parent, createOnly) {
 	var pool = cc.pool;
     createOnly = !_.isUndefined(createOnly) ? createOnly : false;
-    if (!createOnly && pool.hasObject(BulletRifle)) {
-        var bullet = pool.getFromPool(BulletRifle, parent);
+    if (!createOnly && pool.hasObject(BulletRocket)) {
+        var bullet = pool.getFromPool(BulletRocket, parent);
         return bullet;
     } else if(createOnly) {
-        var bullet = new BulletRifle(parent);
+        var bullet = new BulletRocket(parent);
         pool.putInPool(bullet);
     } else {
-        var bullet = new BulletRifle(parent);
+        var bullet = new BulletRocket(parent);
         cc.pool.putInPool(bullet);
-        return pool.getFromPool(BulletRifle, parent);
+        return pool.getFromPool(BulletRocket, parent);
     }
 }
