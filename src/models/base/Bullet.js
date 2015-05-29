@@ -1,5 +1,6 @@
 var Bullet = cc.Class.extend({
 	ctor: function() {
+        this._id = uuid();
 		this._step = 0;
 		this._viewObj = null;
 	},
@@ -16,24 +17,28 @@ var Bullet = cc.Class.extend({
 	},
 
 	unuse: function() {
-        // this._viewObj.unscheduleAllCallbacks();
-        // this._viewObj.stopAllActions();
-        // this._viewObj.retain(); //if in jsb
-        // this._viewObj.removeFromParent(true);
-        // this._viewObj.visible = false;
-        // this.active = false;
-        // for (var i = 0, len = Bullet.bulletsOnStage.length; i < len; ++i) {
-        //     var bullet = Bullet.bulletsOnStage[i];
-        //     if (bullet.id == this.id) {
-        //         Bullet.bulletsOnStage.splice(i , 1);
-        //         break ;
-        //     }
-        // }
+        this._viewObj.unscheduleAllCallbacks();
+        this._viewObj.stopAllActions();
+        this._viewObj.retain(); //if in jsb
+        this._viewObj.removeFromParent(true);
+        this._viewObj.visible = false;
+        this.active = false;
+        for (var i = 0, len = Bullet.bulletsOnStage.length; i < len; ++i) {
+            var bullet = Bullet.bulletsOnStage[i];
+            if (bullet.getId() == this._id) {
+                Bullet.bulletsOnStage.splice(i , 1);
+                break ;
+            }
+        }
 	},
 
 	release: function() {
 		this._viewObj.release();
 	},
+
+    getId: function() {
+        return this._uuid;
+    },
 
 	update: function() {
 		++this._step;

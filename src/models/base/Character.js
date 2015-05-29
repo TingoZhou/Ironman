@@ -6,9 +6,11 @@ var Character = cc.Class.extend({
 		this._speed = 0;
 		this._weapon = null;
 		this._velocity = {x: 0, y: 0};
+		this._HP = 0;
 	},
 
 	init: function() {
+		this._HP = CharacterConfig[this.name].HP;
 		this._speed = CharacterConfig[this.name].speed;
 	},
 
@@ -32,6 +34,14 @@ var Character = cc.Class.extend({
 
 	getPosition: function() {
 		return this._viewObj.getPosition();
+	},
+
+	doHitByMonster: function(dps) {
+		this._HP -= dps;
+	},
+
+	getCollideBoundingBox: function() {
+		return this._viewObj.getBoundingBox();
 	},
 
 	update: function() {

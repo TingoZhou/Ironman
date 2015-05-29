@@ -40,6 +40,7 @@
         "src/models/bullets/BulletRifle.js",
 
         "src/scenes/GameScene.js",
+        "src/scenes/gameScenes/BgLayer.js",
         "src/scenes/gameScenes/BattleLayer.js",
         "src/scenes/gameScenes/ControllLayer.js",
 
