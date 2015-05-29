@@ -8,12 +8,13 @@ var BulletRocket = Bullet.extend({
 	initData: function(parent) {
 		this._super(parent);
 		this._viewObj.setPosition(Character.current.getPosition());
-		var rotation = Character.current.getRotation();
+		var rotation = Character.current.getRotation() + 90;
         this._viewObj.setRotation(rotation);
         var speed = WeaponConfig.Rifle.bullets.speed;
+		var scaleX = Character.current.getScaleX();
         this._velocity = {
-        	x: speed * Math.sin(rotation * Math.PI / 180),
-        	y: speed * Math.cos(rotation * Math.PI / 180)
+        	x: speed * Math.sin(rotation * Math.PI / 180) * (Math.abs(scaleX) / scaleX),
+        	y: speed * Math.cos(rotation * Math.PI / 180) * (Math.abs(scaleX) / scaleX)
         }
 		this._parent.addChild(this._viewObj);
 	},

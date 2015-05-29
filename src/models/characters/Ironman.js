@@ -10,8 +10,9 @@ var Ironman = Character.extend({
 
 	init: function() {
 		this._super();
-		this._viewObj = cc.Sprite.create("#ship01.png");
-		this._parent.addChild(this._viewObj);
+		this._viewObj = cc.Sprite.create(CharacterConfig.Ironman.res);
+		this._viewObj.setScale(CharacterConfig.Ironman.scale);
+		this._parent.addChild(this._viewObj, 10000);
 	},
 
 	addListeners: function() {

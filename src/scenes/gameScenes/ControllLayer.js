@@ -99,9 +99,9 @@ var ControllLayer = cc.Layer.extend({
             var touch = touches[i];
             var moveJoyStick = target.getMoveJoyStick();
             var moveJoyStickPannel = target.getMoveJoyStickPannel();
-            moveJoyStickPannel.setStickPos(touch.getLocation());
             var dPos = moveJoyStick.getDpos(touch.getLocation());
             if (dPos) {
+                moveJoyStickPannel.setStickPos(touch.getLocation());
             	Character.current.setVelocity(dPos.target);
             }
         }

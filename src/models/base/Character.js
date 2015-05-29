@@ -36,6 +36,10 @@ var Character = cc.Class.extend({
 		return this._viewObj.getPosition();
 	},
 
+	getScaleX: function() {
+		return this._viewObj.scaleX;
+	},
+
 	doHitByMonster: function(dps) {
 		this._HP -= dps;
 	},
@@ -89,14 +93,11 @@ var Character = cc.Class.extend({
 				rotation = 270;
 			}
 		} else {
-			if (vX < 0) {
-				rotation = 180 + Math.atan(vY / vX) * 180 / Math.PI;
-			} else {
-				rotation = Math.atan(vY / vX) * 180 / Math.PI;
-			}
+			rotation = Math.atan(vY / vX) * 180 / Math.PI;
+			this._viewObj.setScaleX((vX < 0? -1 : 1) * Math.abs(this._viewObj.scaleX));
 		}
 
-		this._viewObj.setRotation(90 - rotation);
+		this._viewObj.setRotation(360 - rotation);
 	}
 });
 
