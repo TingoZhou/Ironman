@@ -1,5 +1,6 @@
 var Character = cc.Class.extend({
 	ctor: function(parent) {
+		this._step = 0;
 		this._parent = parent;
 
 		this._viewObj = null;
@@ -7,11 +8,21 @@ var Character = cc.Class.extend({
 		this._weapon = null;
 		this._velocity = {x: 0, y: 0};
 		this._HP = 0;
+		this._moveBuffer = {x: 0, y: 0};
+		this._shadowObjs = [];
 	},
 
 	init: function() {
 		this._HP = CharacterConfig[this.name].HP;
 		this._speed = CharacterConfig[this.name].speed;
+
+		for (var i = 0; i < 20; ++i) {
+            var shadow = cc.Sprite.create(CharacterConfig[this.name].res);
+            shadow.visible = false;
+            shadow.setOpacity(255);
+            this._parent.addChild(shadow);
+            this._shadowObjs.push(shadow);
+        }
 	},
 
 	addListeners: function() {
@@ -53,14 +64,54 @@ var Character = cc.Class.extend({
 	},
 
 	update: function() {
+		++this._step;
 		this._move();
 		this._changeDirection();
 		this._weapon && this._weapon.update();
 	},
 
 	_move: function() {
-		this._viewObj.x += this._velocity.x;
-		this._viewObj.y += this._velocity.y;
+		if (this._velocity.x != 0 || this._velocity.y != 0) {
+			this._viewObj.x += this._velocity.x;
+			this._viewObj.y += this._velocity.y;
+
+			for (var i = 0, len = this._shadowObjs.length; i < len; ++i) {
+                if (!this._shadowObjs[i].visible) {
+                    shadow = this._shadowObjs[i];
+                    shadow.visible = true;
+                    break ;
+                }
+            }
+
+            if (!shadow) {
+                shadow = cc.Sprite.create(CharacterConfig[this.name].res);
+                this.parent.addChild(shadow);
+                this._shadowObjs.push(shadow);
+            }
+
+            shadow.setOpacity(255);            
+			shadow.setScaleX(this._viewObj.scaleX);
+			shadow.setScaleY(this._viewObj.scaleY);
+			shadow.setPosition(this._viewObj.getPosition());
+			shadow.setRotation(this._viewObj.getRotation());
+            shadow.runAction(cc.sequence(
+                cc.fadeOut(0.05),
+                cc.callFunc((function(shadow) {
+                	return function() {
+                    	shadow.visible = false;
+                	}
+                })(shadow), this)
+            ));
+		} else {
+			if (this._step % 10 == 0) {
+				this._moveBuffer = {
+					x: (Math.random() > 0.5? -1 : 1) * Math.random() / 5,
+					y: (Math.random() > 0.5? -1 : 1) * Math.random() / 5
+				}
+			}
+			this._viewObj.x += this._moveBuffer.x;
+			this._viewObj.y += this._moveBuffer.y;
+		}
 
 		this._viewObj.x = Math.min(cc.winSize.width, Math.max(0, this._viewObj.x));
 		this._viewObj.y = Math.min(cc.winSize.height, Math.max(0, this._viewObj.y));

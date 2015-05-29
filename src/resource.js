@@ -8,9 +8,9 @@ var GameRes = {
         
 		i_test: "res/test.png",
 		p_test: "res/test.plist",
-        
-		i_textureTransparentPack: "res/textureTransparentPack.png",
-		p_textureTransparentPack: "res/textureTransparentPack.plist"
+
+        i_textureOpaquePack: "res/textureOpaquePack.png",
+        p_textureOpaquePack: "res/textureOpaquePack.plist"
 	},
     shaders: {
         whiteHit: {
