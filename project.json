@@ -14,6 +14,7 @@
         "src/common/config/Global.js",
         "src/common/config/UMStorageKey.js",
         "src/common/config/CharacterConfig.js",
+        "src/common/config/MonsterConfig.js",
         "src/common/config/WeaponConfig.js",
         "src/common/config/Event.js",
         
@@ -30,12 +31,13 @@
         "src/components/joystick/JoyStick.js",
         "src/components/joystick/JoyStickPannel.js",
 
-        "src/models/base/Character.js",
-        "src/models/base/Weapon.js",
         "src/models/base/Bullet.js",
-
+        "src/models/base/Character.js",
+        "src/models/base/Monsters.js",
+        "src/models/base/Weapon.js",
+        "src/models/bullets/BulletRifle.js",
         "src/models/characters/Ironman.js",
-
+        "src/models/monsters/MonsterAlpha.js",
         "src/models/weapons/WeaponRifle.js",
         "src/models/weapons/WeaponRocket.js",
         
@@ -43,10 +45,14 @@
         "src/models/bullets/BulletRocket.js",
 
         "src/scenes/GameScene.js",
+        "src/scenes/GameLoadingScene.js",
+        "src/scenes/MainLoadingScene.js",
+        "src/scenes/MainMenuScene.js",
         "src/scenes/gameScenes/BgLayer.js",
         "src/scenes/gameScenes/BattleLayer.js",
         "src/scenes/gameScenes/DropItemLayer.js",
         "src/scenes/gameScenes/ControllLayer.js",
+        "src/scenes/gameScenes/subBattleLayer/ScriptLayer.js",
 
         "src/resource.js",
         "src/app.js"
