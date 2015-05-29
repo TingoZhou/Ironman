@@ -20,7 +20,7 @@ var Monsters = (function() {
             this._hurtable = false;
             this._movable = true;
             this._isStriking = false;
-            this._target = Character.current;
+            this._target = null;
             this._currentStatus = '';
             this._whiteShader = null;
             this._whiteRecoeverShader = null;
@@ -33,6 +33,7 @@ var Monsters = (function() {
             this._score = 0;
             this._stepX = 0;
             this._stepY = 0;
+            this._targetPos = null;
 
             this.initShader();
             this.initData(parent, data);
@@ -78,15 +79,15 @@ var Monsters = (function() {
             }
         },
 
+        addListeners: function() {
+        },
+
         start: function() {
 
         },
 
         doMoveToTarget: function() {
-            var targetPos = this._target.getPosition();
-            var normalVect = cc.pNormalize(cc.pSub(targetPos, this.getPosition()));
-            this._stepX = normalVect.x * this._speed;
-            this._stepY = normalVect.y * this._speed;
+
         },
 
         getMonsterId: function() {
@@ -175,9 +176,8 @@ var Monsters = (function() {
         },
 
         reuse: function(parent, data) {
-            this.initData(parent, data);
             this._active = true;
-            this._viewObj.visible = false;
+            this.initData(parent, data);
             Monsters.monstersOnStage.push(this);
 
             if (!this._hasEvent) {

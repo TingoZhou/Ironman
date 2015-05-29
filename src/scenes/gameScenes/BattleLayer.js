@@ -1,7 +1,7 @@
 var BattleLayer = cc.Layer.extend({
     ctor: function() {
     	this._super();
-        this.scriptLayer = null;
+        this._scriptLayer = null;
     	this.init();
     },
 
@@ -15,13 +15,13 @@ var BattleLayer = cc.Layer.extend({
     initScriptLayer: function() {
         var scriptLayer = new ScriptLayer();
         this.addChild(scriptLayer);
-        this.scriptLayer = scriptLayer;
-        this.scriptLayer.start('1000');
+        this._scriptLayer = scriptLayer;
+        this._scriptLayer.start('1000');
     },
 
     update: function(dt) {
         Character.current.update && Character.current.update(dt);
         Bullet.updateAll();
-        this.scriptLayer.update(dt);
+        this._scriptLayer.update(dt);
     }
 })

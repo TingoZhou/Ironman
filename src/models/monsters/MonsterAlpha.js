@@ -32,6 +32,7 @@ var MonsterAlpha = (function() {
             this._viewObj.visible = true;
             this._hurtable = true;
             this._movable = true;
+            this._target = Character.current;
         },
 
         start: function() {
@@ -69,6 +70,12 @@ var MonsterAlpha = (function() {
             switch(this._currentStatus) {
                 case selfStatus.MOVE_TO_TARGET:
                     if(this._movable) {
+                        var targetPos = this._target.getPosition();
+                        this._targetPos = targetPos;
+                        var normalVect = cc.pNormalize(cc.pSub(targetPos, this.getPosition()));
+                        this._stepX = normalVect.x * this._speed;
+                        this._stepY = normalVect.y * this._speed;
+
                         this._viewObj.x += this._stepX;
                         this._viewObj.y += this._stepY;
                     }

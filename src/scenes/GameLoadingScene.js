@@ -37,6 +37,18 @@ var GameLoadingLayer = (function() {
             this.playLoading();
         },
 
+        initConfig: function() {
+            for (var mKey in MonsterConfig) {
+                var mConfig = MonsterConfig[mKey];
+                for(var k in MonstersBusinessConfig) {
+                    if(MonstersBusinessConfig[k].resId == mConfig.resId) {
+                        var mBusinessConfig = MonstersBusinessConfig[k];
+                        mConfig['values'][k] = mBusinessConfig;
+                    }
+                }
+            }
+        },
+
         playLoading: function () {
             var percent = 0;
             this.schedule(_.bind(function () {
@@ -73,9 +85,8 @@ var GameLoadingLayer = (function() {
                 self._finishIndex++;
                 if (self._finishIndex >= game_resources.length) {
                     self.unschedule(self.loadResource);
-
+                    self.initConfig();
                     self.addPlist();
-
                     Monsters.preset(self);
 
                     //self.loadingBar.setPercent(100);
