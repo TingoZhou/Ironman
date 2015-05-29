@@ -66,6 +66,8 @@ Bullet.create = function (parent, type) {
     switch (type) {
         case SH.Bullet.Characters.Rifle:
             return BulletRifle.create(parent);
+        case SH.Bullet.Characters.Rocket:
+            return BulletRocket.create(parent);
     }
 };
 
@@ -80,6 +82,9 @@ Bullet.preset = function (parent, type, data) {
     switch (type) {
         case SH.Bullet.Characters.Rifle:
             BulletRifle.preset(parent, data);
+            break;
+        case SH.Bullet.Characters.Rocket:
+            BulletRocket.preset(parent, data);
             break;
     }
 };

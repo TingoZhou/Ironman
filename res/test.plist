@@ -4,19 +4,6 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>bombBtn.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{113,331},{98,98}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,1},{98,98}}</string>
-                <key>sourceSize</key>
-                <string>{100,100}</string>
-            </dict>
             <key>joystickleft.png</key>
             <dict>
                 <key>frame</key>
@@ -43,6 +30,32 @@
                 <key>sourceSize</key>
                 <string>{113,112}</string>
             </dict>
+            <key>weaponABtn.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{211,331},{96,98}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,1},{96,98}}</string>
+                <key>sourceSize</key>
+                <string>{100,100}</string>
+            </dict>
+            <key>weaponBBtn.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{113,331},{96,98}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,1},{96,98}}</string>
+                <key>sourceSize</key>
+                <string>{100,100}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -53,7 +66,7 @@
             <key>size</key>
             <string>{330,441}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:14ee66efe9aa626c6f8871525692dad8$</string>
+            <string>$TexturePacker:SmartUpdate:e2937c7b3718a2f5bf8e4c09bde6bb50$</string>
             <key>textureFileName</key>
             <string>test.png</string>
         </dict>

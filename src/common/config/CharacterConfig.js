@@ -1,5 +1,5 @@
 var CharacterConfig = {
 	Ironman: {
-		speed: 10
+		speed: 5
 	}
 }
