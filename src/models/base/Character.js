@@ -1,5 +1,7 @@
-var Character = cc.Class.extend({
+var Character = Creature.extend({
 	ctor: function(parent) {
+		this._super();
+
 		this._step = 0;
 		this._parent = parent;
 
@@ -53,6 +55,7 @@ var Character = cc.Class.extend({
 
 	doHitByMonster: function(dps) {
 		this._HP -= dps;
+		this.strike();
 	},
 
 	getCollideBoundingBox: function() {

@@ -4,15 +4,16 @@ var Ironman = Character.extend({
 
 		this.name = SH.Character.Ironman;
 
+		this._viewObj = cc.Sprite.create(CharacterConfig[this.name].res);
+		this._viewObj.setScale(CharacterConfig[this.name].scale);
+		this._parent.addChild(this._viewObj, 10000);
+
 		this.init();
 		this.addListeners();
 	},
 
 	init: function() {
 		this._super();
-		this._viewObj = cc.Sprite.create(CharacterConfig[this.name].res);
-		this._viewObj.setScale(CharacterConfig[this.name].scale);
-		this._parent.addChild(this._viewObj, 10000);
 	},
 
 	addListeners: function() {

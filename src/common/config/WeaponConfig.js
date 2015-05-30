@@ -2,7 +2,7 @@ var WeaponConfig = {
 	Rifle: {
 		shootStep: 10,
 		bullets: {
-			res: "#W1.png",
+			res: "#.png",
 			speed: 15
 		}
 	},

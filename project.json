@@ -32,6 +32,7 @@
         "src/components/joystick/JoyStickPannel.js",
 
         "src/models/base/Bullet.js",
+        "src/models/base/Creature.js",
         "src/models/base/Character.js",
         "src/models/base/Monsters.js",
         "src/models/base/Weapon.js",
