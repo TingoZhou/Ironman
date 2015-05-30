@@ -15,5 +15,7 @@ Weapon.create = function(type, parent) {
 			return new WeaponRifle(parent);
 		case SH.Weapon.Characters.Rocket:
 			return new WeaponRocket(parent);
+		case SH.Weapon.Characters.Electric:
+			return new WeaponElectric(parent);
 	}
 }

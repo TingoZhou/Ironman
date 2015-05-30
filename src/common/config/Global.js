@@ -26,13 +26,15 @@ SH.Character = {
 SH.Weapon = {
 	Characters: {
 		Rifle: "Rifle",
-		Rocket: "Rocket"
+		Rocket: "Rocket",
+        Electric: "Electric"
 	}
 }
 
 SH.Bullet = {
 	Characters: {
 		Rifle: "Rifle",
-		Rocket: "Rocket"
+		Rocket: "Rocket",
+        Electric: "Electric"
 	}
 }

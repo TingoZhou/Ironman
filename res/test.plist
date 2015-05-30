@@ -20,7 +20,7 @@
             <key>joystickmove.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,331},{109,108}}</string>
+                <string>{{330,91},{109,108}}</string>
                 <key>offset</key>
                 <string>{-1,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>weaponABtn.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{211,331},{96,98}}</string>
+                <string>{{330,299},{96,98}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,15 +46,67 @@
             <key>weaponBBtn.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{113,331},{96,98}}</string>
+                <string>{{330,201},{96,98}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{2,1},{96,98}}</string>
+                <key>sourceSize</key>
+                <string>{100,100}</string>
+            </dict>
+            <key>weaponD1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{162,394},{124,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,1},{96,98}}</string>
+                <string>{{0,0},{124,20}}</string>
                 <key>sourceSize</key>
-                <string>{100,100}</string>
+                <string>{124,20}</string>
+            </dict>
+            <key>weaponD2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{162,331},{161,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{161,61}}</string>
+                <key>sourceSize</key>
+                <string>{161,61}</string>
+            </dict>
+            <key>weaponD3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,331},{158,66}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{158,66}}</string>
+                <key>sourceSize</key>
+                <string>{158,66}</string>
+            </dict>
+            <key>weaponD4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{330,2},{174,87}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{174,87}}</string>
+                <key>sourceSize</key>
+                <string>{174,87}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -64,9 +116,9 @@
             <key>realTextureFileName</key>
             <string>test.png</string>
             <key>size</key>
-            <string>{330,441}</string>
+            <string>{506,416}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e2937c7b3718a2f5bf8e4c09bde6bb50$</string>
+            <string>$TexturePacker:SmartUpdate:098d37f00d47cdbc153b594304e2b1fc$</string>
             <key>textureFileName</key>
             <string>test.png</string>
         </dict>
