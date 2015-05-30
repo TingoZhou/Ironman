@@ -3,20 +3,24 @@ var BattleLayer = cc.Layer.extend({
     	this._super();
         this._scriptLayer = null;
     	this.init();
+        this.addListeners();
     },
 
     init: function() {
         var character = Character.create(SH.Character.Ironman, this);
-        character.setPosition(cc.p(cc.winSize.width / 2, cc.winSize.height / 2));
-
         this.initScriptLayer();
+    },
+
+    addListeners: function() {
+        cc.eventManager.addCustomListener(SC.GAME_START, _.bind(function(e) {
+            this._scriptLayer.start('1000');
+        }, this));
     },
 
     initScriptLayer: function() {
         var scriptLayer = new ScriptLayer();
         this.addChild(scriptLayer);
         this._scriptLayer = scriptLayer;
-        this._scriptLayer.start('1000');
     },
 
     update: function(dt) {

@@ -12,6 +12,7 @@ var Character = Creature.extend({
 		this._HP = 0;
 		this._moveBuffer = {x: 0, y: 0};
 		this._shadowObjs = [];
+		this._isShowBegin = false;
 	},
 
 	init: function() {
@@ -65,6 +66,8 @@ var Character = Creature.extend({
 	getRotation: function() {
 		return this._viewObj.getRotation();
 	},
+
+	showShoot: function() {},
 
 	update: function() {
 		++this._step;
@@ -125,7 +128,7 @@ var Character = Creature.extend({
 	},
 
 	_resetWeapon: function() {
-		this._weapon = null;
+		// this._weapon = null;
 	},
 
 	_changeDirection: function() {
@@ -149,9 +152,10 @@ var Character = Creature.extend({
 		} else {
 			rotation = Math.atan(vY / vX) * 180 / Math.PI;
 			this._viewObj.setScaleX((vX < 0? -1 : 1) * Math.abs(this._viewObj.scaleX));
+			rotation = -rotation;
 		}
 
-		this._viewObj.setRotation(360 - rotation);
+		this._viewObj.setRotation(rotation);
 	}
 });
 

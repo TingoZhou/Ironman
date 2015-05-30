@@ -3,9 +3,13 @@ var Weapon = cc.Class.extend({
 		this._parent = parent;
 		this._step = 0;
 	},
-	
+
 	update: function() {
 		++this._step;
+	},
+
+	_shoot: function() {
+		Character.current.showShoot();
 	}
 });
 
