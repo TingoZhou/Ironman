@@ -128,7 +128,7 @@ var Character = Creature.extend({
 	},
 
 	_resetWeapon: function() {
-		// this._weapon = null;
+		this._weapon = null;
 	},
 
 	_changeDirection: function() {

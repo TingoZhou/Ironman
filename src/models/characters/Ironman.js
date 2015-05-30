@@ -7,8 +7,17 @@ var Ironman = Character.extend({
 		this._viewObj = cc.Sprite.create(CharacterConfig[this.name].res);
 		this._parent.addChild(this._viewObj, 10000);
 
+		this._weaponFire = cc.Sprite.create("#" + CharacterConfig[this.name].weaponFire.frames[0]);
+		this._weaponFire.setRotation(90);
+		this._weaponFire.setScale(CharacterConfig[this.name].weaponFire.scale);
+		this._weaponFire.setPosition(CharacterConfig[this.name].weaponFire.buffer);
+		this._weaponFire.visible = false;
+		this._viewObj.addChild(this._weaponFire);
+
 		this.init();
 		this.addListeners();
+
+		this._getAnimation("Ironman", "weaponFire");
 	},
 
 	init: function() {
@@ -18,6 +27,10 @@ var Ironman = Character.extend({
 
 	addListeners: function() {
 		this._super();
+	},
+
+	showShoot: function() {
+		
 	},
 
 	update: function() {
@@ -38,5 +51,38 @@ var Ironman = Character.extend({
 				cc.eventManager.dispatchCustomEvent(SC.GAME_START);
 			}, this)
 		));
-	}
+	},
+
+	_getAnimation: function(ex, type) {
+        var animationCache = cc.animationCache;
+        var spriteFrameCache = cc.spriteFrameCache;
+        var animation = animationCache.getAnimation(ex + type);
+        if(animation) {
+            return cc.animate(animation);
+        } else {
+            var frames = [];
+            for (var i = 0, len = CharacterConfig[this.name][type].frames.length; i < len; ++i) {
+                var frame = CharacterConfig[this.name][type].frames[i];
+                frames.push(cc.spriteFrameCache.getSpriteFrame(frame));
+            }
+            var animMixed = new cc.Animation(frames, CharacterConfig[this.name][type].aniRate);
+            animMixed.setRestoreOriginalFrame(true);
+            animationCache.addAnimation(animMixed, ex + type);
+            return cc.animate(animMixed);
+        }      
+    },
+
+    _setWeapon: function(weaponName) {
+    	this._super(weaponName);
+    	this._weaponFire.visible = true;
+    	this._weaponFire.runAction(cc.sequence(
+            this._getAnimation("Ironman", "weaponFire")
+        ).repeatForever());
+    },
+
+    _resetWeapon: function() {
+    	this._super();
+    	this._weaponFire.visible = false;
+    	this._weaponFire.stopAllActions();
+    }
 });
