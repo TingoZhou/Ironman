@@ -76,6 +76,11 @@ var MonsterAlpha = (function() {
                         this._stepX = normalVect.x * this._speed;
                         this._stepY = normalVect.y * this._speed;
 
+                        if(cc.rectIntersectsRect(this.getDamageBoundingBox(), this._target.getCollideBoundingBox())) {
+                            this._stepX = 0;
+                            this._stepY = 0;
+                        }
+
                         this._viewObj.x += this._stepX;
                         this._viewObj.y += this._stepY;
                     }

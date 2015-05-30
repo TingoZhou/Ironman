@@ -210,10 +210,16 @@ var ScriptLayer = (function() {
                         var halfWinWidth = cc.winSize.width / 2;
                         var halfWinHeight = cc.winSize.height / 2;
                         var monster4CurLvl = this.monsters4CurLvl.pop();
+                        var bornPlace = cc.p(halfWinWidth + randomX * (halfWinWidth + 100), halfWinHeight + randomY * (halfWinHeight + 100));
+                        if(bornPlace.x < 0 || bornPlace.x > cc.winSize.width) {
+                            bornPlace.y += _.random(-300, 300);
+                        } else if(bornPlace.y < 0 || bornPlace.y > cc.winSize.height) {
+                            bornPlace.x += _.random(-300, 300);
+                        }
                         var monster = Monsters.create(this.parent, {
                             name: monster4CurLvl.key,
                             monsterId: monster4CurLvl.monsterId,
-                            bornPlace: cc.p(halfWinWidth + randomX * (halfWinWidth + 100), halfWinHeight + randomY * (halfWinHeight + 100))
+                            bornPlace: bornPlace
                         });
                         monster.start();
                         this.currentAmount++;
