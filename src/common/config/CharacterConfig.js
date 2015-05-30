@@ -1,7 +1,7 @@
 var CharacterConfig = {
 	Ironman: {
 		res: "#ironman.png",
-		scale: 0.2,
+		scale: 0.5,
 		speed: 5
 	}
 }

@@ -10,9 +10,10 @@ var Monsters = (function() {
         ctor: function(parent, data) {
             this._super(parent, data);
 
+            this.active = false;
+
             this._framesData = data.framesData;
             this._viewObj = new cc.Sprite('#' + this._framesData.Move[0]);
-            this._active = false;
             this._id = uuid();
             this._monsterId = '';
             this._level = 0;
@@ -99,10 +100,10 @@ var Monsters = (function() {
         },
 
         disable: function() {
-            if(!this._active) return;
+            if(!this.active) return;
             this._viewObj.visible = false;
-            this._active = false;
-            cc.pool.putInPool(this);
+            this.active = false;
+            this.unuse();
         },
 
         unuse: function() {
@@ -112,7 +113,7 @@ var Monsters = (function() {
             viewObj.retain();
             viewObj.removeFromParent(true);
 
-            this._active = false;
+            this.active = false;
 
             for (var i = 0, len = Monsters.monstersOnStage.length; i < len; ++i) {
                 var monster = Monsters.monstersOnStage[i];
@@ -124,7 +125,7 @@ var Monsters = (function() {
         },
 
         reuse: function(parent, data) {
-            this._active = true;
+            this.active = true;
             this.initData(parent, data);
             Monsters.monstersOnStage.push(this);
 
@@ -170,6 +171,7 @@ Monsters.preset = function (parent) {
 Monsters.resetAll = function () {
     for (var i = 0; i < Monsters.monstersOnStage.length; ++i) {
         Monsters.monstersOnStage[i].disable();
+        Monsters.monstersOnStage[i].release();
     }
     Monsters.monstersOnStage = [];
 };

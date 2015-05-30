@@ -41,43 +41,53 @@ var ControllLayer = cc.Layer.extend({
     },
 
     initRifleShootBtn: function() {
-    	var button = new ccui.Button();
-        button.setTouchEnabled(true);
-        button.setPressedActionEnabled(true);
-        button.loadTextures("weaponABtn.png", "weaponABtn.png", "", ccui.Widget.PLIST_TEXTURE);
+    	// var button = new ccui.Button();
+     //    button.setTouchEnabled(true);
+     //    button.setPressedActionEnabled(true);
+     //    button.loadTextures("weaponABtn.png", "weaponABtn.png", "", ccui.Widget.PLIST_TEXTURE);
+     //    button.setPosition(cc.p(cc.winSize.width * 7 / 8, 100));
+     //    button.addTouchEventListener(function(sender, type) {
+     //    	if (type == ccui.Widget.TOUCH_BEGAN) {
+     //            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
+     //                weaponName: SH.Weapon.Characters.Rifle
+     //            });
+     //        } else if (type == ccui.Widget.TOUCH_ENDED) {
+     //            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+     //        } else if (type == ccui.Widget.TOUCH_CANCELED) {
+     //            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+     //        }
+     //    }, this);
+     //    this.addChild(button);
+
+        var button = new Button("weaponABtn.png");
         button.setPosition(cc.p(cc.winSize.width * 7 / 8, 100));
-        button.addTouchEventListener(function(sender, type) {
-        	if (type == ccui.Widget.TOUCH_BEGAN) {
-                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
-                    weaponName: SH.Weapon.Characters.Rifle
-                });
-            } else if (type == ccui.Widget.TOUCH_ENDED) {
-                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
-            } else if (type == ccui.Widget.TOUCH_CANCELED) {
-                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
-            }
-        }, this);
         this.addChild(button);
+
+        button.onTouchBegan = function(touch, type) {
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
+                weaponName: SH.Weapon.Characters.Rifle
+            });
+        }
+
+        button.onTouchEnded = function(touch, type) {
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+        }
     },
 
     initRocketShootBtn: function() {
-        var button = new ccui.Button();
-        button.setTouchEnabled(true);
-        button.setPressedActionEnabled(true);
-        button.loadTextures("weaponBBtn.png", "weaponBBtn.png", "", ccui.Widget.PLIST_TEXTURE);
+        var button = new Button("weaponBBtn.png");
         button.setPosition(cc.p(cc.winSize.width * 6 / 8, 100));
-        button.addTouchEventListener(function(sender, type) {
-            if (type == ccui.Widget.TOUCH_BEGAN) {
-                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
-                    weaponName: SH.Weapon.Characters.Rocket
-                });
-            } else if (type == ccui.Widget.TOUCH_ENDED) {
-                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
-            } else if (type == ccui.Widget.TOUCH_CANCELED) {
-                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
-            }
-        }, this);
         this.addChild(button);
+
+        button.onTouchesBegan = function(touch, type) {
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
+                weaponName: SH.Weapon.Characters.Rocket
+            });
+        }
+
+        button.onTouchesEnded = function(touch, type) {
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+        }
     },
 
 	onTouchesBegan: function (touches, event) {

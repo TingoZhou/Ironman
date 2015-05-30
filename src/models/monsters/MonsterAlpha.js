@@ -98,23 +98,25 @@ var MonsterAlpha = (function() {
     });
 })();
 
+MonsterAlpha.monsters = [];
+
 MonsterAlpha.preset = function(parent, data) {
     for(var i = 0; i < MonsterConfig.Alpha.presetAmount; i++) {
-        MonsterAlpha.create(parent, data, true);
+        MonsterAlpha.monsters.push(new MonsterAlpha(parent, data))
     }
 };
 
 MonsterAlpha.create = function(parent, data, createOnly) {
-    var pool = cc.pool;
-    createOnly = !_.isUndefined(createOnly) ? createOnly : false;
-    if (!createOnly && pool.hasObject(MonsterAlpha)) {
-        return pool.getFromPool(MonsterAlpha, parent, data);
-    } else if(createOnly) {
-        var monster = new MonsterAlpha(parent, data);
-        cc.pool.putInPool(monster);
-    } else {
-        var monster = new MonsterAlpha(parent, data);
-        cc.pool.putInPool(monster);
-        return pool.getFromPool(MonsterAlpha, parent, data);
+    var monsterAlpha = null;
+    for (var i = 0, len = MonsterAlpha.monsters.length; i < len; ++i) {
+        var monster = MonsterAlpha.monsters[i];
+        if (!monster.active) {
+            monsterAlpha = monster;
+        }
     }
+    if (!monsterAlpha) {
+        monsterAlpha = new MonsterAlpha(parent, data);
+    }
+    monsterAlpha.reuse(parent, data);
+    return monsterAlpha;
 };

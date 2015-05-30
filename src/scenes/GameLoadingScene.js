@@ -89,6 +89,10 @@ var GameLoadingLayer = (function() {
                     self.addPlist();
                     Monsters.preset(self);
 
+                    Bullet.preset(self, SH.Bullet.Characters.Rifle);
+                    Bullet.preset(self, SH.Bullet.Characters.Rocket);
+                    Bullet.preset(self, SH.Bullet.Characters.Electric);
+
                     //self.loadingBar.setPercent(100);
                     //self.loadingIcon.setPositionX(
                         //self.loadingBg.getPosition().x - self.loadingBg.width / 2 + self.loadingBar.width * self.loadingBar.getPercent() / 100);

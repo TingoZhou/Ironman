@@ -1,5 +1,7 @@
 var Bullet = cc.Class.extend({
 	ctor: function() {
+        this.active = false;
+
         this._id = uuid();
 		this._step = 0;
 		this._viewObj = null;
@@ -10,11 +12,13 @@ var Bullet = cc.Class.extend({
 	},
 
 	reuse: function(parent) {
+        this.active = true;
 		this.initData(parent);
         Bullet.bulletsOnStage.push(this);
 	},
 
 	unuse: function() {
+        this.active = false;
         this._viewObj.unscheduleAllCallbacks();
         this._viewObj.stopAllActions();
         this._viewObj.retain(); //if in jsb
@@ -55,7 +59,7 @@ var Bullet = cc.Class.extend({
     },
 
     _disable: function() {
-        cc.pool.putInPool(this);
+        this.unuse();
     }
 });
 
@@ -80,27 +84,29 @@ Bullet.updateAll = function (dt) {
     }
 };
 
-Bullet.preset = function (parent, type, data) {
+Bullet.preset = function (parent, type) {
     switch (type) {
         case SH.Bullet.Characters.Rifle:
-            BulletRifle.preset(parent, data);
+            BulletRifle.preset(parent);
             break;
         case SH.Bullet.Characters.Rocket:
-            BulletRocket.preset(parent, data);
+            BulletRocket.preset(parent);
             break;
         case SH.Bullet.Characters.Electric:
-            BulletElectric.preset(parent, data);
+            BulletElectric.preset(parent);
             break;
     }
 };
 
 Bullet.resetAll = function () {
     for (var i = 0; i < Bullet.bulletsOnStage.length; ++i) {
-        cc.pool.putInPool(Bullet.bulletsOnStage[i]);
+        Bullet.bulletsOnStage[i].unuse();
+        Bullet.bulletsOnStage[i].release();
     }
     Bullet.bulletsOnStage = [];
     for (var i = 0; i < Bullet.mShootableOnStage.length; ++i) {
-        cc.pool.putInPool(Bullet.mShootableOnStage[i]);
+        Bullet.mShootableOnStage[i].unuse();
+        Bullet.mShootableOnStage[i].release();
     }
     Bullet.mShootableOnStage = [];
 }

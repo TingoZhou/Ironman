@@ -8,7 +8,7 @@
     "renderMode" : 0,
     "engineDir":"frameworks/cocos2d-html5",
 
-    "modules" : ["cocos2d", "ccui", "ccpool"],
+    "modules" : ["cocos2d"],
 
     "jsList" : [
         "src/common/config/Global.js",
@@ -30,6 +30,7 @@
         "src/components/audio/Audio.js",
         "src/components/joystick/JoyStick.js",
         "src/components/joystick/JoyStickPannel.js",
+        "src/components/Button.js",
 
         "src/models/base/Bullet.js",
         "src/models/base/Creature.js",

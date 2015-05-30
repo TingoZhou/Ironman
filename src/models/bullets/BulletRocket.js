@@ -10,7 +10,7 @@ var BulletRocket = Bullet.extend({
 		this._viewObj.setPosition(Character.current.getPosition());
 		var rotation = Character.current.getRotation() + 90;
         this._viewObj.setRotation(rotation);
-        var speed = WeaponConfig.Rifle.bullets.speed;
+        var speed = WeaponConfig.Rocket.bullets.speed;
 		var scaleX = Character.current.getScaleX();
         this._velocity = {
         	x: speed * Math.sin(rotation * Math.PI / 180) * (Math.abs(scaleX) / scaleX),
@@ -30,18 +30,25 @@ var BulletRocket = Bullet.extend({
 	}
 });
 
-BulletRocket.create = function(parent, createOnly) {
-	var pool = cc.pool;
-    createOnly = !_.isUndefined(createOnly) ? createOnly : false;
-    if (!createOnly && pool.hasObject(BulletRocket)) {
-        var bullet = pool.getFromPool(BulletRocket, parent);
-        return bullet;
-    } else if(createOnly) {
-        var bullet = new BulletRocket(parent);
-        pool.putInPool(bullet);
-    } else {
-        var bullet = new BulletRocket(parent);
-        cc.pool.putInPool(bullet);
-        return pool.getFromPool(BulletRocket, parent);
+BulletRocket.bullets = [];
+
+BulletRocket.preset = function(parent) {
+	for(var i = 0; i < WeaponConfig.Rocket.bullets.presetAmount; ++i) {
+        BulletRocket.bullets.push(new BulletRocket(parent));
     }
+}
+
+BulletRocket.create = function(parent, createOnly) {
+    var bulletRocket = null;
+    for (var i = 0, len = BulletRocket.bullets.length; i < len; ++i) {
+    	var bullet = BulletRocket.bullets[i];
+    	if (!bullet.active) {
+    		bulletRocket = bullet;
+    	}
+    }
+    if (!bulletRocket) {
+    	bulletRocket = new BulletRocket();
+    }
+    bulletRocket.reuse(parent);
+    return bulletRocket;
 }

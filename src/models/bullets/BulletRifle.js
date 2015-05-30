@@ -30,18 +30,25 @@ var BulletRifle = Bullet.extend({
 	}
 });
 
-BulletRifle.create = function(parent, createOnly) {
-	var pool = cc.pool;
-    createOnly = !_.isUndefined(createOnly) ? createOnly : false;
-    if (!createOnly && pool.hasObject(BulletRifle)) {
-        var bullet = pool.getFromPool(BulletRifle, parent);
-        return bullet;
-    } else if(createOnly) {
-        var bullet = new BulletRifle(parent);
-        pool.putInPool(bullet);
-    } else {
-        var bullet = new BulletRifle(parent);
-        cc.pool.putInPool(bullet);
-        return pool.getFromPool(BulletRifle, parent);
+BulletRifle.bullets = [];
+
+BulletRifle.preset = function(parent) {
+	for(var i = 0; i < WeaponConfig.Rifle.bullets.presetAmount; ++i) {
+        BulletRifle.bullets.push(new BulletRifle(parent));
     }
+}
+
+BulletRifle.create = function(parent, createOnly) {
+    var bulletRifle = null;
+    for (var i = 0, len = BulletRifle.bullets.length; i < len; ++i) {
+    	var bullet = BulletRifle.bullets[i];
+    	if (!bullet.active) {
+    		bulletRifle = bullet;
+    	}
+    }
+    if (!bulletRifle) {
+    	bulletRifle = new BulletRifle();
+    }
+    bulletRifle.reuse(parent);
+    return bulletRifle;
 }

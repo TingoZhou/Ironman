@@ -18,18 +18,25 @@ var BulletElectric = Bullet.extend({
 	}
 });
 
-BulletElectric.create = function(parent, createOnly) {
-	var pool = cc.pool;
-    createOnly = !_.isUndefined(createOnly) ? createOnly : false;
-    if (!createOnly && pool.hasObject(BulletElectric)) {
-        var bullet = pool.getFromPool(BulletElectric, parent);
-        return bullet;
-    } else if(createOnly) {
-        var bullet = new BulletElectric(parent);
-        pool.putInPool(bullet);
-    } else {
-        var bullet = new BulletElectric(parent);
-        cc.pool.putInPool(bullet);
-        return pool.getFromPool(BulletElectric, parent);
+BulletElectric.bullets = [];
+
+BulletElectric.preset = function(parent) {
+	for(var i = 0; i < WeaponConfig.Electric.bullets.presetAmount; ++i) {
+        BulletElectric.bullets.push(new BulletElectric(parent));
     }
+}
+
+BulletElectric.create = function(parent, createOnly) {
+    var bulletElectric = null;
+    for (var i = 0, len = BulletElectric.bullets.length; i < len; ++i) {
+    	var bullet = BulletElectric.bullets[i];
+    	if (!bullet.active) {
+    		bulletElectric = bullet;
+    	}
+    }
+    if (!bulletElectric) {
+    	bulletElectric = new BulletElectric();
+    }
+    bulletElectric.reuse(parent);
+    return bulletElectric;
 }
