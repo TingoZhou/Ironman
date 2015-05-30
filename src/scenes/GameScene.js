@@ -68,5 +68,6 @@ var GameLayer = cc.Layer.extend({
 		this.battleLayer.update && this.battleLayer.update();
         this.dropItemLayer.update && this.dropItemLayer.update();
 		this.controllLayer.update && this.controllLayer.update(dt);
+        Monsters.updateAll(dt);
 	}
 });
