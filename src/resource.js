@@ -22,10 +22,8 @@ var GameRes = {
         }
     },
     monsters: {
-        alpha: {
-            plist: 'res/monsters/alpha.plist',
-            png: 'res/monsters/alpha.png'
-        }
+        plist: 'res/monsters/monsters.plist',
+        png: 'res/monsters/monsters.png'
     }
 };
 

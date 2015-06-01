@@ -24,6 +24,7 @@ var Monsters = (function() {
             this._movable = true;
             this._target = null;
             this._currentStatus = '';
+            this._hurtStep = 0;
             
             this._properties = {
                 dps: 0,

@@ -88,7 +88,10 @@ var MonsterAlpha = (function() {
             }
 
             if(!this._isDead && cc.rectIntersectsRect(this.getDamageBoundingBox(), this._target.getCollideBoundingBox())) {
-                this._target.doHitByMonster(this._properties.dps);
+                if(this._hurtStep % (SH.FPS / 2) == 0) {
+                    this._target.doHitByMonster(this._properties.dps);
+                }
+                this._hurtStep ++;
             }
 
             if (!this._isDead && this.isDie()) {
