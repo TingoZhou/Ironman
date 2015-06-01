@@ -1,7 +1,7 @@
 var Weapon = cc.Class.extend({
 	ctor: function(parent) {
 		this._parent = parent;
-		this._step = 0;
+		this._step = -1;
 	},
 
 	update: function() {
