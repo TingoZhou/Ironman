@@ -11,8 +11,29 @@ var MonsterConfig = {
         presetAmount: 3,
         scale: 0.5,
         framesData: {
-            Move: ['alphaMEast1.png', 'alphaMEast2.png', 'alphaMEast3.png', 'alphaMEast4.png',
-                    'alphaMEast5.png', 'alphaMEast6.png', 'alphaMEast7.png'],
+            Move: ['Alpha_1.png'],
+            Attack: [ 'Alpha_2.png', 'Alpha_1.png', 'Alpha_3.png','Alpha_1.png'],
+            speed: 2
+        },
+        values: {}
+    },
+    Beta: {
+        resId: 102,
+        presetAmount: 3,
+        scale: 0.5,
+        framesData: {
+            Move: ['Beta_1.png'],
+            Attack: [ 'Beta_5.png'],
+            speed: 2.5
+        },
+        values: {}
+    },
+    Charlie: {
+        resId: 103,
+        presetAmount: 3,
+        scale: 0.5,
+        framesData: {
+            Move: ['charlie.png'],
             speed: 2.5
         },
         values: {}

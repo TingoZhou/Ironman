@@ -1,12 +1,16 @@
 /**
  * Created with JetBrains WebStorm.
- * User: Tingo
- * Date: 15-5-28
- * Time: 下午8:21
- * To change this template use File | Settings | File Templates.
+ * @author : Ethan
+ * Date: 15-6-2
+ * Time: 上午11:02
+ * @version 1.0
+ * @description 怪物Bate
  */
 
-var MonsterAlpha = Monsters.extend({
+
+var MonsterBeta = Monsters.extend({
+        _ATTACK_COOLDOWN: 3,
+        _ATTACKBEFORE_COOLDOWN: 1,
 
         ctor: function (parent, data) {
             this._super(parent, data);
@@ -17,7 +21,7 @@ var MonsterAlpha = Monsters.extend({
             this._parent = parent;
             this._monsterId = data.monsterId;
             if (!this._monsterId) return;
-            var config = MonsterConfig.Alpha.values[this._monsterId];
+            var config = MonsterConfig.Beta.values[this._monsterId];
             this._properties.currentHP = config.HP + (this._level - 1) * config.levelEnhance.HP;
             this._properties.dps = config.dps + (this._level - 1) * config.levelEnhance.dps;
             this._speed = config.speed + (this._level - 1) * config.levelEnhance.speed;
@@ -30,6 +34,11 @@ var MonsterAlpha = Monsters.extend({
             this._hurtable = true;
             this._movable = true;
             this._target = Character.current;
+
+            //
+            this._attackCD = this._ATTACK_COOLDOWN;   //攻击CD
+            this._attackBeforeCD = this._ATTACKBEFORE_COOLDOWN;  //攻击前储气
+            this._backPosition = null;
         },
 
         start: function () {
@@ -43,45 +52,15 @@ var MonsterAlpha = Monsters.extend({
         },
 
         getAnimation: function (name) {
-            var animationCache = cc.animationCache;
-            var spriteFrameCache = cc.spriteFrameCache;
 
-            var animation = animationCache.getAnimation(name);
-            if (animation) {
-                return cc.animate(animation);
-            }
-
-            var moreFrames = [];
-            var delay = 0;
-            switch (name) {
-                case MonsterStatus.MOVE_TO_TARGET:
-
-                    break;
-                case MonsterStatus.ATTACK:
-                    var vo = MonsterConfig.Alpha.framesData;
-                    var array = vo.Attack;
-                    delay = 1 / (array.length * vo.speed);
-                    for (var i = 0, m = array.length; i < m; i++) {
-                        var frame = spriteFrameCache.getSpriteFrame(array[i]);
-                        moreFrames.push(frame);
-                    }
-                    break;
-            }
-
-            var animMixed = new cc.Animation(moreFrames, delay);
-            cc.animationCache.addAnimation(animMixed, name);
-            return cc.animate(animMixed);
         },
 
         //移动
         _move: function () {
 
-            if (this._currentStatus == MonsterStatus.ATTACK) {
-                var a = this._viewObj.isFlippedX() ? -1 : 1;
-                this._stepX = cc.random0To1() * a;
-                this._stepY = cc.random0To1() * a;
-            }
-
+            if (this._currentStatus == MonsterStatus.ATTACK)return;
+            if (this._currentStatus == MonsterStatus.BEFORE_ATTACK)return;
+            if (this._currentStatus == MonsterStatus.BACK_ATTACK)return;
             this._viewObj.x += this._stepX;
             this._viewObj.y += this._stepY;
         },
@@ -100,34 +79,42 @@ var MonsterAlpha = Monsters.extend({
             }
         },
 
+        //攻击前准备 倒数1秒
+        _doAttackBefore: function (dt) {
+            this._backPosition = this.getPosition();
+            this._attackBeforeCD -= dt;
+            if (this._attackBeforeCD <= 0) {
+                this._doAttack();
+            }
+        },
+
         //攻击
         _doAttack: function () {
-
             if (this._currentStatus == MonsterStatus.ATTACK) return;
             this._currentStatus = MonsterStatus.ATTACK;
-            var attackAnimate = this.getAnimation(MonsterStatus.ATTACK);          //播放动画
-            this._viewObj.runAction(
-                cc.sequence(
-                    attackAnimate,
-                    cc.callFunc(
-                        function () {
+            this._stepX = this._stepX * 22;
+            this._stepY = this._stepY * 22;
+            this._viewObj.x += this._stepX;
+            this._viewObj.y += this._stepY;
+            this._currentStatus = MonsterStatus.BACK_ATTACK;
+        },
 
-                            this.doMoveToTarget();
-
-                        }.bind(this)
-                    )
-                )
-            )
+        _doAttackBack: function () {
+            cc.log(this._backPosition);
+            this._viewObj.x = this._backPosition.x;
+            this._viewObj.y = this._backPosition.y;
         },
 
         //碰撞目标
         _checkCollideTarget: function () {
             if (cc.rectIntersectsRect(this.getDamageBoundingBox(), this._target.getCollideBoundingBox())) {
-                this._doAttack(); //攻击
+
             }
         },
 
+
         update: function (dt) {
+
             switch (this._currentStatus) {
                 case MonsterStatus.MOVE_TO_TARGET:
                     if (this._movable) {
@@ -135,10 +122,22 @@ var MonsterAlpha = Monsters.extend({
                         var normalVect = cc.pNormalize(cc.pSub(targetPos, this.getPosition()));
                         this._stepX = normalVect.x * this._speed;
                         this._stepY = normalVect.y * this._speed;
+
+                        this._attackCD -= dt;
+                        if (this._attackCD <= 0) {
+                            this._attackBeforeCD = this._ATTACKBEFORE_COOLDOWN;
+                            this._currentStatus = MonsterStatus.BEFORE_ATTACK;       //攻击前存气
+                        }
                     }
                     break;
                 case MonsterStatus.ATTACK:
-
+                    this._doAttack(); //攻击
+                    break;
+                case MonsterStatus.BACK_ATTACK:
+                    this._doAttackBack(); //攻击后
+                    break;
+                case MonsterStatus.BEFORE_ATTACK:     //攻击前准备
+                    this._doAttackBefore(dt); //攻击
                     break;
 
             }
@@ -148,39 +147,31 @@ var MonsterAlpha = Monsters.extend({
             this._direction();  //方向
 
 
-            /* if (!this._isDead && cc.rectIntersectsRect(this.getDamageBoundingBox(), this._target.getCollideBoundingBox())) {
-             if (this._hurtStep % (SH.FPS / 2) == 0) {
-             this._target.doHitByMonster(this._properties.dps);
-             }
-             this._hurtStep++;
-             }
-
-             if (!this._isDead && this.isDie()) {
-             this.doDie();
-             }*/
         }
+
     })
     ;
 
-MonsterAlpha.monsters = [];
 
-MonsterAlpha.preset = function (parent, data) {
-    for (var i = 0; i < MonsterConfig.Alpha.presetAmount; i++) {
-        MonsterAlpha.monsters.push(new MonsterAlpha(parent, data))
+MonsterBeta.monsters = [];
+
+MonsterBeta.preset = function (parent, data) {
+    for (var i = 0; i < MonsterConfig.Beta.presetAmount; i++) {
+        MonsterBeta.monsters.push(new MonsterBeta(parent, data))
     }
 };
 
-MonsterAlpha.create = function (parent, data, createOnly) {
-    var monsterAlpha = null;
-    for (var i = 0, len = MonsterAlpha.monsters.length; i < len; ++i) {
-        var monster = MonsterAlpha.monsters[i];
+MonsterBeta.create = function (parent, data, createOnly) {
+    var monsterBeta = null;
+    for (var i = 0, len = MonsterBeta.monsters.length; i < len; ++i) {
+        var monster = MonsterBeta.monsters[i];
         if (!monster.active) {
-            monsterAlpha = monster;
+            monsterBeta = monster;
         }
     }
-    if (!monsterAlpha) {
-        monsterAlpha = new MonsterAlpha(parent, data);
+    if (!monsterBeta) {
+        monsterBeta = new MonsterBeta(parent, data);
     }
-    monsterAlpha.reuse(parent, data);
-    return monsterAlpha;
+    monsterBeta.reuse(parent, data);
+    return monsterBeta;
 };

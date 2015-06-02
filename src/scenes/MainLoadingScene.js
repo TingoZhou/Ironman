@@ -5,22 +5,20 @@
  * Time: 下午5:06
  * To change this template use File | Settings | File Templates.
  */
-var MainLoadingScene = (function() {
-    return cc.Scene.extend({
-        onEnterTransitionDidFinish: function() {
-            this._super();
-            var layer = new MainLoadingLayer();
-            this.addChild(layer);
-        }
-    });
-})();
+var MainLoadingScene = cc.Scene.extend({
+    onEnterTransitionDidFinish: function () {
+        this._super();
+        var layer = new MainLoadingLayer();
+        this.addChild(layer);
+    }
+});
 
-var MainLoadingLayer = (function() {
+var MainLoadingLayer = (function () {
     var failCount = 0;
     var maxFailCount = 3;
 
     return cc.Layer.extend({
-        ctor: function() {
+        ctor: function () {
             this._super();
 
             this._loadingWidget = null;
@@ -33,11 +31,11 @@ var MainLoadingLayer = (function() {
             this.init();
         },
 
-        init: function() {
+        init: function () {
             this.playLoading();
         },
 
-        playLoading: function() {
+        playLoading: function () {
             if (!cc.sys.isNative) {
                 this.loadGameConfig();
                 return;
@@ -52,8 +50,8 @@ var MainLoadingLayer = (function() {
                 this.loadGameConfig();
             } else {
                 var self = this;
-                var listener = new jsb.EventListenerAssetsManager(am, function(event) {
-                    switch (event.getEventCode()){
+                var listener = new jsb.EventListenerAssetsManager(am, function (event) {
+                    switch (event.getEventCode()) {
                         case jsb.EventAssetsManager.ERROR_NO_LOCAL_MANIFEST:
                             cc.log("No local manifest file found, skip assets update.");
                             self.loadGameConfig();
@@ -85,12 +83,10 @@ var MainLoadingLayer = (function() {
                         case jsb.EventAssetsManager.UPDATE_FAILED:
                             cc.log("Update failed. " + event.getMessage());
                             failCount++;
-                            if (failCount < maxFailCount)
-                            {
+                            if (failCount < maxFailCount) {
                                 am.downloadFailedAssets();
                             }
-                            else
-                            {
+                            else {
                                 cc.log("Reach maximum fail count, exit update process");
 
                                 failCount = 0;
@@ -114,27 +110,27 @@ var MainLoadingLayer = (function() {
             }
         },
 
-        loadGameConfig: function() {
+        loadGameConfig: function () {
             var self = this;
 
             var percent = 0;
-            this.schedule(_.bind(function() {
+            this.schedule(_.bind(function () {
                 percent += 5;
                 //this.loadingBar.setPercent(percent);
                 //this.loadingIcon.setPositionX(this.loadingBg.getPosition().x - this.loadingBg.width / 2 + this.loadingBar.width * this.loadingBar.getPercent() / 100);
             }, this), 0.05, 7);
-            self.schedule(function() {
+            self.schedule(function () {
                 self.schedule(self.loadResource);
             }, 0.5, 0);
         },
 
-        loadResource: function() {
-            if (!main_resources[this._resourceIndex]) return ;
+        loadResource: function () {
+            if (!main_resources[this._resourceIndex]) return;
             var self = this;
-            cc.loader.load(main_resources[this._resourceIndex], function(result, count, loadedCount) {
+            cc.loader.load(main_resources[this._resourceIndex], function (result, count, loadedCount) {
                 //self.loadingBar.setPercent(40 + Math.floor(50 * (self.resourceIndex / main_resources.length)));
                 //self.loadingIcon.setPositionX(self.loadingBg.getPosition().x - self.loadingBg.width / 2 + self.loadingBar.width * self.loadingBar.getPercent() / 100);
-            }, function() {
+            }, function () {
                 self._finishIndex++;
                 if (self._finishIndex >= main_resources.length) {
                     self.unschedule(self.loadResource);
@@ -148,21 +144,21 @@ var MainLoadingLayer = (function() {
             self._resourceIndex++;
         },
 
-        initConfig: function() {
+        initConfig: function () {
 
         },
 
-        addPlist: function() {
-            for(var i = 0, m = main_resources.length;i < m;i++) {
-                if(main_resources[i].indexOf('.png') > 0) {
+        addPlist: function () {
+            for (var i = 0, m = main_resources.length; i < m; i++) {
+                if (main_resources[i].indexOf('.png') > 0) {
                     cc.textureCache.addImage(main_resources[i]);
-                } else if(main_resources[i].indexOf('.plist') > 0) {
+                } else if (main_resources[i].indexOf('.plist') > 0) {
                     cc.spriteFrameCache.addSpriteFrames(main_resources[i]);
                 }
             }
         },
 
-        finishedLoading: function() {
+        finishedLoading: function () {
             cc.log('On Preload Resources');
 
             var scene = new MainMenuScene();

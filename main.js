@@ -62,7 +62,7 @@ cc.game.onStart = function() {
         }
         jsb.fileUtils.setSearchPaths(searchPaths);
     }
-
+    
     cc.director.runScene(new cc.TransitionFade(0.1, new AppScene()));
 };
 cc.game.run();

@@ -10,7 +10,9 @@ SH.Creature = {
             IronMan: "IronMan"
         },
         Monsters: {
-            Alpha: "Alpha"
+            Alpha: "Alpha",
+            Beta: "Beta",
+            Charlie: "Charlie"
         }
     }
 };
@@ -20,21 +22,21 @@ SH.CHARACTERSNAME = SH.Creature.Name.Character;
 
 SH.FPS = 30;
 SH.Character = {
-	Ironman: "Ironman"
+    Ironman: "Ironman"
 }
 
 SH.Weapon = {
-	Characters: {
-		Rifle: "Rifle",
-		Rocket: "Rocket",
+    Characters: {
+        Rifle: "Rifle",
+        Rocket: "Rocket",
         Electric: "Electric"
-	}
+    }
 }
 
 SH.Bullet = {
-	Characters: {
-		Rifle: "Rifle",
-		Rocket: "Rocket",
+    Characters: {
+        Rifle: "Rifle",
+        Rocket: "Rocket",
         Electric: "Electric"
-	}
+    }
 }

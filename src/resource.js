@@ -1,14 +1,14 @@
 var MainRes = {};
 var LoadingRes = {};
 var GameRes = {
-	test: {
+    test: {
         i_bg: "res/bg.jpg",
         i_character: "res/characters/character.png",
         p_character: "res/characters/character.plist",
-        
-		i_test: "res/test.png",
-		p_test: "res/test.plist"
-	},
+
+        i_test: "res/test.png",
+        p_test: "res/test.plist"
+    },
     shaders: {
         whiteHit: {
             fsh: "res/shaders/whiteHit.fsh",
@@ -21,9 +21,13 @@ var GameRes = {
             vsh_noMVP: "res/shaders/whiteHitRecover_noMVP.vsh"
         }
     },
-    monsters: {
-        plist: 'res/monsters/monsters.plist',
-        png: 'res/monsters/monsters.png'
+    monsterAlpha: {
+        plist: 'res/monsters/Alpha.plist',
+        png: 'res/monsters/Alpha.png'
+    },
+    monsterBeta: {
+        plist: 'res/monsters/Beta.plist',
+        png: 'res/monsters/Beta.png'
     }
 };
 
