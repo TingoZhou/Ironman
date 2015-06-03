@@ -1,25 +1,27 @@
 var Weapon = cc.Class.extend({
-	ctor: function(parent) {
-		this._parent = parent;
-		this._step = -1;
-	},
+    ctor: function (parent) {
+        this._parent = parent;
+        this._step = -1;
+    },
 
-	update: function() {
-		++this._step;
-	},
+    update: function () {
+        ++this._step;
+    },
 
-	_shoot: function() {
-		Character.current.showShoot();
-	}
+    _shoot: function () {
+        Character.current.showShoot();
+    }
 });
 
-Weapon.create = function(type, parent) {
-	switch(type) {
-		case SH.Weapon.Characters.Rifle:
-			return new WeaponRifle(parent);
-		case SH.Weapon.Characters.Rocket:
-			return new WeaponRocket(parent);
-		case SH.Weapon.Characters.Electric:
-			return new WeaponElectric(parent);
-	}
+Weapon.create = function (type, parent) {
+    switch (type) {
+        case SH.Weapon.Characters.Rifle:            //步枪
+            return new WeaponRifle(parent);
+        case SH.Weapon.Characters.Rocket:           //火箭炮
+            return new WeaponRocket(parent);
+        case SH.Weapon.Characters.Electric:         //闪电
+            return new WeaponElectric(parent);
+        case SH.Weapon.Monster.Rifle:               //怪物步枪
+            return new WeaponMonsterRifle(parent);
+    }
 }

@@ -1,23 +1,23 @@
 var Bullet = cc.Class.extend({
-	ctor: function() {
+    ctor: function () {
         this.active = false;
 
         this._id = uuid();
-		this._step = 0;
-		this._viewObj = null;
-	},
+        this._step = 0;
+        this._viewObj = null;
+    },
 
-	initData: function(parent) {
-		this._parent = parent;
-	},
+    initData: function (parent) {
+        this._parent = parent;
+    },
 
-	reuse: function(parent) {
+    reuse: function (parent) {
         this.active = true;
-		this.initData(parent);
+        this.initData(parent);
         Bullet.bulletsOnStage.push(this);
-	},
+    },
 
-	unuse: function() {
+    unuse: function () {
         this.active = false;
         this._viewObj.unscheduleAllCallbacks();
         this._viewObj.stopAllActions();
@@ -26,26 +26,26 @@ var Bullet = cc.Class.extend({
         for (var i = 0, len = Bullet.bulletsOnStage.length; i < len; ++i) {
             var bullet = Bullet.bulletsOnStage[i];
             if (bullet.getId() == this._id) {
-                Bullet.bulletsOnStage.splice(i , 1);
-                break ;
+                Bullet.bulletsOnStage.splice(i, 1);
+                break;
             }
         }
-	},
+    },
 
-	release: function() {
-		this._viewObj.release();
-	},
+    release: function () {
+        this._viewObj.release();
+    },
 
-    getId: function() {
+    getId: function () {
         return this._id;
     },
 
-	update: function() {
-		++this._step;
+    update: function () {
+        ++this._step;
         this._checkOverBorder();
-	},
+    },
 
-    _checkOverBorder: function() {
+    _checkOverBorder: function () {
         var x = this._viewObj.x;
         var y = this._viewObj.y;
         if (x < 0 || x > cc.winSize.width || y < 0 || y > cc.winSize.height) {
@@ -54,11 +54,11 @@ var Bullet = cc.Class.extend({
         }
     },
 
-    _destroy: function() {
+    _destroy: function () {
 
     },
 
-    _disable: function() {
+    _disable: function () {
         this.unuse();
     }
 });
@@ -74,6 +74,8 @@ Bullet.create = function (parent, type) {
             return BulletRocket.create(parent);
         case SH.Bullet.Characters.Electric:
             return BulletElectric.create(parent);
+        case SH.Bullet.Monster.Rifle:
+            return BulletMonsterRifle.create(parent);
     }
 };
 
@@ -95,6 +97,9 @@ Bullet.preset = function (parent, type) {
         case SH.Bullet.Characters.Electric:
             BulletElectric.preset(parent);
             break;
+        case SH.Bullet.Monster.Rifle:
+            BulletMonsterRifle.preset(parent);
+            break
     }
 };
 

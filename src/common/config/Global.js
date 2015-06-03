@@ -30,6 +30,10 @@ SH.Weapon = {
         Rifle: "Rifle",
         Rocket: "Rocket",
         Electric: "Electric"
+    },
+    Monster: {
+        Rifle: "RifleMonsterWeapon"
+
     }
 }
 
@@ -38,5 +42,9 @@ SH.Bullet = {
         Rifle: "Rifle",
         Rocket: "Rocket",
         Electric: "Electric"
+    },
+    Monster: {
+        Rifle: "RifleMonsterBullet"
+
     }
 }

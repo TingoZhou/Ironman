@@ -179,6 +179,7 @@ Monsters.create = function (parent, data) {
 Monsters.preset = function (parent) {
     MonsterAlpha.preset(parent, MonsterConfig.Alpha);
     MonsterBeta.preset(parent, MonsterConfig.Beta);
+    MonsterCharlie.preset(parent, MonsterConfig.Charlie);
 };
 
 Monsters.resetAll = function () {

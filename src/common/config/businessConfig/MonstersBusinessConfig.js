@@ -54,7 +54,7 @@ var MonstersBusinessConfig = {
         "HP": 23,
         "dps": 1,
         "defence": 0,
-        "speed": 3,
+        "speed": 1,
         "score": 12,
         "scale": 0.3,
         "isBoss": 0,

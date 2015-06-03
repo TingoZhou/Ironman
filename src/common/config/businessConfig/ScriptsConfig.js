@@ -4,8 +4,8 @@ var ScriptsConfig = {
             "time": 2,
             "interval": 300,
             "amount": [
-                2,
-                2
+                3,
+                3
             ],
             "level": 1,
             "monsters": [
@@ -15,6 +15,10 @@ var ScriptsConfig = {
                 },
                 {
                     "id": 102,
+                    "weight": 1
+                },
+                {
+                    "id": 103,
                     "weight": 1
                 }
             ],

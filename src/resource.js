@@ -28,6 +28,10 @@ var GameRes = {
     monsterBeta: {
         plist: 'res/monsters/Beta.plist',
         png: 'res/monsters/Beta.png'
+    },
+    monsterCharlie: {
+        plist: 'res/monsters/monsters.plist',
+        png: 'res/monsters/monsters.png'
     }
 };
 

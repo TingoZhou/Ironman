@@ -12,7 +12,7 @@ var MonsterConfig = {
         scale: 0.5,
         framesData: {
             Move: ['Alpha_1.png'],
-            Attack: [ 'Alpha_2.png', 'Alpha_1.png', 'Alpha_3.png','Alpha_1.png'],
+            Attack: [ 'Alpha_2.png', 'Alpha_1.png', 'Alpha_3.png', 'Alpha_1.png'],
             speed: 2
         },
         values: {}
@@ -23,7 +23,7 @@ var MonsterConfig = {
         scale: 0.5,
         framesData: {
             Move: ['Beta_1.png'],
-            Attack: [ 'Beta_5.png'],
+            Attack: ['Beta_5.png'],
             speed: 2.5
         },
         values: {}
@@ -33,7 +33,7 @@ var MonsterConfig = {
         presetAmount: 3,
         scale: 0.5,
         framesData: {
-            Move: ['charlie.png'],
+            Move: ['alpha.png'],
             speed: 2.5
         },
         values: {}
