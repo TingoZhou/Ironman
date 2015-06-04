@@ -1,22 +1,23 @@
 var ControllLayer = cc.Layer.extend({
-    ctor: function() {
-    	this._super();
+    ctor: function () {
+        this._super();
 
-    	this._moveJoyStickPannel = null;
-    	this._moveJoyStick = null;
+        this._moveJoyStickPannel = null;
+        this._moveJoyStick = null;
 
-    	this.init();
+        this.init();
     },
 
-    init: function() {
-    	this.initJoyStick();
-    	this.bindJoyStickEvent();
-    	this.initRifleShootBtn();
+    init: function () {
+        this.initJoyStick();
+        this.bindJoyStickEvent();
+        this.initRifleShootBtn();
         this.initRocketShootBtn();
+        this.initElectricShootBtn();
     },
 
-	initJoyStick: function() {
-		var moveJoyStickPannel = new JoyStickPannel("#joystickleft.png", "#joystickmove.png");
+    initJoyStick: function () {
+        var moveJoyStickPannel = new JoyStickPannel("#joystickleft.png", "#joystickmove.png");
         moveJoyStickPannel.setPosition(100, 100);
         this.addChild(moveJoyStickPannel);
         this._moveJoyStickPannel = moveJoyStickPannel;
@@ -28,9 +29,9 @@ var ControllLayer = cc.Layer.extend({
             moveJoyStickPannel.buttomStick.height
         ));
         this._moveJoyStick = moveJoyStick;
-	},
+    },
 
-	bindJoyStickEvent: function () {
+    bindJoyStickEvent: function () {
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ALL_AT_ONCE,
             swallowTouches: true,
@@ -40,46 +41,53 @@ var ControllLayer = cc.Layer.extend({
         }, this);
     },
 
-    initRifleShootBtn: function() {
+    initRifleShootBtn: function () {
         var button = new Button("weaponABtn.png");
         button.setPosition(cc.p(cc.winSize.width * 7 / 8, 100));
         this.addChild(button);
 
-        button.onTouchBegan = function(touch, type) {
+        button.onTouchBegan = function (touch, type) {
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
                 weaponName: SH.Weapon.Characters.Rifle
             });
         }
 
-        button.onTouchEnded = function(touch, type) {
+        button.onTouchEnded = function (touch, type) {
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
         }
     },
-
-    initRocketShootBtn: function() {
+    initRocketShootBtn: function () {
         var button = new Button("weaponBBtn.png");
         button.setPosition(cc.p(cc.winSize.width * 6 / 8, 100));
         this.addChild(button);
 
-        button.onTouchBegan = function(touch, type) {
+        button.onTouchBegan = function (touch, type) {
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
                 weaponName: SH.Weapon.Characters.Rocket
             });
         }
 
-        button.onTouchEnded = function(touch, type) {
+        button.onTouchEnded = function (touch, type) {
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
         }
     },
 
-	onTouchesBegan: function (touches, event) {
+    initElectricShootBtn: function () {
+        var button = new Button("weaponABtn.png");
+        button.setPosition(cc.p(cc.winSize.width * 5 / 8, 100));
+        this.addChild(button);
+
+
+    },
+
+    onTouchesBegan: function (touches, event) {
         var target = event.getCurrentTarget();
         for (var i = 0, len = touches.length; i < len; ++i) {
             var touch = touches[i];
             var moveJoyStick = target.getMoveJoyStick();
             var moveJoyStickPannel = target.getMoveJoyStickPannel();
             if (!moveJoyStick.getBasePos() && moveJoyStick.setBasePos(touch.getLocation())) {
-            	Character.current.setVelocity({vX: 0, vY: 0});
+                Character.current.setVelocity({vX: 0, vY: 0});
                 moveJoyStickPannel.isTouchesBegan();
             }
         }
@@ -94,7 +102,7 @@ var ControllLayer = cc.Layer.extend({
             var dPos = moveJoyStick.getDpos(touch.getLocation());
             if (dPos) {
                 moveJoyStickPannel.setStickPos(touch.getLocation());
-            	Character.current.setVelocity(dPos.target);
+                Character.current.setVelocity(dPos.target);
             }
         }
     },
@@ -112,15 +120,15 @@ var ControllLayer = cc.Layer.extend({
         }
     },
 
-    getMoveJoyStick: function() {
-    	return this._moveJoyStick;
+    getMoveJoyStick: function () {
+        return this._moveJoyStick;
     },
 
-    getMoveJoyStickPannel: function() {
-    	return this._moveJoyStickPannel;
+    getMoveJoyStickPannel: function () {
+        return this._moveJoyStickPannel;
     },
 
-    update: function(dt) {
-    	this._moveJoyStickPannel.update(dt);
+    update: function (dt) {
+        this._moveJoyStickPannel.update(dt);
     }
 })

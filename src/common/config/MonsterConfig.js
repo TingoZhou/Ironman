@@ -32,6 +32,15 @@ var MonsterConfig = {
         resId: 103,
         presetAmount: 3,
         scale: 0.5,
+        weaponFire: {
+            aniRate: 0.05,
+            scale: 2,
+            frames: ["weaponRifleFire1.png", "weaponRifleFire2.png"],
+            buffer: {
+                x: 150,
+                y: 100
+            }
+        },
         framesData: {
             Move: ['alpha.png'],
             speed: 2.5

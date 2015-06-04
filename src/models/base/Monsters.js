@@ -17,9 +17,10 @@ var Monsters = Creature.extend({
         this._super(parent, data);
 
         this.active = false;
-
         this._framesData = data.framesData;
         this._viewObj = new cc.Sprite('#' + this._framesData.Move[0]);
+        this._viewObj.setName("monster");
+        this._viewObj.visible = false;
         this._id = uuid();
         this._monsterId = '';
         this._level = 0;
@@ -36,6 +37,7 @@ var Monsters = Creature.extend({
             dps: 0,
             currentHP: 0
         };
+
         this._speed = 0;
         this._scale = 1;
         this._score = 0;
@@ -49,6 +51,8 @@ var Monsters = Creature.extend({
     initData: function (parent, data) {
         this._parent = parent;
         this._parent.addChild(this._viewObj);
+
+
         if (data.bornPlace) {
             this._viewObj.setPosition(cc.p(data.bornPlace.x, data.bornPlace.y));
         }
@@ -128,6 +132,20 @@ var Monsters = Creature.extend({
                 break;
             }
         }
+    },
+
+    /**
+     * 被子弹碰撞时调用
+     * @param bullet {Bullet}
+     */
+    hitMonstersByBullet: function (bullet) {
+        //白闪
+        this.strike();
+        //减血
+        this._HP -= bullet.dps;
+        //回退
+        this._viewObj.x -= this._stepX*5;
+        this._viewObj.y -= this._stepY*5;
     },
 
     reuse: function (parent, data) {

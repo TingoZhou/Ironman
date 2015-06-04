@@ -63,15 +63,11 @@ var MonsterBeta = Monsters.extend({
             if (this._currentStatus == MonsterStatus.ATTACK)return;
             if (this._currentStatus == MonsterStatus.BEFORE_ATTACK)return;
             if (this._currentStatus == MonsterStatus.BACK_ATTACK)return;
-
-
             var d = cc.pDistance(cc.p(this.getPosition().x, this.getPosition().y), cc.p(this._target.getPosition().x, this._target.getPosition().y));
             if (d >= 120) {
                 this._viewObj.x += this._stepX;
                 this._viewObj.y += this._stepY;
             }
-
-
         },
         //方向
         _direction: function () {
@@ -80,18 +76,15 @@ var MonsterBeta = Monsters.extend({
             if (angle < 0) angle += 360;
             this._viewObj.setRotation(-angle);
 
-
             if (-angle <= -90 && -angle >= -270) {
                 this._viewObj.setFlippedY(true);
             } else {
                 this._viewObj.setFlippedY(false);
             }
-
         },
 
         //攻击前准备 倒数
         _doAttackBefore: function (dt) {
-
 
             if (!this._backPosition && !this._saveTargetPosition) {
 
@@ -200,11 +193,10 @@ var MonsterBeta = Monsters.extend({
             this._checkCollideTarget();
             this._move();     //移动
             this._direction();  //方向
+
         }
 
     })
-    ;
-
 
 MonsterBeta.monsters = [];
 

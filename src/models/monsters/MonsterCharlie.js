@@ -24,12 +24,13 @@ var MonsterCharlie = Monsters.extend({
         this._score = config.score + (this._level - 1) * config.levelEnhance.score;
         this._scale = config.scale;
         this._viewObj.setScale(this._scale);
-        this._parent.addChild(this._viewObj);
+        this._parent.addChild(this._viewObj, 1);
         this._viewObj.setPosition(data.bornPlace);
         this._viewObj.visible = true;
         this._hurtable = true;
         this._movable = true;
         this._target = Character.current;
+
 
         this._initWeapon();
     },
@@ -38,12 +39,24 @@ var MonsterCharlie = Monsters.extend({
         this.doMoveToTarget();
     },
 
+
     //设置武器
     _initWeapon: function () {
         this._weapon = Weapon.create(SH.Weapon.Monster.Rifle, this._parent);
         this._weapon.setUser(this._viewObj);
+
     },
 
+    /**
+     * 被子弹碰撞时调用
+     * @param bullet {Bullet}
+     */
+    hitMonstersByBullet: function (bullet) {
+        this._super(bullet);
+
+
+
+    },
 
     //往目标移动
     doMoveToTarget: function () {
@@ -63,15 +76,11 @@ var MonsterCharlie = Monsters.extend({
     //移动
     _move: function () {
         if (this._currentStatus == MonsterStatus.ATTACK)return;
-
         var d = cc.pDistance(cc.p(this.getPosition().x, this.getPosition().y), cc.p(this._target.getPosition().x, this._target.getPosition().y));
         if (d >= 220) {
-
             this._viewObj.x += this._stepX;
             this._viewObj.y += this._stepY;
         }
-
-
     },
 
     //方向
@@ -86,6 +95,7 @@ var MonsterCharlie = Monsters.extend({
             this._viewObj.setFlippedY(false);
         }
     },
+
     //碰撞目标
     _checkCollideTarget: function () {
         if (cc.rectIntersectsRect(this.getDamageBoundingBox(), this._target.getCollideBoundingBox())) {
@@ -117,9 +127,7 @@ var MonsterCharlie = Monsters.extend({
         this._direction();  //方向
         this._shoot(dt);  //射击
 
-
     }
-
 });
 
 MonsterCharlie.monsters = [];

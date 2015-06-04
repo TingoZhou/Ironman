@@ -95,7 +95,7 @@ var Character = Creature.extend({
                 this._shadowObjs.push(shadow);
             }
 
-            shadow.setOpacity(255);            
+            shadow.setOpacity(50);
 			shadow.setScaleX(this._viewObj.scaleX);
 			shadow.setScaleY(this._viewObj.scaleY);
 			shadow.setPosition(this._viewObj.getPosition());

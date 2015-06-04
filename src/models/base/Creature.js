@@ -18,6 +18,7 @@ var Creature = cc.Class.extend({
             this._whiteRecoeverShader.link();
             this._whiteRecoeverShader.updateUniforms();
             this._whiteRecoeverShader.retain();
+
         } else {
             this._whiteShader = new cc.GLProgram(GameRes.shaders.whiteHit.vsh, GameRes.shaders.whiteHit.fsh);
             this._whiteShader.addAttribute(cc.ATTRIBUTE_NAME_POSITION, cc.VERTEX_ATTRIB_POSITION);

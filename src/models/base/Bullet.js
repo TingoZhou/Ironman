@@ -54,10 +54,11 @@ var Bullet = cc.Class.extend({
         }
     },
 
+
     _destroy: function () {
 
     },
-
+    //销毁
     _disable: function () {
         this.unuse();
     }

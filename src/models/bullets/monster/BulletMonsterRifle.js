@@ -11,6 +11,22 @@ var BulletMonsterRifle = Bullet.extend({
     },
 
     /**
+     * 碰撞
+     */
+    _characterCollide: function () {
+        var character = Character.current;    //当前角色
+        var targetBox = character.getCollideBoundingBox();
+        var selfBox = this._viewObj.getBoundingBox();
+        if (cc.rectIntersectsRect(selfBox, targetBox)) {
+
+            character.doHitByMonster(WeaponConfig.MonsterRifle.bullets.dps);
+            cc.eventManager.dispatchCustomEvent(SC.MONSTER_HIT_CHARACTER);
+            this._disable();
+        }
+    },
+
+
+    /**
      * @param monster
      */
     trigger: function (monster) {
@@ -44,6 +60,7 @@ var BulletMonsterRifle = Bullet.extend({
     update: function () {
         this._super();
         this._move();
+        this._characterCollide();
     }
 });
 
