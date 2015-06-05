@@ -31,7 +31,6 @@ var MonsterCharlie = Monsters.extend({
         this._movable = true;
         this._target = Character.current;
 
-
         this._initWeapon();
     },
 
@@ -53,7 +52,6 @@ var MonsterCharlie = Monsters.extend({
      */
     hitMonstersByBullet: function (bullet) {
         this._super(bullet);
-
 
 
     },
@@ -78,8 +76,11 @@ var MonsterCharlie = Monsters.extend({
         if (this._currentStatus == MonsterStatus.ATTACK)return;
         var d = cc.pDistance(cc.p(this.getPosition().x, this.getPosition().y), cc.p(this._target.getPosition().x, this._target.getPosition().y));
         if (d >= 220) {
-            this._viewObj.x += this._stepX;
-            this._viewObj.y += this._stepY;
+            this._viewObj.x += this._stepX + cc.randomMinus1To1() * .3;
+            this._viewObj.y += this._stepY + cc.randomMinus1To1() * .3;
+        } else {
+            this._viewObj.x += cc.randomMinus1To1() * .3;
+            this._viewObj.y += cc.randomMinus1To1() * .3;
         }
     },
 
@@ -118,10 +119,7 @@ var MonsterCharlie = Monsters.extend({
             case MonsterStatus.ATTACK:
 
                 break;
-
         }
-
-
         this._checkCollideTarget();
         this._move();     //移动
         this._direction();  //方向
@@ -142,9 +140,11 @@ MonsterCharlie.create = function (parent, data, createOnly) {
     var monstercharlie = null;
     for (var i = 0, len = MonsterCharlie.monsters.length; i < len; ++i) {
         var monster = MonsterCharlie.monsters[i];
+
         if (!monster.active) {
             monstercharlie = monster;
         }
+
     }
     if (!monstercharlie) {
         monstercharlie = new MonsterCharlie(parent, data);

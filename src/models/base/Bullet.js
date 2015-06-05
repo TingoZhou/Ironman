@@ -11,7 +11,8 @@ var Bullet = cc.Class.extend({
         this._parent = parent;
     },
 
-    reuse: function (parent) {
+    reuse: function (parent, weaponPosition) {
+        this._weaponPosition = weaponPosition;
         this.active = true;
         this.initData(parent);
         Bullet.bulletsOnStage.push(this);
@@ -67,12 +68,12 @@ var Bullet = cc.Class.extend({
 Bullet.bulletsOnStage = [];
 Bullet.mShootableOnStage = [];
 
-Bullet.create = function (parent, type) {
+Bullet.create = function (parent, type, weaponPosition) {
     switch (type) {
         case SH.Bullet.Characters.Rifle:
             return BulletRifle.create(parent);
         case SH.Bullet.Characters.Rocket:
-            return BulletRocket.create(parent);
+            return BulletRocket.create(parent, weaponPosition);
         case SH.Bullet.Characters.Electric:
             return BulletElectric.create(parent);
         case SH.Bullet.Monster.Rifle:

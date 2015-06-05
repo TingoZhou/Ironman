@@ -14,7 +14,6 @@ var WeaponMonsterRifle = Weapon.extend({
     update: function () {
         this._super();
 
-
         if (this._step % WeaponConfig.MonsterRifle.shootStep == 0) {
             this._shoot();
             this._weaponFire.visible = true;

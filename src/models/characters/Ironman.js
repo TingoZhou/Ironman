@@ -56,9 +56,9 @@ var Ironman = Character.extend({
 
             this._viewObj.setRotation(-angleToTarget);
             if (-angleToTarget <= -90 && -angleToTarget >= -270) {
-                this._viewObj.setFlippedY(true);
+                this._viewObj.setScaleY(-this._viewObj.getScaleX());
             } else {
-                this._viewObj.setFlippedY(false);
+                this._viewObj.setScaleY(this._viewObj.getScaleX());
             }
         }
 
@@ -71,7 +71,7 @@ var Ironman = Character.extend({
         var min = 999999;
         for (var i = 0, m = monsters.length; i < m; i++) {
             var monster = monsters[i];
-            var temp = cc.pDistance(cc.p(monsters[i].x, monsters[i].y), cc.p( this._viewObj.x,  this._viewObj.y));
+            var temp = cc.pDistance(cc.p(monsters[i].x, monsters[i].y), cc.p(this._viewObj.x, this._viewObj.y));
             if (temp < min) {
                 min = temp;
                 closeMonster = monster;

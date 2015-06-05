@@ -8,7 +8,7 @@
 var MonsterConfig = {
     Alpha: {
         resId: 101,
-        presetAmount: 3,
+        presetAmount: 99,
         scale: 0.5,
         framesData: {
             Move: ['Alpha_1.png'],
@@ -19,7 +19,7 @@ var MonsterConfig = {
     },
     Beta: {
         resId: 102,
-        presetAmount: 3,
+        presetAmount: 99,
         scale: 0.5,
         framesData: {
             Move: ['Beta_1.png'],
@@ -30,7 +30,7 @@ var MonsterConfig = {
     },
     Charlie: {
         resId: 103,
-        presetAmount: 3,
+        presetAmount: 99,
         scale: 0.5,
         weaponFire: {
             aniRate: 0.05,

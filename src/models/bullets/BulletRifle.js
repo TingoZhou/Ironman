@@ -3,6 +3,7 @@ var BulletRifle = Bullet.extend({
         this._super();
         this._viewObj = cc.Sprite.create(WeaponConfig.Rifle.bullets.res);
         this._velocity = {x: 0, y: 0};
+        this.name = "BulletRifle";
     },
 
     initData: function (parent) {

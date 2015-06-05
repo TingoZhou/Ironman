@@ -1,4 +1,11 @@
-var MainRes = {};
+var MainRes = {
+    mainMenu: {
+        i_mainMenu: "res/gameUI/mainMenuUI.png",
+        p_mainMenu: "res/gameUI/mainMenuUI.plist",
+        j_mainMenu: "res/gameUI/mainMenuUI.json"
+    }
+
+};
 var LoadingRes = {};
 var GameRes = {
     test: {
@@ -8,6 +15,10 @@ var GameRes = {
 
         i_test: "res/test.png",
         p_test: "res/test.plist"
+    },
+    characterWeapon: {
+        plist: "res/characters/CharacterWeapon.png",
+        png: "res/characters/CharacterWeapon.plist"
     },
     shaders: {
         whiteHit: {

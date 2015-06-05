@@ -9,9 +9,10 @@ var WeaponConfig = {
     },
     Rocket: {
         shootStep: 30,
+        res: "#Rocket.png",
         bullets: {
             presetAmount: 10,
-            res: "#bulletRifle.png",
+            res: "#RocketBullet.png",
             speed: 5
         }
     },

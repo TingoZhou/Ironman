@@ -27,6 +27,26 @@ var MainMenuLayer = cc.Layer.extend({
     },
 
     init: function () {
+        this.widget = ccs.uiReader.widgetFromJsonFile(MainRes.mainMenu.j_mainMenu);
+        this.widget.touchEnabled = false;
+        this.addChild(this.widget);
+
+        var startBtn = ccui.helper.seekWidgetByName(this.widget, "startBtn");
+        startBtn.addTouchEventListener(function (sender, type) {
+            if (type == ccui.Widget.TOUCH_ENDED) {
+                cc.director.runScene(new cc.TransitionFade(0.1, new GameLoadingScene()));
+               /* var tutorialInfo = ULS.get(USK.TutorialInfo);
+                 if (!tutorialInfo.battle) {
+                 var gameController = GameController.getInstance();
+                 gameController.setMap(1);
+                 gameController.setGameType(SH.GAME_TYPE.LEVEL);
+                 gameController.setScriptId(1000);
+                 var scene = new GameLoadingScene();
+                 cc.director.runScene(new cc.TransitionFade(0.1, scene));
+                 }*/
+            }
+        }, this);
+
 
     },
 

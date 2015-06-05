@@ -143,9 +143,16 @@ var Monsters = Creature.extend({
         this.strike();
         //减血
         this._HP -= bullet.dps;
-        //回退
-        this._viewObj.x -= this._stepX*5;
-        this._viewObj.y -= this._stepY*5;
+        //回退  //子弹类型
+        if (bullet.name == "BulletRocket") {
+            this._viewObj.x -= this._stepX * 8 * (4 * cc.random0To1());
+            this._viewObj.y -= this._stepY * 8 * (4 * cc.random0To1());
+        } else {
+            this._viewObj.x -= this._stepX * 5;
+            this._viewObj.y -= this._stepY * 5;
+        }
+
+
     },
 
     reuse: function (parent, data) {
