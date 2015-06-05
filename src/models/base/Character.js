@@ -126,6 +126,12 @@ var Character = Creature.extend({
 
     _setWeapon: function (weaponName) {
         this._weapon = Weapon.create(weaponName, this._parent);
+        this._weaponFire.setPosition(CharacterConfig[this.name].weaponFire.buffer);
+        if (weaponName == "Rocket") {
+            this._weaponFire.setPosition(cc.p(CharacterConfig[this.name].weaponFire.buffer.x+25, CharacterConfig[this.name].weaponFire.buffer.y + 40));
+        }
+
+
         this._weapon.addDisplayWeapon(this._viewObj);
     },
 

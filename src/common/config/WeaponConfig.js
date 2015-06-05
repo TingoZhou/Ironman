@@ -13,7 +13,19 @@ var WeaponConfig = {
         bullets: {
             presetAmount: 10,
             res: "#RocketBullet.png",
-            speed: 5
+            speed: 5,
+            explode: {
+                frames: ["MatchGirlDie00.png",
+                    "MatchGirlDie01.png",
+                    "MatchGirlDie02.png",
+                    "MatchGirlDie03.png",
+                    "MatchGirlDie04.png",
+                    "MatchGirlDie05.png",
+                    "MatchGirlDie06.png",
+                    "MatchGirlDie07.png"
+                ],
+                speed: 2.5
+            }
         }
     },
     Electric: {

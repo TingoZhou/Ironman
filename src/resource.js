@@ -18,7 +18,9 @@ var GameRes = {
     },
     characterWeapon: {
         plist: "res/characters/CharacterWeapon.png",
-        png: "res/characters/CharacterWeapon.plist"
+        png: "res/characters/CharacterWeapon.plist",
+        rocketExplodePng: "res/characters/MatchGirlDie.png",
+        rocketExplodePlist: "res/characters/MatchGirlDie.plist"
     },
     shaders: {
         whiteHit: {

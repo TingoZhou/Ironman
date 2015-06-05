@@ -14,6 +14,7 @@ var Bullet = cc.Class.extend({
     reuse: function (parent, weaponPosition) {
         this._weaponPosition = weaponPosition;
         this.active = true;
+        this._viewObj.visible = true;
         this.initData(parent);
         Bullet.bulletsOnStage.push(this);
     },
@@ -24,6 +25,7 @@ var Bullet = cc.Class.extend({
         this._viewObj.stopAllActions();
         this._viewObj.retain(); //if in jsb
         this._viewObj.removeFromParent(true);
+            this._explodeObj &&  this._explodeObj.removeFromParent(true);
         for (var i = 0, len = Bullet.bulletsOnStage.length; i < len; ++i) {
             var bullet = Bullet.bulletsOnStage[i];
             if (bullet.getId() == this._id) {
