@@ -16,25 +16,24 @@ var GameRes = {
         i_test: "res/test.png",
         p_test: "res/test.plist"
     },
-<<<<<<< .mine
-    characterRifleWeapon: {
-=======
 
->>>>>>> .theirs
- starGameUILayer:{
-        i_starGameUILayer:"res/starGameUILayer/gameUI.png",
-        p_starGameUILayer:"res/starGameUILayer/gameUI.plist",
-        j_starGameUILayer:"res/starGameUILayer/starGameUILayout.json"
+    starGameUILayer: {
+        i_starGameUILayer: "res/starGameUILayer/gameUI.png",
+        p_starGameUILayer: "res/starGameUILayer/gameUI.plist",
+        j_starGameUILayer: "res/starGameUILayer/starGameUILayout.json"
     },
 
-    gameLayerUI:{
-        i_gameLayerUI:"res/gameLayerUI/钢铁侠项目素材/gameUI.png",
-        p_gameLayerUI:"res/gameLayerUI/钢铁侠项目素材/gameUI.plist",
-        j_gameLayerUI:"res/gameLayerUI/game_Layer_UI_1.json"
-    }, characterWeapon: {        plist: "res/characters/CharacterWeapon.png",
+    gameLayerUI: {
+        i_gameLayerUI: "res/gameLayerUI/钢铁侠项目素材/gameUI.png",
+        p_gameLayerUI: "res/gameLayerUI/钢铁侠项目素材/gameUI.plist",
+        j_gameLayerUI: "res/gameLayerUI/game_Layer_UI_1.json"
+    },
+    characterRifleWeapon: {
+        plist: "res/characters/CharacterWeapon.png",
         png: "res/characters/CharacterWeapon.plist",
         rocketExplodePng: "res/characters/MatchGirlDie.png",
-  
+        rocketExplodePlist: "res/characters/MatchGirlDie.plist"
+
     },
     shaders: {
         whiteHit: {
