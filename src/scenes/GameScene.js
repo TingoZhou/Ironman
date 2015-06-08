@@ -25,9 +25,9 @@ var GameScene = cc.Scene.extend({
 var GameLayer = cc.Layer.extend({
     ctor: function() {
     	this._super();
-
-        this.bgLayer = null;
-    	this.battleLayer = null;
+        cc.log("new a  GameLayer");
+        this.bgLayer        = null;
+    	this.battleLayer    = null;
         this.dropItemLayer = null;
     	this.controllLayer = null;
         this.gameUILayer   = null;

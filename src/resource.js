@@ -19,15 +19,15 @@ var GameRes = {
 
 
     starGameUILayer:{
-        i_starGameUILayer:"res/starGameUILayer/gameUI.png",
-        p_starGameUILayer:"res/starGameUILayer/gameUI.plist",
-        j_starGameUILayer:"res/starGameUILayer/starGameUILayout.json"
+        i_starGameUILayer:"res/StarGameUI/gameUI.png",
+        p_starGameUILayer:"res/StarGameUI/gameUI.plist",
+        j_starGameUILayer:"res/StarGameUI/StarGameUI.json"
     },
 
     gameLayerUI:{
-        i_gameLayerUI:"res/gameLayerUI/钢铁侠项目素材/gameUI.png",
-        p_gameLayerUI:"res/gameLayerUI/钢铁侠项目素材/gameUI.plist",
-        j_gameLayerUI:"res/gameLayerUI/game_Layer_UI_1.json"
+        i_gameLayerUI:"res/gameLayerUI/gameUI.png",
+        p_gameLayerUI:"res/gameLayerUI/gameUI.plist",
+        j_gameLayerUI:"res/gameLayerUI/gameLayer_UI.json"
     },
 
     characterWeapon: {

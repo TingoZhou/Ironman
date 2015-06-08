@@ -26,7 +26,7 @@ var StarGameLayer = cc. Layer.extend({
     init:function(){
         this.widget = ccs.uiReader.widgetFromJsonFile(GameRes.starGameUILayer.j_starGameUILayer);
         this.addChild(this.widget);
-        var starGameBtn = ccui.helper.seekWidgetByName(this.widget,"star_bt");
+        var starGameBtn = ccui.helper.seekWidgetByName(this.widget,"starGame_bt");
         starGameBtn.addTouchEventListener(function(sender,type){
             if(type == ccui.Widget.TOUCH_ENDED){
                 cc.director.runScene(new cc.TransitionFade(0.1,new GameScene()));

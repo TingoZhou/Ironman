@@ -21,6 +21,7 @@ var BattleLayer = cc.Layer.extend({
         var scriptLayer = new ScriptLayer();
         this.addChild(scriptLayer);
         this._scriptLayer = scriptLayer;
+       // cc.log("the number of Moster is"+getAllMosterInBattleLayer());
     },
 
     /**
