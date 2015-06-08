@@ -45,7 +45,6 @@ var MonsterCharlie = Monsters.extend({
     _initWeapon: function () {
         this._weapon = Weapon.create(SH.Weapon.Monster.Rifle, this._parent);
         this._weapon.setUser(this._viewObj);
-
     },
 
     /**
@@ -54,8 +53,6 @@ var MonsterCharlie = Monsters.extend({
      */
     hitMonstersByBullet: function (bullet) {
         this._super(bullet);
-
-
     },
 
     //往目标移动
@@ -109,19 +106,14 @@ var MonsterCharlie = Monsters.extend({
         }
     },
 
-
-
-
     //碰撞目标
     _checkCollideTarget: function () {
         if (cc.rectIntersectsRect(this.getDamageBoundingBox(), this._target.getCollideBoundingBox())) {
-
 
         }
     },
 
     update: function (dt) {
-
         switch (this._currentStatus) {
             case MonsterStatus.MOVE_TO_TARGET:
                 if (this._movable) {
@@ -132,7 +124,6 @@ var MonsterCharlie = Monsters.extend({
                 }
                 break;
             case MonsterStatus.ATTACK:
-
                 break;
         }
         this._checkCollideTarget();

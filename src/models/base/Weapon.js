@@ -17,8 +17,8 @@ var Weapon = cc.Class.extend({
     },
 
     removeDisplayWeapon: function () {
-       if(this._weaponFire)
-           this._weaponFire.stopAllActions();
+        if (this._weaponFire)
+            this._weaponFire.removeFromParent(true);
     }
 
 
