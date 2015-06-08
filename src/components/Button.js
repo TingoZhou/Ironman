@@ -1,7 +1,12 @@
 var Button = cc.Sprite.extend({
 	ctor: function(normal, press) {
-		this._super("#" + normal);
 
+        this._super("#" + normal);
+        var bg = new cc.Sprite("#skills_bg.png");
+        bg.setAnchorPoint(cc.p(0,0)) ;
+        bg.x =-10;
+        bg.y =-10;
+        this.addChild(bg,-1);
 		this._normal = normal;
 		this._press = press;
 
@@ -31,7 +36,7 @@ var Button = cc.Sprite.extend({
         	if (this._press) {
 				this.setSpriteFrame(this._press);
 			} else {
-				this.setScale(1.2);
+				this.setScale(.9);
 			}
             this.onTouchBegan && this.onTouchBegan(touch, type);
         	return true;

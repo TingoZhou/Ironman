@@ -14,6 +14,7 @@ var MonsterCharlie = Monsters.extend({
     },
 
     initData: function (parent, data) {
+
         this._parent = parent;
         this._monsterId = data.monsterId;
         if (!this._monsterId) return;
@@ -32,6 +33,7 @@ var MonsterCharlie = Monsters.extend({
         this._target = Character.current;
 
         this._initWeapon();
+        this._super(parent, data);
     },
 
     start: function () {
@@ -97,6 +99,19 @@ var MonsterCharlie = Monsters.extend({
         }
     },
 
+    //override
+    doDie: function () {
+
+        if (!this._isDead) {
+            this._isDead = true;
+            this._hurtable = false;
+            this._doExplode();
+        }
+    },
+
+
+
+
     //碰撞目标
     _checkCollideTarget: function () {
         if (cc.rectIntersectsRect(this.getDamageBoundingBox(), this._target.getCollideBoundingBox())) {
@@ -124,6 +139,8 @@ var MonsterCharlie = Monsters.extend({
         this._move();     //移动
         this._direction();  //方向
         this._shoot(dt);  //射击
+        this.isDie();
+
 
     }
 });

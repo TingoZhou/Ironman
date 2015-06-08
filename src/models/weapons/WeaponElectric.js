@@ -11,6 +11,7 @@ var WeaponElectric = Weapon.extend({
 	},
 
 	_shoot: function() {
+        this._super();
 		Bullet.create(this._parent, SH.Bullet.Characters.Electric);
 	}
 

@@ -8,7 +8,7 @@ var BulletRocket = Bullet.extend({
 
     initData: function (parent) {
         this._super(parent);
-
+        this.dps = 30;
         this._viewObj.setPosition(this._weaponPosition);
         var speed = WeaponConfig.Rocket.bullets.speed;
         var scaleX = Character.current.getScaleX();

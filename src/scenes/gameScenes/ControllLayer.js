@@ -42,8 +42,8 @@ var ControllLayer = cc.Layer.extend({
     },
 
     initRifleShootBtn: function () {
-        var button = new Button("weaponABtn.png");
-        button.setPosition(cc.p(cc.winSize.width * 7 / 8, 100));
+        var button = new Button("rifle.png");
+        button.setPosition(cc.p(cc.winSize.width * 7 / 8, 80));
         this.addChild(button);
 
         button.onTouchBegan = function (touch, type) {
@@ -57,8 +57,8 @@ var ControllLayer = cc.Layer.extend({
         }
     },
     initRocketShootBtn: function () {
-        var button = new Button("weaponBBtn.png");
-        button.setPosition(cc.p(cc.winSize.width * 6 / 8, 100));
+        var button = new Button("rocket.png");
+        button.setPosition(cc.p(cc.winSize.width * 6 / 8, 80));
         this.addChild(button);
 
         button.onTouchBegan = function (touch, type) {
@@ -73,10 +73,19 @@ var ControllLayer = cc.Layer.extend({
     },
 
     initElectricShootBtn: function () {
-        var button = new Button("weaponABtn.png");
-        button.setPosition(cc.p(cc.winSize.width * 5 / 8, 100));
+        var button = new Button("electric.png");
+        button.setPosition(cc.p(cc.winSize.width * 5 / 8, 80));
         this.addChild(button);
 
+        button.onTouchBegan = function (touch, type) {
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
+                weaponName: SH.Weapon.Characters.Electric
+            });
+        }
+
+        button.onTouchEnded = function (touch, type) {
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+        }
 
     },
 

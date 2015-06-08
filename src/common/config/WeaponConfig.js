@@ -29,11 +29,18 @@ var WeaponConfig = {
         }
     },
     Electric: {
-        shootStep: 1,
+        shootStep: 15,
         bullets: {
             presetAmount: 10,
-            frames: ["weaponD1.png", "weaponD2.png", "weaponD3.png", "weaponD4.png"],
-            speed: 5
+            frames: [
+                "00000.png",
+                "00001.png",
+                "00002.png",
+                "00003.png",
+                "00004.png",
+                "00005.png",
+                "00006.png"],
+            speed: 8
         }
     },
     MonsterRifle: {

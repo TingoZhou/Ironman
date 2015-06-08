@@ -30,6 +30,7 @@ var MonsterAlpha = Monsters.extend({
             this._hurtable = true;
             this._movable = true;
             this._target = Character.current;
+            this._super(parent, data);
         },
 
         start: function () {
@@ -120,6 +121,16 @@ var MonsterAlpha = Monsters.extend({
             )
         },
 
+        //override
+        doDie: function () {
+
+            if (!this._isDead) {
+                this._isDead = true;
+                this._hurtable = false;
+                this._doExplode();
+            }
+        },
+
         //碰撞目标
         _checkCollideTarget: function () {
             if (cc.rectIntersectsRect(this.getDamageBoundingBox(), this._target.getCollideBoundingBox())) {
@@ -146,18 +157,8 @@ var MonsterAlpha = Monsters.extend({
             this._checkCollideTarget();
             this._move();     //移动
             this._direction();  //方向
+            this.isDie();
 
-
-            /* if (!this._isDead && cc.rectIntersectsRect(this.getDamageBoundingBox(), this._target.getCollideBoundingBox())) {
-             if (this._hurtStep % (SH.FPS / 2) == 0) {
-             this._target.doHitByMonster(this._properties.dps);
-             }
-             this._hurtStep++;
-             }
-
-             if (!this._isDead && this.isDie()) {
-             this.doDie();
-             }*/
         }
     })
     ;

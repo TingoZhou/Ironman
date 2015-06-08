@@ -5,11 +5,18 @@ var ScriptsConfig = {
             "interval": 300,
             "amount": [
                 6,
-                6
+                16
             ],
             "level": 1,
             "monsters": [
-
+                {
+                    "id": 101,
+                    "weight": 1
+                },
+                {
+                    "id": 102,
+                    "weight": 1
+                },
                 {
                     "id": 103,
                     "weight": 1

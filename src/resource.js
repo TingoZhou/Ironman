@@ -8,6 +8,10 @@ var MainRes = {
 };
 var LoadingRes = {};
 var GameRes = {
+    monsterExplode: {
+        plist: "res/monsters/weaponEffect.png",
+        png: "res/monsters/weaponEffect.plist"
+    },
     test: {
         i_bg: "res/bg.jpg",
         i_character: "res/characters/character.png",
@@ -28,6 +32,7 @@ var GameRes = {
         p_gameLayerUI: "res/gameLayerUI/钢铁侠项目素材/gameUI.plist",
         j_gameLayerUI: "res/gameLayerUI/game_Layer_UI_1.json"
     },
+
     characterRifleWeapon: {
         plist: "res/characters/CharacterWeapon.png",
         png: "res/characters/CharacterWeapon.plist",
@@ -35,6 +40,12 @@ var GameRes = {
         rocketExplodePlist: "res/characters/MatchGirlDie.plist"
 
     },
+
+    characterElectricWeapon: {
+        plist: "res/characters/electric.png",
+        png: "res/characters/electric.plist"
+    },
+
     shaders: {
         whiteHit: {
             fsh: "res/shaders/whiteHit.fsh",
