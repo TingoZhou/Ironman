@@ -8,6 +8,7 @@ var BulletRifle = Bullet.extend({
 
     initData: function (parent) {
         this._super(parent);
+        this.dps = 5;
         this._viewObj.setPosition(Character.current.getPosition());
         var speed = WeaponConfig.Rifle.bullets.speed;
         var scaleX = Character.current.getScaleX();

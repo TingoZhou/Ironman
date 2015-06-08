@@ -22,7 +22,7 @@ var WeaponMonsterRifle = Weapon.extend({
                     this._getAnimation("Ironman", "weaponFire"),
                     cc.callFunc(
                         function () {
-                                  this._weaponFire.visible = false;
+                            this._weaponFire.visible = false;
                         }, this)
                 )
             )
@@ -37,8 +37,6 @@ var WeaponMonsterRifle = Weapon.extend({
         this._weaponFire.setPosition(MonsterConfig.Charlie.weaponFire.buffer);
 
         this._user.addChild(this._weaponFire);
-
-
     },
 
     _getAnimation: function (ex, type) {

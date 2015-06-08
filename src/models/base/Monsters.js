@@ -49,13 +49,17 @@ var Monsters = Creature.extend({
     },
 
     initData: function (parent, data) {
-        this._parent = parent;
-        this._parent.addChild(this._viewObj);
 
+//      this._parent = parent;
+//      this._parent.addChild(this._viewObj);
+        this._isDead = false;
+        this._hurtable = true;
+        this._isStriking = false;
 
         if (data.bornPlace) {
             this._viewObj.setPosition(cc.p(data.bornPlace.x, data.bornPlace.y));
         }
+
     },
 
     addListeners: function () {
@@ -113,6 +117,10 @@ var Monsters = Creature.extend({
         if (!this.active) return;
         this._viewObj.visible = false;
         this.active = false;
+        if(this._weapon){
+                this._weapon.removeDisplayWeapon();
+        }
+
         this.unuse();
     },
 
@@ -122,7 +130,7 @@ var Monsters = Creature.extend({
         viewObj.visible = false;
         viewObj.retain();
         viewObj.removeFromParent(true);
-
+        this._hitStatusRecover();
         this.active = false;
 
         for (var i = 0, len = Monsters.monstersOnStage.length; i < len; ++i) {
@@ -139,10 +147,12 @@ var Monsters = Creature.extend({
      * @param bullet {Bullet}
      */
     hitMonstersByBullet: function (bullet) {
+        if (!this._hurtable || this._isDead) return;
         //白闪
         this.strike();
         //减血
-        this._HP -= bullet.dps;
+        this._properties.currentHP -= bullet.dps;
+
         //回退  //子弹类型
         if (bullet.name == "BulletRocket") {
             this._viewObj.x -= this._stepX * 8 * (4 * cc.random0To1());
@@ -152,7 +162,18 @@ var Monsters = Creature.extend({
             this._viewObj.y -= this._stepY * 5;
         }
 
+    },
 
+    // 死亡爆炸
+    _doExplode: function () {
+
+        //新建爆炸效果
+        var explode  = new MonsterExplodeEffect();
+        explode.x = this._viewObj.x;
+        explode.y = this._viewObj.y;
+        this._parent.addChild(explode);
+        explode.play();
+        this.disable();
     },
 
     reuse: function (parent, data) {

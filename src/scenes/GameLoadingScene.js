@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var GameLoadingScene = (function() {
+var GameLoadingScene = (function () {
     return cc.Scene.extend({
         onEnterTransitionDidFinish: function () {
             this._super();
@@ -17,15 +17,15 @@ var GameLoadingScene = (function() {
     });
 })();
 
-var GameLoadingLayer = (function() {
+var GameLoadingLayer = (function () {
     return cc.Layer.extend({
         ctor: function () {
             this._super();
 
             /*this.loadingWidget = null;
-            this.loadingBg = null;
-            this.loadingBar = null;
-            this.loadingIcon = null;*/
+             this.loadingBg = null;
+             this.loadingBar = null;
+             this.loadingIcon = null;*/
 
             this._resourceIndex = 0;
             this._finishIndex = 0;
@@ -37,11 +37,11 @@ var GameLoadingLayer = (function() {
             this.playLoading();
         },
 
-        initConfig: function() {
+        initConfig: function () {
             for (var mKey in MonsterConfig) {
                 var mConfig = MonsterConfig[mKey];
-                for(var k in MonstersBusinessConfig) {
-                    if(MonstersBusinessConfig[k].resId == mConfig.resId) {
+                for (var k in MonstersBusinessConfig) {
+                    if (MonstersBusinessConfig[k].resId == mConfig.resId) {
                         var mBusinessConfig = MonstersBusinessConfig[k];
                         mConfig['values'][k] = mBusinessConfig;
                     }
@@ -60,31 +60,34 @@ var GameLoadingLayer = (function() {
             this._resourceIndex = 0;
             this._finishIndex = 0;
             var self = this;
-            cc.loader.loadJs(["src/common/config/businessConfig/BusinessConfigJsList.js"], function() {
-                cc.loader.loadJs(BusinessConfigJsList, function() {
+            cc.loader.loadJs(["src/common/config/businessConfig/BusinessConfigJsList.js"], function () {
+                cc.loader.loadJs(BusinessConfigJsList, function () {
                     self._resourceIndex = 0;
                     self._finishIndex = 0;
-                    self.schedule(function() {
-                        self.schedule(self.loadResource);
+                    self.schedule(function () {
+//                        self.schedule(self.loadResource);
+                        self.loadResource();
                     }, 0.5, 0);
                 });
             });
         },
 
         loadResource: function () {
-            if (!game_resources[this._resourceIndex]) return;
+//            if (!game_resources[this._resourceIndex]) return;
 
             var self = this;
             var finishIndex = 0;
 
-            cc.loader.load(game_resources[this._resourceIndex], function (result, count, loadedCount) {
+//            cc.loader.load(game_resources[this._resourceIndex], function (result, count, loadedCount) {
+            cc.loader.load(game_resources,
+                function (result, count, loadedCount) {
                 //self.loadingBar.setPercent(40 + Math.floor(50 * (self._resourceIndex / game_resources.length)));
                 //self.loadingIcon.setPositionX(
-                    //self.loadingBg.getPosition().x - self.loadingBg.width / 2 + self.loadingBar.width * self.loadingBar.getPercent() / 100);
+                //self.loadingBg.getPosition().x - self.loadingBg.width / 2 + self.loadingBar.width * self.loadingBar.getPercent() / 100);
             }, _.bind(function () {
-                self._finishIndex++;
-                if (self._finishIndex >= game_resources.length) {
-                    self.unschedule(self.loadResource);
+               // self._finishIndex++;
+               // if (self._finishIndex >= game_resources.length) {
+//                    self.unschedule(self.loadResource);
                     self.initConfig();
                     self.addPlist();
                     Monsters.preset(self);
@@ -95,18 +98,18 @@ var GameLoadingLayer = (function() {
 
                     //self.loadingBar.setPercent(100);
                     //self.loadingIcon.setPositionX(
-                        //self.loadingBg.getPosition().x - self.loadingBg.width / 2 + self.loadingBar.width * self.loadingBar.getPercent() / 100);
+                    //self.loadingBg.getPosition().x - self.loadingBg.width / 2 + self.loadingBar.width * self.loadingBar.getPercent() / 100);
                     self.schedule(self.finishedLoading, 0.1, 0);
-                }
+               // }
             }, this));
 
-            this._resourceIndex++;
+           // this._resourceIndex++;
         },
 
         finishedLoading: function () {
             //var scene = new GameScene();
             var scene = new StarGameScene();
-            cc.director.runScene(new cc.TransitionFade(0.2, scene));
+            cc.director.runScene(new cc.TransitionFade(0.1, scene));
         },
 
         addPlist: function () {

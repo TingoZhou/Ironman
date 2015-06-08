@@ -8,6 +8,10 @@ var MainRes = {
 };
 var LoadingRes = {};
 var GameRes = {
+    monsterExplode: {
+        plist: "res/monsters/weaponEffect.png",
+        png: "res/monsters/weaponEffect.plist"
+    },
     test: {
         i_bg: "res/bg.jpg",
         i_character: "res/characters/character.png",
@@ -16,6 +20,7 @@ var GameRes = {
         i_test: "res/test.png",
         p_test: "res/test.plist"
     },
+
 
 
     starGameUILayer:{
@@ -30,12 +35,19 @@ var GameRes = {
         j_gameLayerUI:"res/gameLayerUI/gameLayer_UI.json"
     },
 
-    characterWeapon: {
+    characterRifleWeapon: {
         plist: "res/characters/CharacterWeapon.png",
         png: "res/characters/CharacterWeapon.plist",
         rocketExplodePng: "res/characters/MatchGirlDie.png",
         rocketExplodePlist: "res/characters/MatchGirlDie.plist"
+
     },
+
+    characterElectricWeapon: {
+        plist: "res/characters/electric.png",
+        png: "res/characters/electric.plist"
+    },
+
     shaders: {
         whiteHit: {
             fsh: "res/shaders/whiteHit.fsh",
