@@ -13,7 +13,18 @@ var GameScene = cc.Scene.extend({
         cc.sys.garbageCollect();
     },
 
-    onExitTransitionDidStart: function() {},
+    onExitTransitionDidStart: function() {
+
+        this.removeListeners();
+        this.layer.unscheduleUpdate();
+//      Creature.resetAll();
+        Bullet.resetAll();
+//      Weapon.resetAll();
+
+
+
+
+    },
 
     removeListeners: function() {
         for (var evtKey in SH.CUSTOMEVENTS) {
@@ -25,7 +36,9 @@ var GameScene = cc.Scene.extend({
 var GameLayer = cc.Layer.extend({
     ctor: function() {
     	this._super();
+
         cc.log("new a  GameLayer");
+
         this.bgLayer        = null;
     	this.battleLayer    = null;
         this.dropItemLayer = null;
@@ -37,6 +50,8 @@ var GameLayer = cc.Layer.extend({
         this.initDropItemLayer();
     	this.initControllLayer();
         this.initGameUIlayer();
+
+        //
         this.scheduleUpdate();
     },
 

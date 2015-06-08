@@ -176,6 +176,7 @@ Character.create = function (type, parent) {
     switch (type) {
         case SH.Character.Ironman:
             Character.current = new Ironman(parent);
+            cc.log( Character.current);
             break;
     }
     return Character.current;
