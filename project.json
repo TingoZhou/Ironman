@@ -53,15 +53,17 @@
         "src/models/bullets/BulletRocket.js",
         "src/models/bullets/BulletElectric.js",
         "src/models/bullets/monster/BulletMonsterRifle.js",
-
         "src/scenes/GameScene.js",
         "src/scenes/GameLoadingScene.js",
         "src/scenes/MainLoadingScene.js",
         "src/scenes/MainMenuScene.js",
+        "src/scenes/StarGameScene.js",
+
         "src/scenes/gameScenes/BgLayer.js",
         "src/scenes/gameScenes/BattleLayer.js",
         "src/scenes/gameScenes/DropItemLayer.js",
         "src/scenes/gameScenes/ControllLayer.js",
+        "src/scenes/gameScenes/GameUILayer.js",
         "src/scenes/gameScenes/subBattleLayer/ScriptLayer.js",
 
         "src/resource.js",

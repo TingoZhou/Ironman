@@ -104,7 +104,8 @@ var GameLoadingLayer = (function() {
         },
 
         finishedLoading: function () {
-            var scene = new GameScene();
+            //var scene = new GameScene();
+            var scene = new StarGameScene();
             cc.director.runScene(new cc.TransitionFade(0.2, scene));
         },
 

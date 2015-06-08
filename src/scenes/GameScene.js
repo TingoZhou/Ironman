@@ -30,19 +30,25 @@ var GameLayer = cc.Layer.extend({
     	this.battleLayer = null;
         this.dropItemLayer = null;
     	this.controllLayer = null;
+        this.gameUILayer   = null;
 
         this.initBgLayer();
     	this.initBattleLayer();
         this.initDropItemLayer();
     	this.initControllLayer();
-
-    	this.scheduleUpdate();
+        this.initGameUIlayer();
+        this.scheduleUpdate();
     },
 
     initBgLayer: function() {
         var bgLayer = new BgLayer();
         this.addChild(bgLayer);
         this.bgLayer = bgLayer;
+    },
+    initGameUIlayer:function(){
+        var gameUILayer = new GameUILayer();
+        this.addChild(gameUILayer);
+        this.gameUILayer= gameUILayer;
     },
 
     initBattleLayer: function() {
@@ -51,17 +57,22 @@ var GameLayer = cc.Layer.extend({
 		this.battleLayer = battleLayer;
 	},
 
+
+    initControllLayer: function() {
+        var controllLayer = new ControllLayer();
+        this.addChild(controllLayer);
+        this.controllLayer = controllLayer;
+    },
+
+
+
     initDropItemLayer: function() {
         var dropItemLayer = new DropItemLayer();
         this.addChild(dropItemLayer);
         this.dropItemLayer = dropItemLayer;
     },
 
-	initControllLayer: function() {
-		var controllLayer = new ControllLayer();
-		this.addChild(controllLayer);
-		this.controllLayer = controllLayer;
-	},
+
 
 	update: function(dt) {
         this.bgLayer.update && this.battleLayer.update();
@@ -71,3 +82,5 @@ var GameLayer = cc.Layer.extend({
         Monsters.updateAll(dt);
 	}
 });
+
+
