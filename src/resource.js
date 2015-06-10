@@ -1,8 +1,8 @@
 var MainRes = {
     mainMenu: {
         i_mainMenu: "res/gameUI/mainMenuUI.png",
-        p_mainMenu: "res/gameUI/mainMenuUI.plist",
-        j_mainMenu: "res/gameUI/mainMenuUI.json"
+        p_mainMenu: "res/gameUI/mainMenuUI.plist"
+       // j_mainMenu: "res/gameUI/mainMenuUI.json"
     },
     userFiles:{
         i_userfiles:"res/userFilesScene/userFilesScene.png",

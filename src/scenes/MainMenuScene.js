@@ -28,28 +28,51 @@ var MainMenuLayer = cc.Layer.extend({
 
     init: function () {
 
+       this.initImages();
+       this.initButtons();
+    },
 
-        this.widget = ccs.uiReader.widgetFromJsonFile(MainRes.mainMenu.j_mainMenu);
-        this.widget.touchEnabled = false;
-        this.addChild(this.widget);
+    initImages:function(){
+        var size = cc.winSize;
+        var mainMenuScenebg = new cc.Sprite("#mainMenu_Bg.png");
+        this.addChild(mainMenuScenebg);
+        mainMenuScenebg.attr({
+            x:size.width*0.5,
+            y:size.height*0.5
+        });
+    },
 
-        var startBtn = ccui.helper.seekWidgetByName(this.widget, "startBtn");
-        startBtn.addTouchEventListener(function (sender, type) {
-            if (type == ccui.Widget.TOUCH_ENDED) {
-                cc.director.runScene(new cc.TransitionFade(0.1, new GameLoadingScene()));
-               /* var tutorialInfo = ULS.get(USK.TutorialInfo);
-                 if (!tutorialInfo.battle) {
-                 var gameController = GameController.getInstance();
-                 gameController.setMap(1);
-                 gameController.setGameType(SH.GAME_TYPE.LEVEL);
-                 gameController.setScriptId(1000);
-                 var scene = new GameLoadingScene();
-                 cc.director.runScene(new cc.TransitionFade(0.1, scene));
-                 }*/
-            }
-        }, this);
+    initButtons:function(){
+        this.initSoundBt();
+        this.initStarGameBt();
+    },
 
+    initStarGameBt:function(){
+        var size = cc.winSize;
+        var button = new ButtonNoEdg("mainMenu_startBt.png");
+        button.attr({
+            x:size.width*0.55,
+            y:size.height*0.15
+        });
+        this.addChild(button);
 
+        button.onTouchBegan = function (touch, type) {
+            cc.director.runScene(new cc.TransitionFade(0.1,new GameLoadingScene()));
+        }
+
+        button.onTouchEnded = function (touch, type) {
+            //cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+        }
+    },
+
+    initSoundBt:function(){
+        var size = cc.winSize;
+        var button = new ButtonNoEdg("mainMenu_soundBt.png");
+        button.attr({
+            x:size.width*0.90,
+            y:size.height*0.15
+        });
+        this.addChild(button);
     },
 
     addListeners: function () {
