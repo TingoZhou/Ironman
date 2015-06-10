@@ -100,92 +100,8 @@ var GameUILayer = cc.Layer.extend(
                 scaleY:0.8
             });
 
-            var skill_bg_1 = new cc.Sprite("#skills_bg.png");
-            this.addChild(skill_bg_1);
-            skill_bg_1.attr({
-                x:0.927*size.width,
-                y:0.741*size.height,
-                anchorX:0.5,
-                anchorY:0.5,
-                scaleX:0.8,
-                scaleY:0.8
-            });
-
-            var skill_bg_2 = new cc.Sprite("#skills_bg.png");
-            this.addChild(skill_bg_2);
-            skill_bg_2.attr({
-                x:0.927*size.width,
-                y:0.593*size.height,
-                anchorX:0.5,
-                anchorY:0.5,
-                scaleX:0.8,
-                scaleY:0.8
-            });
-
-            var skill_bg_3 = new cc.Sprite("#skills_bg.png");
-            this.addChild(skill_bg_3);
-            skill_bg_3.attr({
-                x:0.927*size.width,
-                y:0.444*size.height,
-                anchorX:0.5,
-                anchorY:0.5,
-                scaleX:0.8,
-                scaleY:0.8
-            });
 
             //以下为按钮 三个技能按钮 一个返回开始菜单按钮
-
-
-            var skillNormal_1  = new cc.Sprite("#freeze.png");
-            skillNormal_1.attr({
-                scaleX:0.8,
-                scaleY:0.8
-            });
-            var skillSelected_1 = new cc.Sprite("#freeze.png");
-            skillSelected_1.attr({
-                scaleX:0.7,
-                scaleY:0.7
-            });
-
-            var skill_bt_1 = new cc.MenuItemSprite(skillNormal_1,skillSelected_1,null,this.onMenuCallbackskill_bt_1,this);
-            skill_bt_1.attr({
-                x:0.935*size.width,
-                y:0.755*size.height
-            });
-
-            var skillNormal_2  = new cc.Sprite("#bomb.png");
-            skillNormal_2.attr({
-                scaleX:0.8,
-                scaleY:0.8
-            });
-            var skillSelected_2 = new cc.Sprite("#bomb.png");
-            skillSelected_2.attr({
-                scaleX:0.7,
-                scaleY:0.7
-            });
-
-            var skill_bt_2 = new cc.MenuItemSprite(skillNormal_2,skillSelected_2,null,this.onMenuCallbackskill_bt_2,this);
-            skill_bt_2.attr({
-                x:0.935*size.width,
-                y:0.605*size.height
-            });
-
-            var skillNormal_3  = new cc.Sprite("#shield.png");
-            skillNormal_3.attr({
-                scaleX:0.8,
-                scaleY:0.8
-            });
-            var skillSelected_3 = new cc.Sprite("#shield.png");
-            skillSelected_3.attr({
-                scaleX:0.7,
-                scaleY:0.7
-            });
-
-            var skill_bt_3 = new cc.MenuItemSprite(skillNormal_3,skillSelected_3,null,this.onMenuCallbackskill_bt_3,this);
-            skill_bt_3.attr({
-                x:0.935*size.width,
-                y:0.460*size.height
-            });
 
             var BackBtNormal   = new cc.Sprite("#back_bg.png");
             BackBtNormal.attr({
@@ -204,7 +120,7 @@ var GameUILayer = cc.Layer.extend(
                 y:0.944*size.height
             });
             //********************************************************
-            var GameLayerUImenu= new cc.Menu(skill_bt_1,skill_bt_2,skill_bt_3,BackBt);
+            var GameLayerUImenu= new cc.Menu(BackBt);
             GameLayerUImenu.attr({
                 x:0,
                 y:0,
@@ -216,16 +132,6 @@ var GameUILayer = cc.Layer.extend(
 
         update: function (dt) {
 
-        },
-
-        onMenuCallbackskill_bt_1:function(){
-            cc.log("onMenuCallbackskill_bt_1");
-        },
-        onMenuCallbackskill_bt_2:function(){
-            cc.log("onMenuCallbackskill_bt_2");
-        },
-        onMenuCallbackskill_bt_3:function(){
-            cc.log("onMenuCallbackskill_bt_3");
         },
 
         onMenuCallbackBackToStarScene:function(){

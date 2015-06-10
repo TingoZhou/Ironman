@@ -14,11 +14,20 @@ var ControllLayer = cc.Layer.extend({
         this.initRifleShootBtn();
         this.initRocketShootBtn();
         this.initElectricShootBtn();
+        this.initSkillBtn_1();
+        this.initSkillBtn_2();
+        this.initSkillBtn_3();
     },
 
     initJoyStick: function () {
-        var moveJoyStickPannel = new JoyStickPannel("#joystickleft.png", "#joystickmove.png");
-        moveJoyStickPannel.setPosition(100, 100);
+        var moveJoyStickPannel = new JoyStickPannel("#controlLayerUI_crossStick_bg.png", "#controlLayerUI_crossStickBt.png");
+        moveJoyStickPannel.attr({
+            x:cc.winSize.width/10,
+            y:cc.winSize.height/8+30,
+            scaleX:2.0,
+            scaleY:2.0
+        });
+        //moveJoyStickPannel.setPosition(100, 100);
         this.addChild(moveJoyStickPannel);
         this._moveJoyStickPannel = moveJoyStickPannel;
 
@@ -38,11 +47,12 @@ var ControllLayer = cc.Layer.extend({
             onTouchesBegan: _.bind(this.onTouchesBegan, this),
             onTouchesMoved: _.bind(this.onTouchesMoved, this),
             onTouchesEnded: _.bind(this.onTouchesEnded, this)
+
         }, this);
     },
 
     initRifleShootBtn: function () {
-        var button = new Button("rifle.png");
+        var button = new ButtonNoEdg("controLayerUI_bulletBt_3.png");
         button.setPosition(cc.p(cc.winSize.width * 7 / 8, 80));
         this.addChild(button);
 
@@ -57,7 +67,7 @@ var ControllLayer = cc.Layer.extend({
         }
     },
     initRocketShootBtn: function () {
-        var button = new Button("rocket.png");
+        var button = new ButtonNoEdg("controLayerUI_bulletBt_2.png");
         button.setPosition(cc.p(cc.winSize.width * 6 / 8, 80));
         this.addChild(button);
 
@@ -73,7 +83,7 @@ var ControllLayer = cc.Layer.extend({
     },
 
     initElectricShootBtn: function () {
-        var button = new Button("electric.png");
+        var button = new ButtonNoEdg("controLayerUI_bulletBt_1.png");
         button.setPosition(cc.p(cc.winSize.width * 5 / 8, 80));
         this.addChild(button);
 
@@ -85,6 +95,65 @@ var ControllLayer = cc.Layer.extend({
 
         button.onTouchEnded = function (touch, type) {
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+        }
+
+    },
+
+    initSkillBtn_1: function () {
+        var button = new ButtonNoEdg("controLayerUI_skillBt_1.png");
+        button.attr({
+            x:cc.winSize.width*0.93,
+            y:cc.winSize.height*0.70
+        });
+        this.addChild(button);
+
+       button.onTouchBegan = function (touch, type) {
+            /*
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
+                weaponName: SH.Weapon.Characters.Rifle
+            });*/
+       }
+
+        button.onTouchEnded = function (touch, type) {
+            //cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+        }
+    },
+
+    initSkillBtn_2: function () {
+        var button = new ButtonNoEdg("controLayerUI_skillBt_2.png");
+        button.attr({
+            x:cc.winSize.width*0.93,
+            y:cc.winSize.height*0.54
+        });
+        this.addChild(button);
+
+        button.onTouchBegan = function (touch, type) {
+           /* cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
+                weaponName: SH.Weapon.Characters.Rocket
+            });*/
+        }
+
+        button.onTouchEnded = function (touch, type) {
+           // cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+        }
+    },
+
+    initSkillBtn_3: function () {
+        var button = new ButtonNoEdg("controLayerUI_skillBt_3.png");
+        button.attr({
+            x:cc.winSize.width*0.93,
+            y:cc.winSize.height*0.38
+        });
+        this.addChild(button);
+
+        button.onTouchBegan = function (touch, type) {
+          /*  cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
+                weaponName: SH.Weapon.Characters.Electric
+            });*/
+        }
+
+        button.onTouchEnded = function (touch, type) {
+            //cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
         }
 
     },

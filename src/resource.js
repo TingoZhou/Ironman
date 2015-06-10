@@ -2,11 +2,6 @@ var MainRes = {
     mainMenu: {
         i_mainMenu: "res/gameUI/mainMenuUI.png",
         p_mainMenu: "res/gameUI/mainMenuUI.plist"
-       // j_mainMenu: "res/gameUI/mainMenuUI.json"
-    },
-    userFiles:{
-        i_userfiles:"res/userFilesScene/userFilesScene.png",
-        p_userfiles:"res/userFilesScene/userFilesScene.plist"
     }
 
 };
@@ -26,12 +21,23 @@ var GameRes = {
     },
 
     starGameUILayer:{
-        /*
-        i_starGameUILayer:"res/StarGameUI/gameUI.png",
-        p_starGameUILayer:"res/StarGameUI/gameUI.plist",
-        j_starGameUILayer:"res/StarGameUI/StarGameUI.json"*/
         i_starGameUILayer:"res/StarGameUI/StarGameUI.png",
         p_starGameUILayer:"res/StarGameUI/StarGameUI.plist"
+    },
+
+    userFiles:{
+        i_userfiles:"res/userFilesScene/userFilesScene.png",
+        p_userfiles:"res/userFilesScene/userFilesScene.plist"
+    },
+
+    controlLayerUI:{
+       i_controlLayerUI:"res/controlLayerUI/controlLayerUI.png",
+       p_controlLayerUI:"res/controlLayerUI/controlLayerUI.plist"
+    },
+
+    pauseSceneUI:{
+        i_pauseSceneUI:"res/PauseSceneUI/PauseSceneUI.png",
+        p_pauseSceneUI:"res/PauseSceneUI/PauseSceneUI.plist"
     },
 
     gameLayerUI:{
