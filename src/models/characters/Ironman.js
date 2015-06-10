@@ -1,7 +1,6 @@
 var Ironman = Character.extend({
     ctor: function (parent) {
         this._super(parent);
-
         this.name = SH.Character.Ironman;
 
         this._viewObj = cc.Sprite.create(CharacterConfig[this.name].res);

@@ -15,6 +15,7 @@ var GameScene = cc.Scene.extend({
 
     onExitTransitionDidStart: function() {
 
+/*
         this.removeListeners();
         this.layer.unscheduleUpdate();
 //      Creature.resetAll();
@@ -22,7 +23,7 @@ var GameScene = cc.Scene.extend({
 //      Weapon.resetAll();
 
 
-
+*/
 
     },
 
@@ -36,8 +37,6 @@ var GameScene = cc.Scene.extend({
 var GameLayer = cc.Layer.extend({
     ctor: function() {
     	this._super();
-
-        cc.log("new a  GameLayer");
 
         this.bgLayer        = null;
     	this.battleLayer    = null;

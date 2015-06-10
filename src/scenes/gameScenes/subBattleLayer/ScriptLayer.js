@@ -226,6 +226,7 @@ var ScriptLayer = cc.Layer.extend({
                     this.shouldAddMonster = true;
                 }
                 this.tempStep++;
+
                 // 最后一只怪出完，再计算下一波
                 if (this.monsters4CurLvl.length == 0) {
                     this.currentStatus = 'MonsterBornFinished';

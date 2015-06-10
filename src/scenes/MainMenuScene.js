@@ -27,6 +27,8 @@ var MainMenuLayer = cc.Layer.extend({
     },
 
     init: function () {
+
+
         this.widget = ccs.uiReader.widgetFromJsonFile(MainRes.mainMenu.j_mainMenu);
         this.widget.touchEnabled = false;
         this.addChild(this.widget);

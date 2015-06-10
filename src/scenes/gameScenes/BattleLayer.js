@@ -40,6 +40,7 @@ var BattleLayer = cc.Layer.extend({
                 }
             }
         }
+        //cc.log("the number is "+allChildren.length);
         return monsters;
     },
 

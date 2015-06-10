@@ -3,6 +3,10 @@ var MainRes = {
         i_mainMenu: "res/gameUI/mainMenuUI.png",
         p_mainMenu: "res/gameUI/mainMenuUI.plist",
         j_mainMenu: "res/gameUI/mainMenuUI.json"
+    },
+    userFiles:{
+        i_userfiles:"res/userFilesScene/userFilesScene.png",
+        p_userfiles:"res/userFilesScene/userFilesScene.plist"
     }
 
 };
@@ -21,12 +25,13 @@ var GameRes = {
         p_test: "res/test.plist"
     },
 
-
-
     starGameUILayer:{
+        /*
         i_starGameUILayer:"res/StarGameUI/gameUI.png",
         p_starGameUILayer:"res/StarGameUI/gameUI.plist",
-        j_starGameUILayer:"res/StarGameUI/StarGameUI.json"
+        j_starGameUILayer:"res/StarGameUI/StarGameUI.json"*/
+        i_starGameUILayer:"res/StarGameUI/StarGameUI.png",
+        p_starGameUILayer:"res/StarGameUI/StarGameUI.plist"
     },
 
     gameLayerUI:{
