@@ -1,8 +1,7 @@
 var MainRes = {
     mainMenu: {
         i_mainMenu: "res/gameUI/mainMenuUI.png",
-        p_mainMenu: "res/gameUI/mainMenuUI.plist",
-        j_mainMenu: "res/gameUI/mainMenuUI.json"
+        p_mainMenu: "res/gameUI/mainMenuUI.plist"
     }
 
 };
@@ -25,17 +24,32 @@ var GameRes = {
         p_test: "res/test.plist"
     },
 
-
-    starGameUILayer: {
-        i_starGameUILayer: "res/StarGameUI/gameUI.png",
-        p_starGameUILayer: "res/StarGameUI/gameUI.plist",
-        j_starGameUILayer: "res/StarGameUI/StarGameUI.json"
+    starGameUILayer:{
+        i_starGameUILayer:"res/StarGameUI/StarGameUI.png",
+        p_starGameUILayer:"res/StarGameUI/StarGameUI.plist"
     },
 
-    gameLayerUI: {
-        i_gameLayerUI: "res/gameLayerUI/gameUI.png",
-        p_gameLayerUI: "res/gameLayerUI/gameUI.plist",
-        j_gameLayerUI: "res/gameLayerUI/gameLayer_UI.json"
+        j_starGameUILayer:"res/StarGameUI/StarGameUI.json"
+	},
+	userFiles:{
+        i_userfiles:"res/userFilesScene/userFilesScene.png",
+        p_userfiles:"res/userFilesScene/userFilesScene.plist"
+    },
+
+    controlLayerUI:{
+       i_controlLayerUI:"res/controlLayerUI/controlLayerUI.png",
+       p_controlLayerUI:"res/controlLayerUI/controlLayerUI.plist"
+    },
+
+    pauseSceneUI:{
+        i_pauseSceneUI:"res/PauseSceneUI/PauseSceneUI.png",
+        p_pauseSceneUI:"res/PauseSceneUI/PauseSceneUI.plist"
+    },
+
+    gameLayerUI:{
+        i_gameLayerUI:"res/gameLayerUI/gameUI.png",
+        p_gameLayerUI:"res/gameLayerUI/gameUI.plist"
+    
     },
 
     characterRifleWeapon: {

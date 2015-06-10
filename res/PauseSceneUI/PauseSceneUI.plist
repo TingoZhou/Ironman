@@ -4,23 +4,36 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>mainMenu_Bg.png</key>
+            <key>pauseScene_backBt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{950,540}}</string>
+                <string>{{2,140},{136,136}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{950,540}}</string>
+                <string>{{0,0},{136,136}}</string>
                 <key>sourceSize</key>
-                <string>{950,540}</string>
+                <string>{136,136}</string>
             </dict>
-            <key>mainMenu_soundBt.png</key>
+            <key>pauseScene_resumeBt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,823},{77,77}}</string>
+                <string>{{2,2},{136,136}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,136}}</string>
+                <key>sourceSize</key>
+                <string>{136,136}</string>
+            </dict>
+            <key>pauseScene_soundBt.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{140,2},{77,77}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -30,32 +43,19 @@
                 <key>sourceSize</key>
                 <string>{77,77}</string>
             </dict>
-            <key>mainMenu_startBt.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,544},{277,141}}</string>
-                <key>offset</key>
-                <string>{-1,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,1},{277,141}}</string>
-                <key>sourceSize</key>
-                <string>{279,143}</string>
-            </dict>
         </dict>
         <key>metadata</key>
         <dict>
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>MainMenuUI.png</string>
+            <string>PauseSceneUI.png</string>
             <key>size</key>
-            <string>{1024,1024}</string>
+            <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:5be6f8fa997d7d92aedde37cf4834f65:3117bfd803c2e7575c80bc9826866455:20cc21d964cd4a56ad1de2e03cf7d4d4$</string>
+            <string>$TexturePacker:SmartUpdate:31c6bd7f93b9ce42e4c06c80d9dab662:8e9322099a1f126d02c1292befa857e2:ed41c2b8a84f2328633ba9084a79cf43$</string>
             <key>textureFileName</key>
-            <string>MainMenuUI.png</string>
+            <string>PauseSceneUI.png</string>
         </dict>
     </dict>
 </plist>

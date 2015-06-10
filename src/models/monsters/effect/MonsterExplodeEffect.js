@@ -34,7 +34,6 @@ var MonsterExplodeEffect = cc.Sprite.extend({
 
             case "Bomb":
                 for (var i = 0; i <= 6; i++) {
-
                     str = "BombEffect" + i + ".png";
                     var frame = cc.spriteFrameCache.getSpriteFrame(str);
                     animFrames.push(frame);

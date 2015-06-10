@@ -31,6 +31,7 @@
         "src/components/joystick/JoyStick.js",
         "src/components/joystick/JoyStickPannel.js",
         "src/components/Button.js",
+        "src/components/ButtonNoEdg.js",
 
         "src/models/base/Bullet.js",
         "src/models/base/Creature.js",
@@ -59,7 +60,8 @@
         "src/scenes/MainLoadingScene.js",
         "src/scenes/MainMenuScene.js",
         "src/scenes/StarGameScene.js",
-
+        "src/scenes/PauseScene.js",
+        "src/scenes/UserFilesScene.js",
         "src/scenes/gameScenes/BgLayer.js",
         "src/scenes/gameScenes/BattleLayer.js",
         "src/scenes/gameScenes/DropItemLayer.js",
