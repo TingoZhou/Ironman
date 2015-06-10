@@ -13,6 +13,9 @@ var MonsterStatus = {
 }
 
 var Monsters = Creature.extend({
+    _DamageByType: null, //伤害类型，影响怪物爆炸类型
+
+
     ctor: function (parent, data) {
         this._super(parent, data);
 
@@ -88,19 +91,19 @@ var Monsters = Creature.extend({
         return this._viewObj.getBoundingBox();
     },
 
-    hurt: function (dps, bullet) {
-        if (!this._hurtable || this._isDead) return;
-        this._properties.currentHP -= dps;
-        this._movable = false;
-        var bulletPos = bullet.getPosition();
-        var normalVect = cc.pNormalize(cc.pSub(this.getPosition(), bulletPos));
-        var targetPlace = cc.pMult(normalVect, 50);
-        var moveAction = cc.moveTo(0.25, targetPlace);
-        var moveReverse = moveAction.reverse();
-        this._viewObj.runAction(cc.sequence(moveAction, moveReverse, cc.callFunc(function () {
-            this._movable = true;
-        }, this)));
-    },
+    /* hurt: function (dps, bullet) {
+     if (!this._hurtable || this._isDead) return;
+     this._properties.currentHP -= dps;
+     this._movable = false;
+     var bulletPos = bullet.getPosition();
+     var normalVect = cc.pNormalize(cc.pSub(this.getPosition(), bulletPos));
+     var targetPlace = cc.pMult(normalVect, 50);
+     var moveAction = cc.moveTo(0.25, targetPlace);
+     var moveReverse = moveAction.reverse();
+     this._viewObj.runAction(cc.sequence(moveAction, moveReverse, cc.callFunc(function () {
+     this._movable = true;
+     }, this)));
+     },*/
 
     isDie: function () {
         if (this._properties.currentHP <= 0) {
@@ -143,6 +146,15 @@ var Monsters = Creature.extend({
     },
 
     /**
+     * 必杀爆炸
+     * @param type {String}  //爆炸类型
+     */
+    hitMonstersByBomb: function (type) {
+        this._properties.currentHP = 0;
+        this._DamageByType = type;
+    },
+
+    /**
      * 被子弹碰撞时调用
      * @param bullet {Bullet}
      */
@@ -152,7 +164,8 @@ var Monsters = Creature.extend({
         this.strike();
         //减血
         this._properties.currentHP -= bullet.dps;
-
+        //伤害类型
+        this._DamageByType = bullet.name;
         //回退  //子弹类型
         if (bullet.name == "BulletRocket") {
             this._viewObj.x -= this._stepX * 8 * (4 * cc.random0To1());
@@ -166,12 +179,13 @@ var Monsters = Creature.extend({
 
     // 死亡爆炸
     _doExplode: function () {
+
         //新建爆炸效果
         var explode = new MonsterExplodeEffect();
         explode.x = this._viewObj.x;
         explode.y = this._viewObj.y;
         this._parent.addChild(explode);
-        explode.play();
+        explode.play(this._DamageByType);
         this.disable();
     },
 

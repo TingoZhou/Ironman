@@ -2,6 +2,7 @@ var BulletElectric = Bullet.extend({
     ctor: function () {
         this._super();
         this._viewObj = cc.Sprite.create("#" + WeaponConfig.Electric.bullets.frames[0]);
+        this.name = "BulletElectric";
     },
 
     initData: function (parent) {

@@ -8,6 +8,8 @@
  */
 var MonsterExplodeEffect = cc.Sprite.extend({
     ctor: function () {
+
+
         this.tmpWidth = 0;
         this.tmpHeight = 0;
         this.active = true;
@@ -22,22 +24,59 @@ var MonsterExplodeEffect = cc.Sprite.extend({
         this.animation = cc.animationCache.getAnimation("Explosion");
     },
 
-    getAnimation: function () {
+    getAnimation: function (type) {
         var animFrames = [];
         var str = "";
-        for (var i = 1; i <= 8; i++) {
-            str = "weaponEffect" + i + ".png";
-            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-            animFrames.push(frame);
+        var animation =  cc.animationCache.getAnimation(type);
+        if (animation)
+            return cc.animate(animation);
+        switch (type) {
+
+            case "Bomb":
+                for (var i = 0; i <= 6; i++) {
+
+                    str = "BombEffect" + i + ".png";
+                    var frame = cc.spriteFrameCache.getSpriteFrame(str);
+                    animFrames.push(frame);
+                }
+                break;
+            case "BulletRifle":
+                for (var i = 1; i <= 8; i++) {
+                    str = "weaponEffect" + i + ".png";
+                    var frame = cc.spriteFrameCache.getSpriteFrame(str);
+                    animFrames.push(frame);
+                }
+                break;
+            case "BulletRocket":
+                for (var i = 1; i <= 8; i++) {
+                    str = "weaponEffect" + i + ".png";
+                    var frame = cc.spriteFrameCache.getSpriteFrame(str);
+                    animFrames.push(frame);
+                }
+                break;
+            case "BulletElectric":
+                for (var i = 1; i <= 8; i++) {
+                    str = "weaponEffect" + i + ".png";
+                    var frame = cc.spriteFrameCache.getSpriteFrame(str);
+                    animFrames.push(frame);
+                }
+                break;
+
         }
+
         var animation = new cc.Animation(animFrames, 1 / 18);
-        cc.animationCache.addAnimation(animation, "Explosion");
+        cc.animationCache.addAnimation(animation, type);
         return cc.animate(animation);
     },
 
 
-    play: function () {
-        var animation = this.getAnimation();
+    /**
+     * 爆炸类型
+     * @param type {String} 爆炸类型
+     */
+    play: function (type) {
+
+        var animation = this.getAnimation(type);
         this.runAction(cc.sequence(
             animation,
             cc.callFunc(this.destroy, this)

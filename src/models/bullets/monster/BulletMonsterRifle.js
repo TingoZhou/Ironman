@@ -18,7 +18,6 @@ var BulletMonsterRifle = Bullet.extend({
         var targetBox = character.getCollideBoundingBox();
         var selfBox = this._viewObj.getBoundingBox();
         if (cc.rectIntersectsRect(selfBox, targetBox)) {
-                                             console.log(this._viewObj.visible)
             character.doHitByMonster(WeaponConfig.MonsterRifle.bullets.dps, this);
             cc.eventManager.dispatchCustomEvent(SC.MONSTER_HIT_CHARACTER);
             this._disable();

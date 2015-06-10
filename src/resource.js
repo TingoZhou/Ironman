@@ -8,6 +8,10 @@ var MainRes = {
 };
 var LoadingRes = {};
 var GameRes = {
+    monsterBombExplode: {
+        plist: "res/monsters/BombEffect.png",
+        png: "res/monsters/BombEffect.plist"
+    },
     monsterExplode: {
         plist: "res/monsters/weaponEffect.png",
         png: "res/monsters/weaponEffect.plist"
@@ -22,17 +26,16 @@ var GameRes = {
     },
 
 
-
-    starGameUILayer:{
-        i_starGameUILayer:"res/StarGameUI/gameUI.png",
-        p_starGameUILayer:"res/StarGameUI/gameUI.plist",
-        j_starGameUILayer:"res/StarGameUI/StarGameUI.json"
+    starGameUILayer: {
+        i_starGameUILayer: "res/StarGameUI/gameUI.png",
+        p_starGameUILayer: "res/StarGameUI/gameUI.plist",
+        j_starGameUILayer: "res/StarGameUI/StarGameUI.json"
     },
 
-    gameLayerUI:{
-        i_gameLayerUI:"res/gameLayerUI/gameUI.png",
-        p_gameLayerUI:"res/gameLayerUI/gameUI.plist",
-        j_gameLayerUI:"res/gameLayerUI/gameLayer_UI.json"
+    gameLayerUI: {
+        i_gameLayerUI: "res/gameLayerUI/gameUI.png",
+        p_gameLayerUI: "res/gameLayerUI/gameUI.plist",
+        j_gameLayerUI: "res/gameLayerUI/gameLayer_UI.json"
     },
 
     characterRifleWeapon: {

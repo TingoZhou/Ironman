@@ -14,6 +14,24 @@ var ControllLayer = cc.Layer.extend({
         this.initRifleShootBtn();
         this.initRocketShootBtn();
         this.initElectricShootBtn();
+        this.initBombBtn();
+
+    },
+
+    initBombBtn: function () {
+        var button = new Button("bomb.png");
+        button.setPosition(cc.p(cc.winSize.width * 7 / 8, 180));
+        this.addChild(button);
+
+        button.onTouchBegan = function (touch, type) {
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_BOMB);
+        }
+
+        /*  button.onTouchEnded = function (touch, type) {
+         cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+         }*/
+
+
     },
 
     initJoyStick: function () {

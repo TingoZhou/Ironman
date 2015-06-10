@@ -125,7 +125,6 @@ var Character = Creature.extend({
     },
 
     _setWeapon: function (weaponName) {
-        cc.log(weaponName);
         this._weapon = Weapon.create(weaponName, this._parent);
         this._weaponFire.setPosition(CharacterConfig[this.name].weaponFire.buffer);
 
@@ -176,7 +175,6 @@ Character.create = function (type, parent) {
     switch (type) {
         case SH.Character.Ironman:
             Character.current = new Ironman(parent);
-            cc.log( Character.current);
             break;
     }
     return Character.current;

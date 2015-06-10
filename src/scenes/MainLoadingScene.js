@@ -42,11 +42,9 @@ var MainLoadingLayer = (function () {
             }
             // 更新配置
             var storagePath = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() : "./");
-            cc.log("storagePath is " + storagePath);
             var am = new jsb.AssetsManager("res/project.manifest", storagePath);
             am.retain();
             if (!am.getLocalManifest().isLoaded()) {
-                cc.log("Fail to update assets, step skipped.");
                 this.loadGameConfig();
             } else {
                 var self = this;

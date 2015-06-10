@@ -65,6 +65,7 @@
         "src/scenes/gameScenes/DropItemLayer.js",
         "src/scenes/gameScenes/ControllLayer.js",
         "src/scenes/gameScenes/GameUILayer.js",
+        "src/scenes/gameScenes/ExplosionMaskLayer.js",
         "src/scenes/gameScenes/subBattleLayer/ScriptLayer.js",
 
         "src/resource.js",
