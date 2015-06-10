@@ -29,8 +29,7 @@ var GameRes = {
         p_starGameUILayer:"res/StarGameUI/StarGameUI.plist"
     },
 
-        j_starGameUILayer:"res/StarGameUI/StarGameUI.json"
-	},
+
 	userFiles:{
         i_userfiles:"res/userFilesScene/userFilesScene.png",
         p_userfiles:"res/userFilesScene/userFilesScene.plist"
