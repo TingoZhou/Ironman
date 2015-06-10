@@ -25,7 +25,8 @@ var Bullet = cc.Class.extend({
         this._viewObj.stopAllActions();
         this._viewObj.retain(); //if in jsb
         this._viewObj.removeFromParent(true);
-            this._explodeObj &&  this._explodeObj.removeFromParent(true);
+        this._explodeObj && this._explodeObj.removeFromParent(true);
+
         for (var i = 0, len = Bullet.bulletsOnStage.length; i < len; ++i) {
             var bullet = Bullet.bulletsOnStage[i];
             if (bullet.getId() == this._id) {
@@ -44,6 +45,7 @@ var Bullet = cc.Class.extend({
     },
 
     update: function () {
+        if(!this.active) return;
         ++this._step;
         this._checkOverBorder();
     },
@@ -57,7 +59,6 @@ var Bullet = cc.Class.extend({
         }
     },
 
-
     _destroy: function () {
 
     },
@@ -68,7 +69,6 @@ var Bullet = cc.Class.extend({
 });
 
 Bullet.bulletsOnStage = [];
-Bullet.mShootableOnStage = [];
 
 Bullet.create = function (parent, type, weaponPosition) {
     switch (type) {
@@ -109,13 +109,13 @@ Bullet.preset = function (parent, type) {
 
 Bullet.resetAll = function () {
     for (var i = 0; i < Bullet.bulletsOnStage.length; ++i) {
-        Bullet.bulletsOnStage[i].unuse();
-        Bullet.bulletsOnStage[i].release();
+        var b = Bullet.bulletsOnStage[i];
+        (function(bullet) {
+            bullet.unuse();
+            bullet.release();
+        })(b);
     }
     Bullet.bulletsOnStage = [];
-    for (var i = 0; i < Bullet.mShootableOnStage.length; ++i) {
-        Bullet.mShootableOnStage[i].unuse();
-        Bullet.mShootableOnStage[i].release();
-    }
-    Bullet.mShootableOnStage = [];
+
+
 }

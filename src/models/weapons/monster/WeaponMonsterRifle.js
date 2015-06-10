@@ -60,6 +60,7 @@ var WeaponMonsterRifle = Weapon.extend({
 
     _shoot: function () {
         this._super();
+        console.log(this._parent.name);
         var bullet = Bullet.create(this._parent, SH.Bullet.Monster.Rifle);
         bullet.trigger(this._user);
     }

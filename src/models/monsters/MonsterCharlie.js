@@ -140,7 +140,9 @@ MonsterCharlie.monsters = [];
 
 MonsterCharlie.preset = function (parent, data) {
     for (var i = 0; i < MonsterConfig.Charlie.presetAmount; i++) {
-        MonsterCharlie.monsters.push(new MonsterCharlie(parent, data))
+        var monster = new MonsterCharlie(parent, data);
+        monster.unuse();
+        MonsterCharlie.monsters.push(monster);
     }
 };
 
@@ -156,6 +158,7 @@ MonsterCharlie.create = function (parent, data, createOnly) {
     }
     if (!monstercharlie) {
         monstercharlie = new MonsterCharlie(parent, data);
+        monstercharlie.unuse();
     }
     monstercharlie.reuse(parent, data);
     return monstercharlie;

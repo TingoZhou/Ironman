@@ -18,8 +18,8 @@ var BulletMonsterRifle = Bullet.extend({
         var targetBox = character.getCollideBoundingBox();
         var selfBox = this._viewObj.getBoundingBox();
         if (cc.rectIntersectsRect(selfBox, targetBox)) {
-
-            character.doHitByMonster(WeaponConfig.MonsterRifle.bullets.dps);
+                                             console.log(this._viewObj.visible)
+            character.doHitByMonster(WeaponConfig.MonsterRifle.bullets.dps, this);
             cc.eventManager.dispatchCustomEvent(SC.MONSTER_HIT_CHARACTER);
             this._disable();
         }
@@ -68,11 +68,14 @@ BulletMonsterRifle.bullets = [];
 
 BulletMonsterRifle.preset = function (parent) {
     for (var i = 0; i < WeaponConfig.MonsterRifle.bullets.presetAmount; ++i) {
-        BulletMonsterRifle.bullets.push(new BulletMonsterRifle(parent));
+        var bullet = new BulletMonsterRifle(parent);
+        bullet.unuse();
+        BulletMonsterRifle.bullets.push(bullet);
     }
 }
 
 BulletMonsterRifle.create = function (parent, createOnly) {
+
     var bulletRifle = null;
     for (var i = 0, len = BulletMonsterRifle.bullets.length; i < len; ++i) {
         var bullet = BulletMonsterRifle.bullets[i];
@@ -82,6 +85,7 @@ BulletMonsterRifle.create = function (parent, createOnly) {
     }
     if (!bulletRifle) {
         bulletRifle = new BulletMonsterRifle();
+        bulletRifle.unuse();
     }
     bulletRifle.reuse(parent);
     return bulletRifle;

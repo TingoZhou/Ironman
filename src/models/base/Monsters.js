@@ -117,8 +117,8 @@ var Monsters = Creature.extend({
         if (!this.active) return;
         this._viewObj.visible = false;
         this.active = false;
-        if(this._weapon){
-                this._weapon.removeDisplayWeapon();
+        if (this._weapon) {
+            this._weapon.removeDisplayWeapon();
         }
 
         this.unuse();
@@ -166,9 +166,8 @@ var Monsters = Creature.extend({
 
     // 死亡爆炸
     _doExplode: function () {
-
         //新建爆炸效果
-        var explode  = new MonsterExplodeEffect();
+        var explode = new MonsterExplodeEffect();
         explode.x = this._viewObj.x;
         explode.y = this._viewObj.y;
         this._parent.addChild(explode);
@@ -193,6 +192,16 @@ var Monsters = Creature.extend({
     }
 });
 
+Monsters.resetAll = function () {
+    for (var i = 0; i < Monsters.monstersOnStage.length; ++i) {
+        var b = Monsters.monstersOnStage[i];
+        (function (m) {
+            m.unuse();
+            m.release();
+        })(b);
+    }
+    Monsters.monstersOnStage = [];
+}
 
 // 场景里面的所有怪物
 Monsters.monstersOnStage = [];
