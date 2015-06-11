@@ -61,7 +61,7 @@ var MainMenuLayer = cc.Layer.extend({
         }
 
         button.onTouchEnded = function (touch, type) {
-            //cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
         }
     },
 

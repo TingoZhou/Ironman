@@ -44,6 +44,8 @@ var ButtonNoEdg = cc.Sprite.extend({
             return true;
         }
         return false;
+
+
     },
 
     onTouchEndedEvent: function(touch, type) {

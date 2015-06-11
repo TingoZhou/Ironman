@@ -8,7 +8,7 @@ var Button = cc.Sprite.extend({
         bg.y =-10;
         this.addChild(bg,-1);
 		this._normal = normal;
-		this._press = press;
+		this._press  =  press;
 
 		this.onTouchBegan = null;
 		this.onTouchEnded = null;

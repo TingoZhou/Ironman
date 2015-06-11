@@ -10,6 +10,7 @@ var Weapon = cc.Class.extend({
 
     _shoot: function () {
         Character.current.showShoot();
+
     },
 
     addDisplayWeapon: function (user) {

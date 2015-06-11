@@ -11,4 +11,4 @@ var BgLayer = cc.Layer.extend({
     },
 
     update: function(dt) {}
-})
+});
