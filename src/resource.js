@@ -48,12 +48,12 @@ var GameRes = {
         p_pauseSceneUI: "res/PauseSceneUI/PauseSceneUI.plist"
     },
 
-    gameLayerUI: {
-        i_gameLayerUI: "res/gameLayerUI/gameUI.png",
-        p_gameLayerUI: "res/gameLayerUI/gameUI.plist"
-
     },
 
+gameOverLayerUI:{
+        i_gameOverLayerUI:"res/gameOverLayerUI/gameOverLayer.png",
+        p_gameOverLayerUI:"res/gameOverLayerUI/gameOverLayer.plist"
+    },
     characterRifleWeapon: {
         plist: "res/characters/CharacterWeapon.png",
         png: "res/characters/CharacterWeapon.plist",
