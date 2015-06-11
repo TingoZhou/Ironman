@@ -73,7 +73,7 @@
         "src/scenes/gameScenes/ExplosionMaskLayer.js",
         "src/scenes/gameScenes/subBattleLayer/ScriptLayer.js",
         "src/scenes/gameScenes/PauseLayer.js",
-        "src/scenes/gameScenes/gameOverLayer.js",
+        "src/scenes/gameScenes/GameOverLayer.js",
 
         "src/resource.js",
         "src/app.js"
