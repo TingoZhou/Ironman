@@ -47,19 +47,15 @@ var GameRes = {
         i_pauseSceneUI: "res/PauseSceneUI/PauseSceneUI.png",
         p_pauseSceneUI: "res/PauseSceneUI/PauseSceneUI.plist"
     },
-
-    },
-
-gameOverLayerUI:{
-        i_gameOverLayerUI:"res/gameOverLayerUI/gameOverLayer.png",
-        p_gameOverLayerUI:"res/gameOverLayerUI/gameOverLayer.plist"
+    gameOverLayerUI: {
+        i_gameOverLayerUI: "res/gameOverLayerUI/gameOverLayer.png",
+        p_gameOverLayerUI: "res/gameOverLayerUI/gameOverLayer.plist"
     },
     characterRifleWeapon: {
         plist: "res/characters/CharacterWeapon.png",
         png: "res/characters/CharacterWeapon.plist",
         rocketExplodePng: "res/characters/MatchGirlDie.png",
         rocketExplodePlist: "res/characters/MatchGirlDie.plist"
-
     },
 
     characterElectricWeapon: {

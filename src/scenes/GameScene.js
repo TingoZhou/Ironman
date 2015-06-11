@@ -15,15 +15,15 @@ var GameScene = cc.Scene.extend({
 
     onExitTransitionDidStart: function () {
 
-/*
-        this.removeListeners();
-        this.layer.unscheduleUpdate();
-//      Creature.resetAll();
-        Bullet.resetAll();
-//      Weapon.resetAll();
+        /*
+         this.removeListeners();
+         this.layer.unscheduleUpdate();
+         //      Creature.resetAll();
+         Bullet.resetAll();
+         //      Weapon.resetAll();
 
 
-*/
+         */
 
     },
 
@@ -57,7 +57,8 @@ var GameLayer = cc.Layer.extend({
         this.addChild(bgLayer);
         this.bgLayer = bgLayer;
     },
-  
+
+    initGameUIlayer: function () {
         var gameUILayer = new GameUILayer();
         this.addChild(gameUILayer);
         this.gameUILayer = gameUILayer;
@@ -69,31 +70,34 @@ var GameLayer = cc.Layer.extend({
         this.battleLayer = battleLayer;
     },
 
+
     initControllLayer: function () {
         var controllLayer = new ControllLayer();
         this.addChild(controllLayer);
         this.controllLayer = controllLayer;
     },
 
-   
+    initDropItemLayer: function () {
         var dropItemLayer = new DropItemLayer();
         this.addChild(dropItemLayer);
         this.dropItemLayer = dropItemLayer;
     },
 
- initExplosionMaskLayer: function () {
+    initExplosionMaskLayer: function () {
         var explosionMaskLayer = new ExplosionMaskLayer();
         this.addChild(explosionMaskLayer);
         this.explosionMaskLayer = explosionMaskLayer;
     },
-	
+
+    update: function (dt) {
         this.bgLayer.update && this.battleLayer.update();
         this.battleLayer.update && this.battleLayer.update();
         this.dropItemLayer.update && this.dropItemLayer.update();
         this.controllLayer.update && this.controllLayer.update(dt);
-        this.gameUILayer.update&&this.gameUILayer.update();
+        this.gameUILayer.update && this.gameUILayer.update();
         Monsters.updateAll(dt);
     }
 });
+
 
 
