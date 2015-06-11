@@ -33,7 +33,6 @@ SH.Weapon = {
     },
     Monster: {
         Rifle: "RifleMonsterWeapon"
-
     }
 }
 

@@ -60,7 +60,7 @@ var ControllLayer = cc.Layer.extend({
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
                 weaponName: SH.Weapon.Characters.Rifle
             });
-        }
+        };
 
         button.onTouchEnded = function (touch, type) {
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
@@ -75,7 +75,7 @@ var ControllLayer = cc.Layer.extend({
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
                 weaponName: SH.Weapon.Characters.Rocket
             });
-        }
+        };
 
         button.onTouchEnded = function (touch, type) {
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);

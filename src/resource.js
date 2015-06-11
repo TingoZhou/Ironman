@@ -40,10 +40,14 @@ var GameRes = {
         p_pauseSceneUI:"res/PauseSceneUI/PauseSceneUI.plist"
     },
 
+    gameOverLayerUI:{
+        i_gameOverLayerUI:"res/gameOverLayerUI/gameOverLayer.png",
+        p_gameOverLayerUI:"res/gameOverLayerUI/gameOverLayer.plist"
+    },
     gameLayerUI:{
-        i_gameLayerUI:"res/gameLayerUI/gameUI.png",
-        p_gameLayerUI:"res/gameLayerUI/gameUI.plist",
-        j_gameLayerUI:"res/gameLayerUI/gameLayer_UI.json"
+        i_gameLayerUI:"res/gameLayerUI/gameLayerUI.png",
+        p_gameLayerUI:"res/gameLayerUI/gameLayerUI.plist"
+       // j_gameLayerUI:"res/gameLayerUI/gameLayer_UI.json"
     },
 
     characterRifleWeapon: {
