@@ -57,6 +57,7 @@
         "src/models/bullets/BulletRocket.js",
         "src/models/bullets/BulletElectric.js",
         "src/models/bullets/monster/BulletMonsterRifle.js",
+
         "src/scenes/GameScene.js",
         "src/scenes/GameLoadingScene.js",
         "src/scenes/MainLoadingScene.js",

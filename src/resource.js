@@ -22,27 +22,22 @@ var GameRes = {
         i_bg: "res/bg.jpg",
         i_character: "res/characters/character.png",
         p_character: "res/characters/character.plist",
-
         i_test: "res/test.png",
         p_test: "res/test.plist"
     },
-
     starGameUILayer: {
         i_starGameUILayer: "res/StarGameUI/StarGameUI.png",
         p_starGameUILayer: "res/StarGameUI/StarGameUI.plist"
     },
 
-
     userFiles: {
         i_userfiles: "res/userFilesScene/userFilesScene.png",
         p_userfiles: "res/userFilesScene/userFilesScene.plist"
     },
-
     controlLayerUI: {
         i_controlLayerUI: "res/controlLayerUI/controlLayerUI.png",
         p_controlLayerUI: "res/controlLayerUI/controlLayerUI.plist"
     },
-
     pauseSceneUI: {
         i_pauseSceneUI: "res/PauseSceneUI/PauseSceneUI.png",
         p_pauseSceneUI: "res/PauseSceneUI/PauseSceneUI.plist"
@@ -50,6 +45,11 @@ var GameRes = {
     gameOverLayerUI: {
         i_gameOverLayerUI: "res/gameOverLayerUI/gameOverLayer.png",
         p_gameOverLayerUI: "res/gameOverLayerUI/gameOverLayer.plist"
+    },
+    gameLayerUI: {
+        i_gameLayerUI: "res/gameLayerUI/gameLayerUI.png",
+        p_gameLayerUI: "res/gameLayerUI/gameLayerUI.plist"
+        // j_gameLayerUI:"res/gameLayerUI/gameLayer_UI.json"
     },
     characterRifleWeapon: {
         plist: "res/characters/CharacterWeapon.png",
