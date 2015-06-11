@@ -17,24 +17,9 @@ var ControllLayer = cc.Layer.extend({
         this.initSkillBtn_1();
         this.initSkillBtn_2();
         this.initSkillBtn_3();
-        this.initBombBtn();
     },
 
-    initBombBtn: function () {
-        var button = new Button("bomb.png");
-        button.setPosition(cc.p(cc.winSize.width * 7 / 8, 180));
-        this.addChild(button);
 
-        button.onTouchBegan = function (touch, type) {
-            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_BOMB);
-        }
-
-        /*  button.onTouchEnded = function (touch, type) {
-         cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
-         }*/
-
-
-    },
 
     initJoyStick: function () {
         var moveJoyStickPannel = new JoyStickPannel("#controlLayerUI_crossStick_bg.png", "#controlLayerUI_crossStickBt.png");
@@ -125,10 +110,7 @@ var ControllLayer = cc.Layer.extend({
         this.addChild(button);
 
        button.onTouchBegan = function (touch, type) {
-            /*
-            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
-                weaponName: SH.Weapon.Characters.Rifle
-            });*/
+           cc.eventManager.dispatchCustomEvent(SC.CHARACTER_BOMB);
        }
 
         button.onTouchEnded = function (touch, type) {
@@ -136,6 +118,7 @@ var ControllLayer = cc.Layer.extend({
         }
     },
 
+    //冰冻
     initSkillBtn_2: function () {
         var button = new ButtonNoEdg("controLayerUI_skillBt_2.png");
         button.attr({
@@ -145,16 +128,12 @@ var ControllLayer = cc.Layer.extend({
         this.addChild(button);
 
         button.onTouchBegan = function (touch, type) {
-           /* cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
-                weaponName: SH.Weapon.Characters.Rocket
-            });*/
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_FREEZE);
         }
 
-        button.onTouchEnded = function (touch, type) {
-           // cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
-        }
     },
 
+    //护盾
     initSkillBtn_3: function () {
         var button = new ButtonNoEdg("controLayerUI_skillBt_3.png");
         button.attr({
@@ -164,15 +143,8 @@ var ControllLayer = cc.Layer.extend({
         this.addChild(button);
 
         button.onTouchBegan = function (touch, type) {
-          /*  cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
-                weaponName: SH.Weapon.Characters.Electric
-            });*/
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SHIEL);
         }
-
-        button.onTouchEnded = function (touch, type) {
-            //cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
-        }
-
     },
 
     onTouchesBegan: function (touches, event) {

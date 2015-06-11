@@ -55,8 +55,11 @@ var Character = Creature.extend({
     },
 
     doHitByMonster: function (dps, bullet) {
+
+        if (this._isShiel) return;
         this._HP -= dps;
         this.strike();
+
     },
 
     getCollideBoundingBox: function () {

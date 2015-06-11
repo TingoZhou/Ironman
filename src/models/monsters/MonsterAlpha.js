@@ -77,14 +77,14 @@ var MonsterAlpha = Monsters.extend({
         //移动
         _move: function () {
 
+            this._super();
             if (this._currentStatus == MonsterStatus.ATTACK) {
-                var a = this._viewObj.isFlippedX() ? -1 : 1;
-                this._stepX = cc.random0To1() * a;
-                this._stepY = cc.random0To1() * a;
+                this._viewObj.x += (this._stepX + cc.randomMinus1To1()) * .3;
+                this._viewObj.y += (this._stepY + cc.randomMinus1To1()) * .3;
+            } else {
+                this._viewObj.x += this._stepX;
+                this._viewObj.y += this._stepY;
             }
-
-            this._viewObj.x += this._stepX;
-            this._viewObj.y += this._stepY;
         },
         //方向
         _direction: function () {
@@ -139,6 +139,8 @@ var MonsterAlpha = Monsters.extend({
         },
 
         update: function (dt) {
+            this.isDie();
+            if (this._isFreezing)return;
             switch (this._currentStatus) {
                 case MonsterStatus.MOVE_TO_TARGET:
                     if (this._movable) {
@@ -157,7 +159,7 @@ var MonsterAlpha = Monsters.extend({
             this._checkCollideTarget();
             this._move();     //移动
             this._direction();  //方向
-            this.isDie();
+
 
         }
     })

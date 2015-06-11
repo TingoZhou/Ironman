@@ -15,7 +15,6 @@ var MonsterStatus = {
 var Monsters = Creature.extend({
     _DamageByType: null, //伤害类型，影响怪物爆炸类型
 
-
     ctor: function (parent, data) {
         this._super(parent, data);
 
@@ -145,6 +144,124 @@ var Monsters = Creature.extend({
         }
     },
 
+    //移动
+    _move: function () {
+
+        if (this._target._isShiel) {
+            //保护罩
+            var d = cc.pDistance(cc.p(this.getPosition().x, this.getPosition().y), cc.p(this._target.getPosition().x, this._target.getPosition().y));
+            if (d < 70) {
+                this._viewObj.x -= this._stepX * 15;
+                this._viewObj.y -= this._stepY * 15;
+                return;
+            }
+
+            if (d < 85) {
+                this._viewObj.x += this._target._velocity.x * this._target._speed;
+                this._viewObj.y += this._target._velocity.y * this._target._speed;
+                return;
+            }
+        }
+
+    },
+
+
+    /**
+     * 冰冻恢复
+     */
+    freezeRelease: function () {
+
+
+        this._viewObj.runAction(
+            cc.sequence(
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(255, 255, 255, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE_MINUS_SRC_ALPHA);
+                }, this),
+                cc.delayTime(.2),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(118, 233, 241, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
+                }, this),
+                cc.delayTime(.2),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(255, 255, 255, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE_MINUS_SRC_ALPHA);
+                }, this),
+                cc.delayTime(.2),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(118, 233, 241, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
+                }, this),
+                cc.delayTime(.2),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(255, 255, 255, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE_MINUS_SRC_ALPHA);
+                }, this),
+                cc.delayTime(.2),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(118, 233, 241, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
+                }, this),
+                cc.delayTime(.2),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(255, 255, 255, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE_MINUS_SRC_ALPHA);
+                }, this),
+                cc.delayTime(.2),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(118, 233, 241, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
+                }, this),
+                cc.delayTime(.2),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(255, 255, 255, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE_MINUS_SRC_ALPHA);
+                }, this),
+                cc.delayTime(.1),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(118, 233, 241, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
+                }, this),
+                cc.delayTime(.1),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(118, 233, 241, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
+                }, this),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(255, 255, 255, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE_MINUS_SRC_ALPHA);
+                }, this),
+                cc.delayTime(.1),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(118, 233, 241, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
+                }, this),
+                cc.delayTime(.1),
+                cc.callFunc(function () {
+                    this._viewObj.setColor(cc.color(118, 233, 241, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
+                }, this),
+                cc.callFunc(function () {
+                    this._isFreezing = false;
+                    this._viewObj.setColor(cc.color(255, 255, 255, 255));
+                    this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE_MINUS_SRC_ALPHA);
+                }, this)
+            )
+        )
+    },
+
+    /**
+     * 冰冻
+     */
+    freezeMonstersByBomb: function () {
+
+        this._viewObj.setColor(cc.color(118, 233, 241, 255));
+        this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
+        this._isFreezing = true;
+
+    },
+
     /**
      * 必杀爆炸
      * @param type {String}  //爆炸类型
@@ -203,6 +320,11 @@ var Monsters = Creature.extend({
     release: function () {
         this._hasEvent = false;
         this._viewObj.release();
+    },
+
+    update: function (dt) {
+
+
     }
 });
 

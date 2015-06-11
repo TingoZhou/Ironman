@@ -60,7 +60,7 @@ var MonsterBeta = Monsters.extend({
 
     //移动
     _move: function () {
-
+        this._super();
         if (this._currentStatus == MonsterStatus.ATTACK)return;
         if (this._currentStatus == MonsterStatus.BEFORE_ATTACK)return;
         if (this._currentStatus == MonsterStatus.BACK_ATTACK)return;
@@ -68,6 +68,10 @@ var MonsterBeta = Monsters.extend({
         if (d >= 220) {
             this._viewObj.x += this._stepX;
             this._viewObj.y += this._stepY;
+        } else {
+            this._viewObj.x += cc.randomMinus1To1() * .6;
+            this._viewObj.y += cc.randomMinus1To1() * .6;
+
         }
     },
     //方向
@@ -91,7 +95,6 @@ var MonsterBeta = Monsters.extend({
 
             this._viewObj.setSpriteFrame(this._framesData.Attack[0]);
             this._backPosition = this.getPosition();
-
             this._saveTargetPosition = this._target.getPosition();  //记录玩家位置；
 
             var d = cc.pDistance(cc.p(this._backPosition.x, this._backPosition.y), cc.p(this._saveTargetPosition.x, this._saveTargetPosition.y));
@@ -104,12 +107,10 @@ var MonsterBeta = Monsters.extend({
             }
         }
 
-
         this._stepX = cc.randomMinus1To1();
         this._stepY = cc.randomMinus1To1();
         this._viewObj.x += this._stepX;
         this._viewObj.y += this._stepY;
-
 
         this._attackBeforeCD -= dt;
         if (this._attackBeforeCD <= 0) {
@@ -121,8 +122,6 @@ var MonsterBeta = Monsters.extend({
     _doAttack: function () {
         if (this._currentStatus == MonsterStatus.ATTACK) return;
         this._currentStatus = MonsterStatus.ATTACK;
-
-
         this._viewObj.runAction(
             cc.sequence(
                 cc.moveTo(0.05, cc.p(this._saveTargetPosition.x, this._saveTargetPosition.y)),
@@ -170,7 +169,8 @@ var MonsterBeta = Monsters.extend({
 
 
     update: function (dt) {
-
+        this.isDie();
+        if (this._isFreezing)return;
         switch (this._currentStatus) {
             case MonsterStatus.MOVE_TO_TARGET:
 
@@ -182,7 +182,7 @@ var MonsterBeta = Monsters.extend({
 
                     var d = cc.pDistance(cc.p(this._viewObj.x, this._viewObj.y), cc.p(targetPos.x, targetPos.y));
                     this._attackCD -= dt;
-                    if (this._attackCD <= 0 && d <= 400) {
+                    if (this._attackCD <= 0 && d <= 400 && !this._target._isShiel) {
                         this._attackBeforeCD = this._ATTACKBEFORE_COOLDOWN;
                         this._backPosition = null;
                         this._saveTargetPosition = null;
@@ -205,7 +205,7 @@ var MonsterBeta = Monsters.extend({
         this._checkCollideTarget();
         this._move();     //移动
         this._direction();  //方向
-        this.isDie();
+
     }
 
 })

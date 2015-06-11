@@ -7,6 +7,9 @@ var MainRes = {
 };
 var LoadingRes = {};
 var GameRes = {
+    skills: {
+        png: "res/skills/Shield.png"
+    },
     monsterBombExplode: {
         plist: "res/monsters/BombEffect.png",
         png: "res/monsters/BombEffect.plist"
@@ -24,31 +27,31 @@ var GameRes = {
         p_test: "res/test.plist"
     },
 
-    starGameUILayer:{
-        i_starGameUILayer:"res/StarGameUI/StarGameUI.png",
-        p_starGameUILayer:"res/StarGameUI/StarGameUI.plist"
+    starGameUILayer: {
+        i_starGameUILayer: "res/StarGameUI/StarGameUI.png",
+        p_starGameUILayer: "res/StarGameUI/StarGameUI.plist"
     },
 
 
-	userFiles:{
-        i_userfiles:"res/userFilesScene/userFilesScene.png",
-        p_userfiles:"res/userFilesScene/userFilesScene.plist"
+    userFiles: {
+        i_userfiles: "res/userFilesScene/userFilesScene.png",
+        p_userfiles: "res/userFilesScene/userFilesScene.plist"
     },
 
-    controlLayerUI:{
-       i_controlLayerUI:"res/controlLayerUI/controlLayerUI.png",
-       p_controlLayerUI:"res/controlLayerUI/controlLayerUI.plist"
+    controlLayerUI: {
+        i_controlLayerUI: "res/controlLayerUI/controlLayerUI.png",
+        p_controlLayerUI: "res/controlLayerUI/controlLayerUI.plist"
     },
 
-    pauseSceneUI:{
-        i_pauseSceneUI:"res/PauseSceneUI/PauseSceneUI.png",
-        p_pauseSceneUI:"res/PauseSceneUI/PauseSceneUI.plist"
+    pauseSceneUI: {
+        i_pauseSceneUI: "res/PauseSceneUI/PauseSceneUI.png",
+        p_pauseSceneUI: "res/PauseSceneUI/PauseSceneUI.plist"
     },
 
-    gameLayerUI:{
-        i_gameLayerUI:"res/gameLayerUI/gameUI.png",
-        p_gameLayerUI:"res/gameLayerUI/gameUI.plist"
-    
+    gameLayerUI: {
+        i_gameLayerUI: "res/gameLayerUI/gameUI.png",
+        p_gameLayerUI: "res/gameLayerUI/gameUI.plist"
+
     },
 
     characterRifleWeapon: {

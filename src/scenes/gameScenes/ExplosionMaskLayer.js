@@ -19,16 +19,46 @@ var ExplosionMaskLayer = cc.LayerColor.extend({
 
     addListeners: function () {
         cc.eventManager.addCustomListener(SC.CHARACTER_BOMB, _.bind(function (e) {
-            this.doExplosion();
+            this._doExplosion();
         }, this));
 
+        cc.eventManager.addCustomListener(SC.CHARACTER_FREEZE, _.bind(function (e) {
+            this._doFreeze();
+        }, this));
     },
 
+
+    _doFreeze: function () {
+        this.setColor(cc.color(118, 233, 241, 255));
+        this.visible = true;
+        var time = 0.04;
+        this.runAction(
+            cc.sequence(
+                cc.fadeIn(time),
+                cc.delayTime(time),
+                cc.fadeOut(time),
+                cc.delayTime(time),
+                cc.fadeIn(time),
+                cc.delayTime(time),
+                cc.fadeOut(time),
+                cc.delayTime(time),
+                cc.fadeIn(time),
+                cc.delayTime(time),
+                cc.fadeOut(time),
+                cc.delayTime(time),
+                cc.fadeIn(time),
+                cc.callFunc(function () {
+                    this.visible = false;
+                    this._FreezeMonster();
+                }, this))
+        )
+    },
     /**
      * 爆炸,爆炸后回调
      * @param callBackFun {Function}
      */
-    doExplosion: function () {
+    _doExplosion: function () {
+        this.setColor(cc.color(255, 255, 255, 255));
         this.visible = true;
         var time = 0.04;
         this.runAction(
@@ -51,6 +81,32 @@ var ExplosionMaskLayer = cc.LayerColor.extend({
                     this._killMonster();
                 }, this))
         )
+    },
+
+    _FreezeMonster: function () {
+
+        var monsters = Monsters.monstersOnStage;
+        for (var i = 0, len = monsters.length; i < len; ++i) {
+            var monster = monsters[i];
+            if (monster.active) {
+                monster.freezeMonstersByBomb();
+            }
+        }
+
+        this.scheduleOnce(
+            function () {
+                for (var i = 0, len = monsters.length; i < len; ++i) {
+                    var monster = monsters[i];
+                    if (monster.active) {
+                        monster.freezeRelease();
+                    }
+                }
+
+            },
+            5
+        );
+
+
     },
 
     _killMonster: function () {

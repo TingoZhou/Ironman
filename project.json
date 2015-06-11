@@ -51,6 +51,8 @@
         "src/models/weapons/WeaponElectric.js",
         "src/models/weapons/monster/WeaponMonsterRifle.js",
 
+        "src/models/skills/Shield.js",
+
         "src/models/bullets/BulletRifle.js",
         "src/models/bullets/BulletRocket.js",
         "src/models/bullets/BulletElectric.js",

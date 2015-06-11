@@ -72,6 +72,7 @@ var MonsterCharlie = Monsters.extend({
 
     //移动
     _move: function () {
+        this._super();
         if (this._currentStatus == MonsterStatus.ATTACK)return;
         var d = cc.pDistance(cc.p(this.getPosition().x, this.getPosition().y), cc.p(this._target.getPosition().x, this._target.getPosition().y));
         if (d >= 220) {
@@ -114,6 +115,8 @@ var MonsterCharlie = Monsters.extend({
     },
 
     update: function (dt) {
+        this.isDie();
+        if (this._isFreezing)return;
         switch (this._currentStatus) {
             case MonsterStatus.MOVE_TO_TARGET:
                 if (this._movable) {
@@ -127,10 +130,9 @@ var MonsterCharlie = Monsters.extend({
                 break;
         }
         this._checkCollideTarget();
-        this._move();     //移动
+        this._move();       //移动
         this._direction();  //方向
-        this._shoot(dt);  //射击
-        this.isDie();
+        this._shoot(dt);    //射击
 
 
     }

@@ -26,6 +26,12 @@ var Ironman = Character.extend({
 
     addListeners: function () {
         this._super();
+        cc.eventManager.addCustomListener(SC.CHARACTER_SHIEL, _.bind(function (e) {
+
+            this._doShiel();
+
+        }, this));
+
     },
 
     showShoot: function () {
@@ -34,14 +40,18 @@ var Ironman = Character.extend({
 
     update: function () {
         this._super();
+    },
 
-
+    //护盾
+    _doShiel: function () {
+        var shiel = new Shield(this);
+        shiel.start();
+        this._isShiel = true;
     },
 
     //OVERRIDE
     _changeDirection: function () {
         this._automaticAiming();
-
     },
 
     //自动瞄准
@@ -60,7 +70,6 @@ var Ironman = Character.extend({
                 this._viewObj.setScaleY(this._viewObj.getScaleX());
             }
         }
-
     },
 
     //获取最近的怪
