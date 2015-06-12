@@ -167,7 +167,6 @@ var MonsterBeta = Monsters.extend({
             var character = Character.current;    //当前角色
             character.doHitByMonster(this._properties.dps, this);
             cc.eventManager.dispatchCustomEvent(SC.MONSTER_HIT_CHARACTER);
-
         }
     },
 

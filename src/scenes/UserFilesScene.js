@@ -80,6 +80,16 @@ var UserfilesLayer = cc.Layer.extend({
 
     },
 
+    _initFreeze: function () {
+
+
+    },
+
+    _initShield: function () {
+
+
+    },
+
     initImages: function () {
         var size = cc.winSize;
         var bgImage = new cc.Sprite("#bg.png");

@@ -15,9 +15,7 @@ var MainMenuScene = cc.Scene.extend({
     onExitTransitionDidStart: function () {
         cc.eventManager.removeCustomListeners(cc.game.EVENT_HIDE);
         cc.eventManager.removeCustomListeners(cc.game.EVENT_SHOW);
-    },
-
-
+    }
 
 });
 
