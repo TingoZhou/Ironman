@@ -105,7 +105,9 @@ BulletRocket.bullets = [];
 
 BulletRocket.preset = function (parent) {
     for (var i = 0; i < WeaponConfig.Rocket.bullets.presetAmount; ++i) {
-        BulletRocket.bullets.push(new BulletRocket(parent));
+        var bullet = new BulletRocket(parent);
+        bullet.unuse();
+        BulletRocket.bullets.push(bullet);
     }
 }
 

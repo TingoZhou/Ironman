@@ -53,7 +53,9 @@ BulletRifle.bullets = [];
 
 BulletRifle.preset = function (parent) {
     for (var i = 0; i < WeaponConfig.Rifle.bullets.presetAmount; ++i) {
-        BulletRifle.bullets.push(new BulletRifle(parent));
+        var bullet = new BulletRifle(parent);
+        bullet.unuse();
+        BulletRifle.bullets.push(bullet);
     }
 }
 

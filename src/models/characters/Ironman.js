@@ -4,7 +4,7 @@ var Ironman = Character.extend({
         this.name = SH.Character.Ironman;
 
         this._viewObj = cc.Sprite.create(CharacterConfig[this.name].res);
-        this._parent.addChild(this._viewObj, 10000);
+        this._parent.addChild(this._viewObj, 100);
 
         this._weaponFire = cc.Sprite.create("#" + CharacterConfig[this.name].weaponFire.frames[0]);
         this._weaponFire.setRotation(90);
@@ -89,7 +89,6 @@ var Ironman = Character.extend({
             closeMonster.minl = min;
         return closeMonster;
     },
-
 
     _showBegin: function () {
         this._isShowBegin = true;

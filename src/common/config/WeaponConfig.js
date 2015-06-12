@@ -44,13 +44,13 @@ var WeaponConfig = {
         }
     },
     MonsterRifle: {
-        shootStep: 30,
+        shootStep: 60,
         bullets: {
             dps: 1,
             scale: 0.5,
             presetAmount: 10,
             res: "#bulletRifle.png",
-            speed: 15
+            speed: 5
         }
     }
 

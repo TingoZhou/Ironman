@@ -23,8 +23,8 @@ var MonsterAlpha = Monsters.extend({
             this._speed = config.speed + (this._level - 1) * config.levelEnhance.speed;
             this._score = config.score + (this._level - 1) * config.levelEnhance.score;
             this._scale = config.scale;
-            this._viewObj.setScale(this._scale);
             this._parent.addChild(this._viewObj);
+            this._viewObj.setScale(this._scale);
             this._viewObj.setPosition(data.bornPlace);
             this._viewObj.visible = true;
             this._hurtable = true;
@@ -88,11 +88,6 @@ var MonsterAlpha = Monsters.extend({
         },
         //方向
         _direction: function () {
-            /*  var targetPos = this._target.getPosition();
-             var angle = Math.atan2((targetPos.y - this.getPosition().y), (targetPos.x - this.getPosition().x)) * 180 / Math.PI;
-             if (angle < 0) angle += 360;
-             */
-
             //只有2个方向，左右
             if (this._viewObj && this._stepX >= 0) {   //左
                 this._viewObj.setFlippedX(false);
@@ -105,6 +100,10 @@ var MonsterAlpha = Monsters.extend({
         _doAttack: function () {
 
             if (this._currentStatus == MonsterStatus.ATTACK) return;
+            var character = Character.current;    //当前角色
+            character.doHitByMonster(this._properties.dps, this);
+            cc.eventManager.dispatchCustomEvent(SC.MONSTER_HIT_CHARACTER);
+
             this._currentStatus = MonsterStatus.ATTACK;
             var attackAnimate = this.getAnimation(MonsterStatus.ATTACK);          //播放动画
             this._viewObj.runAction(
@@ -134,7 +133,10 @@ var MonsterAlpha = Monsters.extend({
         //碰撞目标
         _checkCollideTarget: function () {
             if (cc.rectIntersectsRect(this.getDamageBoundingBox(), this._target.getCollideBoundingBox())) {
+
+
                 this._doAttack(); //攻击
+
             }
         },
 
@@ -169,7 +171,9 @@ MonsterAlpha.monsters = [];
 
 MonsterAlpha.preset = function (parent, data) {
     for (var i = 0; i < MonsterConfig.Alpha.presetAmount; i++) {
-        MonsterAlpha.monsters.push(new MonsterAlpha(parent, data))
+        var m = new MonsterAlpha(parent, data);
+        m.unuse();
+        MonsterAlpha.monsters.push(m)
     }
 };
 

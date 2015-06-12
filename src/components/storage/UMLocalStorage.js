@@ -1,5 +1,5 @@
 var ULS = UMLocalStorage = {
-    key: 'ultraman_fight_2015',
+    key: 'ironman_v1',
 	set: function(key, value) {
 		var cValue = "";
 

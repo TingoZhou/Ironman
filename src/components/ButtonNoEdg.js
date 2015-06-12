@@ -2,13 +2,7 @@ var ButtonNoEdg = cc.Sprite.extend({
     ctor: function(normal, press) {
 
         this._super("#" + normal);
-        /*
-        var bg = new cc.Sprite("#skills_bg.png");
-        bg.setAnchorPoint(cc.p(0,0)) ;
-        bg.x =-10;
-        bg.y =-10;
-        this.addChild(bg,-1);
-        */
+
         this._normal = normal;
         this._press = press;
 
@@ -58,7 +52,7 @@ var ButtonNoEdg = cc.Sprite.extend({
     },
 
     hitTest: function (pt) {
-        var bb = cc.rect(0, 0, this._contentSize.width, this._contentSize.height);
+        var bb = cc.rect(0, 0, this.width, this.height);
         return cc.rectContainsPoint(bb, this.convertToNodeSpace(pt));
     }
 })

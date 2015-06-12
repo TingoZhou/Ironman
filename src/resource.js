@@ -1,22 +1,29 @@
 var MainRes = {
+    customFont: {
+        customBMFont_1_fnt: "res/font/f1.fnt",
+        customBMFont_1_png: "res/font/f1_0.png"
+    },
     mainMenu: {
         i_mainMenu: "res/gameUI/mainMenuUI.png",
         p_mainMenu: "res/gameUI/mainMenuUI.plist"
     }
-
 };
 var LoadingRes = {};
 var GameRes = {
     skills: {
         png: "res/skills/Shield.png"
     },
+    monsterFreezeExplode: {
+        plist: "res/monsters/freeze.plist",
+        png: "res/monsters/freeze.png"
+    },
     monsterBombExplode: {
-        plist: "res/monsters/BombEffect.png",
-        png: "res/monsters/BombEffect.plist"
+        plist: "res/monsters/BombEffect.plist",
+        png: "res/monsters/BombEffect.png"
     },
     monsterExplode: {
-        plist: "res/monsters/weaponEffect.png",
-        png: "res/monsters/weaponEffect.plist"
+        plist: "res/monsters/weaponEffect.plist",
+        png: "res/monsters/weaponEffect.png"
     },
     test: {
         i_bg: "res/bg.jpg",

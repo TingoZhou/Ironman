@@ -8,7 +8,7 @@
     "renderMode": 0,
     "engineDir": "frameworks/cocos2d-html5",
 
-    "modules": ["cocos2d" ],
+    "modules": ["cocos2d"],
 
     "jsList": [
         "src/common/config/Global.js",
@@ -45,6 +45,7 @@
         "src/models/monsters/MonsterBeta.js",
         "src/models/monsters/MonsterCharlie.js",
         "src/models/monsters/effect/MonsterExplodeEffect.js",
+        "src/models/monsters/effect/MonsterFreezeEffect.js",
 
         "src/models/weapons/WeaponRifle.js",
         "src/models/weapons/WeaponRocket.js",
@@ -63,15 +64,17 @@
         "src/scenes/MainLoadingScene.js",
         "src/scenes/MainMenuScene.js",
         "src/scenes/StarGameScene.js",
-
         "src/scenes/UserFilesScene.js",
+
+        "src/scenes/gameScenes/subBattleLayer/ScriptLayer.js",
+
         "src/scenes/gameScenes/BgLayer.js",
         "src/scenes/gameScenes/BattleLayer.js",
         "src/scenes/gameScenes/DropItemLayer.js",
         "src/scenes/gameScenes/ControllLayer.js",
         "src/scenes/gameScenes/GameUILayer.js",
         "src/scenes/gameScenes/ExplosionMaskLayer.js",
-        "src/scenes/gameScenes/subBattleLayer/ScriptLayer.js",
+
         "src/scenes/gameScenes/PauseLayer.js",
         "src/scenes/gameScenes/GameOverLayer.js",
 

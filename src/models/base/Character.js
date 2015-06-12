@@ -9,7 +9,8 @@ var Character = Creature.extend({
         this._speed = 0;
         this._weapon = null;
         this._velocity = {x: 0, y: 0};
-        this._HP = 100;
+        this._TotalHP = 100
+        this._HP = this._TotalHP;
         this._moveBuffer = {x: 0, y: 0};
         this._shadowObjs = [];
         this._isShowBegin = false;
@@ -60,6 +61,10 @@ var Character = Creature.extend({
         this._HP -= dps;
         this.strike();
 
+        //扣血
+        cc.eventManager.dispatchCustomEvent(SC.HP_UPDATE, {
+            HP: this._HP, TotalHP: this._TotalHP
+        });
     },
 
     getCollideBoundingBox: function () {
