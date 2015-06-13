@@ -51,11 +51,11 @@ var GameLoadingLayer = (function () {
 
         playLoading: function () {
             var percent = 0;
-            this.schedule(_.bind(function () {
+            /*this.schedule(_.bind(function () {
                 percent += 5;
                 //this.loadingBar.setPercent(percent);
                 //this.loadingIcon.setPositionX(this.loadingBg.getPosition().x - this.loadingBg.width / 2 + this.loadingBar.width * this.loadingBar.getPercent() / 100);
-            }, this), 0.05, 7);
+            }, this), 0.05, 7);*/
 
             this._resourceIndex = 0;
             this._finishIndex = 0;
@@ -67,7 +67,7 @@ var GameLoadingLayer = (function () {
                     self.schedule(function () {
 //                        self.schedule(self.loadResource);
                         self.loadResource();
-                    }, 0.5, 0);
+                    }, 0.1, 0);
                 });
             });
         },
