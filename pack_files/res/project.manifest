@@ -1,0 +1,16 @@
+{ 
+    "packageUrl" : "http://114.215.105.20/",
+    "remoteManifestUrl" : "http://114.215.105.20/",
+    "remoteVersionUrl" : "http://114.215.105.20/",
+    "version" : "0.0.6.0",
+	"groupVersions" : {
+
+    },	
+    "engineVersion" : "3.6.1", 
+    "assets" : {
+
+    },
+    "searchPaths" : [
+		"/"
+    ]
+}

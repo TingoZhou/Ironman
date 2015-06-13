@@ -8,7 +8,7 @@ var MainRes = {
         customBMFont_3_png: "res/font/f3_0.png"
     },
     mainMenu: {
-        i_mainMenu: "res/gameUI/mainMenuUI.png",
+        i_mainMenu: "res/gameUI/MainMenuUI.png",
         p_mainMenu: "res/gameUI/mainMenuUI.plist"
     }
 };
@@ -32,9 +32,7 @@ var GameRes = {
     test: {
         i_bg: "res/bg.jpg",
         i_character: "res/characters/character.png",
-        p_character: "res/characters/character.plist",
-        i_test: "res/test.png",
-        p_test: "res/test.plist"
+        p_character: "res/characters/character.plist"
     },
     starGameUILayer: {
         i_starGameUILayer: "res/StarGameUI/StarGameUI.png",
