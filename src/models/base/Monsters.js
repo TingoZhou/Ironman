@@ -149,7 +149,7 @@ var Monsters = Creature.extend({
 
     //移动
     _move: function () {
-
+        if (this._target.isDead) return;
         if (this._target._isShiel) {
             //保护罩
             var d = cc.pDistance(cc.p(this.getPosition().x, this.getPosition().y), cc.p(this._target.getPosition().x, this._target.getPosition().y));
@@ -381,10 +381,3 @@ Monsters.preset = function (parent) {
     MonsterCharlie.preset(parent, MonsterConfig.Charlie);
 };
 
-Monsters.resetAll = function () {
-    for (var i = 0; i < Monsters.monstersOnStage.length; ++i) {
-        Monsters.monstersOnStage[i].disable();
-        Monsters.monstersOnStage[i].release();
-    }
-    Monsters.monstersOnStage = [];
-};

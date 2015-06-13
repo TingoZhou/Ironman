@@ -78,6 +78,7 @@ var MonsterAlpha = Monsters.extend({
         _move: function () {
 
             this._super();
+            if (this._target.isDead) return;
             if (this._currentStatus == MonsterStatus.ATTACK) {
                 this._viewObj.x += (this._stepX + cc.randomMinus1To1()) * .3;
                 this._viewObj.y += (this._stepY + cc.randomMinus1To1()) * .3;
@@ -145,7 +146,7 @@ var MonsterAlpha = Monsters.extend({
             if (this._isFreezing)return;
             switch (this._currentStatus) {
                 case MonsterStatus.MOVE_TO_TARGET:
-                    if (this._movable) {
+                    if (this._movable && !this._target.isDead) {
                         var targetPos = this._target.getPosition();
                         var normalVect = cc.pNormalize(cc.pSub(targetPos, this.getPosition()));
                         this._stepX = normalVect.x * this._speed;

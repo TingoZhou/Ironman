@@ -67,6 +67,7 @@ var MonsterCharlie = Monsters.extend({
 
     //开火
     _shoot: function (dt) {
+        if (this._target.isDead)return;
         this._weapon && this._weapon.update(dt);
     },
 
@@ -119,7 +120,7 @@ var MonsterCharlie = Monsters.extend({
         if (this._isFreezing)return;
         switch (this._currentStatus) {
             case MonsterStatus.MOVE_TO_TARGET:
-                if (this._movable) {
+                if (this._movable && !this._target.isDead) {
                     var targetPos = this._target.getPosition();
                     var normalVect = cc.pNormalize(cc.pSub(targetPos, this.getPosition()));
                     this._stepX = normalVect.x * this._speed;

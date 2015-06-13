@@ -7,7 +7,7 @@
             <key>Rocket.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,4},{182,163}}</string>
+                <string>{{4,261},{182,163}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,15 +20,15 @@
             <key>RocketBullet.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,171},{132,77}}</string>
+                <string>{{4,4},{426,253}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{132,77}}</string>
+                <string>{{0,0},{426,253}}</string>
                 <key>sourceSize</key>
-                <string>{132,77}</string>
+                <string>{426,253}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -38,9 +38,9 @@
             <key>realTextureFileName</key>
             <string>CharacterWeapon.png</string>
             <key>size</key>
-            <string>{190,252}</string>
+            <string>{434,428}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:49fd63215444660d6bdd4f2bd815b69f:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:7abeffa1c2cce507a4e617b5332a9480:1/1$</string>
             <key>textureFileName</key>
             <string>CharacterWeapon.png</string>
         </dict>

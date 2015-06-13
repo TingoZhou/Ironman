@@ -1,7 +1,11 @@
 var MainRes = {
     customFont: {
         customBMFont_1_fnt: "res/font/f1.fnt",
-        customBMFont_1_png: "res/font/f1_0.png"
+        customBMFont_1_png: "res/font/f1_0.png",
+        customBMFont_2_fnt: "res/font/f2.fnt",
+        customBMFont_2_png: "res/font/f2_0.png",
+        customBMFont_3_fnt: "res/font/f3.fnt",
+        customBMFont_3_png: "res/font/f3_0.png"
     },
     mainMenu: {
         i_mainMenu: "res/gameUI/mainMenuUI.png",
@@ -36,7 +40,6 @@ var GameRes = {
         i_starGameUILayer: "res/StarGameUI/StarGameUI.png",
         p_starGameUILayer: "res/StarGameUI/StarGameUI.plist"
     },
-
     userFiles: {
         i_userfiles: "res/userFilesScene/userFilesScene.png",
         p_userfiles: "res/userFilesScene/userFilesScene.plist"
@@ -56,20 +59,17 @@ var GameRes = {
     gameLayerUI: {
         i_gameLayerUI: "res/gameLayerUI/gameLayerUI.png",
         p_gameLayerUI: "res/gameLayerUI/gameLayerUI.plist"
-        // j_gameLayerUI:"res/gameLayerUI/gameLayer_UI.json"
     },
     characterRifleWeapon: {
         plist: "res/characters/CharacterWeapon.png",
         png: "res/characters/CharacterWeapon.plist",
-        rocketExplodePng: "res/characters/MatchGirlDie.png",
-        rocketExplodePlist: "res/characters/MatchGirlDie.plist"
+        rocketExplodePng: "res/characters/RocketEffect.png",
+        rocketExplodePlist: "res/characters/RocketEffect.plist"
     },
-
     characterElectricWeapon: {
         plist: "res/characters/electric.png",
         png: "res/characters/electric.plist"
     },
-
     shaders: {
         whiteHit: {
             fsh: "res/shaders/whiteHit.fsh",

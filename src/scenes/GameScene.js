@@ -15,15 +15,11 @@ var GameScene = cc.Scene.extend({
 
     onExitTransitionDidStart: function () {
 
-        /*
-         this.removeListeners();
-         this.layer.unscheduleUpdate();
-         //      Creature.resetAll();
-         Bullet.resetAll();
-         //      Weapon.resetAll();
 
-
-         */
+        this.removeListeners();
+        this.layer.unscheduleUpdate();
+        Monsters.resetAll();
+        Bullet.resetAll();
 
     },
 
@@ -43,13 +39,31 @@ var GameLayer = cc.Layer.extend({
         this.controllLayer = null;
         this.gameUILayer = null;
         this.explosionMaskLayer = null;
+
         this.initBgLayer();
         this.initBattleLayer();
         this.initDropItemLayer();
         this.initControllLayer();
         this.initGameUIlayer();
         this.initExplosionMaskLayer();
+        this.addListeners();
+
         this.scheduleUpdate();
+    },
+
+    addListeners: function () {
+
+        cc.eventManager.addCustomListener(SC.IRONMAN_DIE, _.bind(function (e) {
+            this.initGameOverLayer();
+        }, this));
+    },
+
+    initGameOverLayer: function () {
+        var gameOverLayer = new GameOverLayer();
+        this.addChild(gameOverLayer);
+        this.gameOverLayer = gameOverLayer;
+
+
     },
 
     initBgLayer: function () {

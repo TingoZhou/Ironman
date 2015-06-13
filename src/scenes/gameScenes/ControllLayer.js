@@ -116,6 +116,12 @@ var ControllLayer = cc.Layer.extend({
         button.onTouchEnded = function (touch, type) {
             //cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
         }
+        var str = ULS.get(USK.PlayInfo).bombNum;
+
+        var bomb = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+        bomb.setScale(.7);
+        bomb.setPosition(cc.p(button.x + 20, button.y + 20));
+        this.addChild(bomb);
     },
 
     //冰冻
@@ -130,7 +136,12 @@ var ControllLayer = cc.Layer.extend({
         button.onTouchBegan = function (touch, type) {
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_FREEZE);
         }
+        var str = ULS.get(USK.PlayInfo).freezeNum;
 
+        var freeze = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+        freeze.setScale(.7);
+        freeze.setPosition(cc.p(button.x + 20, button.y + 20));
+        this.addChild(freeze);
     },
 
     //护盾
@@ -145,6 +156,12 @@ var ControllLayer = cc.Layer.extend({
         button.onTouchBegan = function (touch, type) {
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SHIEL);
         }
+        var str = ULS.get(USK.PlayInfo).shieldNum;
+
+        var shield = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+        shield.setScale(.7);
+        shield.setPosition(cc.p(button.x + 20, button.y + 20));
+        this.addChild(shield);
     },
 
     onTouchesBegan: function (touches, event) {

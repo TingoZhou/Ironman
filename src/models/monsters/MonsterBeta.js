@@ -61,6 +61,7 @@ var MonsterBeta = Monsters.extend({
     //移动
     _move: function () {
         this._super();
+        if (this._target.isDead) return;
         if (this._currentStatus == MonsterStatus.ATTACK)return;
         if (this._currentStatus == MonsterStatus.BEFORE_ATTACK)return;
         if (this._currentStatus == MonsterStatus.BACK_ATTACK)return;
@@ -177,7 +178,7 @@ var MonsterBeta = Monsters.extend({
         switch (this._currentStatus) {
             case MonsterStatus.MOVE_TO_TARGET:
 
-                if (this._movable) {
+                if (this._movable && !this._target.isDead) {
                     var targetPos = this._target.getPosition();
                     var normalVect = cc.pNormalize(cc.pSub(targetPos, this.getPosition()));
                     this._stepX = normalVect.x * this._speed;

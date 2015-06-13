@@ -56,6 +56,7 @@ var Ironman = Character.extend({
 
     //自动瞄准
     _automaticAiming: function () {
+        if (this.isDead) return;
         var closeMonster = this._getClosestMonster();
         if (closeMonster) {
             var dx = closeMonster.x - this._viewObj.x;

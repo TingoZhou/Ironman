@@ -1,14 +1,14 @@
 var Creature = cc.Class.extend({
-	ctor: function(parent, data) {
-		this._isStriking = false;
-		this._whiteShader = null;
+    ctor: function (parent, data) {
+        this._isStriking = false;
+        this._whiteShader = null;
         this._whiteRecoeverShader = null;
 
         this.initShader();
-	},
+    },
 
-	initShader: function() {
-        if(cc.sys.isNative) {
+    initShader: function () {
+        if (cc.sys.isNative) {
             this._whiteShader = new cc.GLProgram(GameRes.shaders.whiteHit.vsh_noMVP, GameRes.shaders.whiteHit.fsh);
             this._whiteShader.link();
             this._whiteShader.updateUniforms();
@@ -41,18 +41,18 @@ var Creature = cc.Class.extend({
         }
     },
 
-	strike: function(callback) {
-        if(!this._isStriking) {
+    strike: function (callback) {
+        if (!this._isStriking) {
             this._isStriking = true;
-            var whiteHit = cc.callFunc(function() {
+            var whiteHit = cc.callFunc(function () {
                 this._whiteHit();
             }, this);
-            var whiteHitRecover = cc.callFunc(function() {
+            var whiteHitRecover = cc.callFunc(function () {
                 this._whiteHitRecover();
             }, this);
             this._viewObj.runAction(cc.sequence(whiteHit, cc.delayTime(0.05), whiteHitRecover, cc.delayTime(0.05),
                 whiteHit, cc.delayTime(0.05), whiteHitRecover, cc.delayTime(0.05),
-                cc.callFunc(function() {
+                cc.callFunc(function () {
                     this._isStriking = false;
                     callback && callback();
                 }, this)
@@ -61,8 +61,8 @@ var Creature = cc.Class.extend({
     },
 
     // 白闪
-    _whiteHit: function() {
-        if(cc.sys.isNative) {
+    _whiteHit: function () {
+        if (cc.sys.isNative) {
             var glProgram_state = cc.GLProgramState.getOrCreateWithGLProgram(this._whiteShader);
             this._viewObj.setGLProgramState(glProgram_state);
         } else {
@@ -71,8 +71,8 @@ var Creature = cc.Class.extend({
     },
 
     // 白闪恢复
-    _whiteHitRecover: function() {
-        if(cc.sys.isNative) {
+    _whiteHitRecover: function () {
+        if (cc.sys.isNative) {
             var glProgram_state = cc.GLProgramState.getOrCreateWithGLProgram(this._whiteRecoeverShader);
             this._viewObj.setGLProgramState(glProgram_state);
         } else {
@@ -80,7 +80,11 @@ var Creature = cc.Class.extend({
         }
     },
 
-    _hitStatusRecover: function() {
+    resetAll: function () {
+
+    },
+
+    _hitStatusRecover: function () {
         this._isStriking = false;
         this._whiteHitRecover();
     }
