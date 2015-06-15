@@ -20,14 +20,13 @@ var ControllLayer = cc.Layer.extend({
     },
 
 
-
     initJoyStick: function () {
         var moveJoyStickPannel = new JoyStickPannel("#controlLayerUI_crossStick_bg.png", "#controlLayerUI_crossStickBt.png");
         moveJoyStickPannel.attr({
-            x:cc.winSize.width/10,
-            y:cc.winSize.height/8+30,
-            scaleX:2.0,
-            scaleY:2.0
+            x: cc.winSize.width / 10,
+            y: cc.winSize.height / 8 + 30,
+            scaleX: 2.0,
+            scaleY: 2.0
         });
         //moveJoyStickPannel.setPosition(100, 100);
         this.addChild(moveJoyStickPannel);
@@ -104,64 +103,187 @@ var ControllLayer = cc.Layer.extend({
     initSkillBtn_1: function () {
         var button = new ButtonNoEdg("controLayerUI_skillBt_1.png");
         button.attr({
-            x:cc.winSize.width*0.93,
-            y:cc.winSize.height*0.70
+            x: cc.winSize.width * 0.93,
+            y: cc.winSize.height * 0.70
         });
         this.addChild(button);
 
-       button.onTouchBegan = function (touch, type) {
-           cc.eventManager.dispatchCustomEvent(SC.CHARACTER_BOMB);
-       }
-
-        button.onTouchEnded = function (touch, type) {
-            //cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
+        var playInfo = ULS.get(USK.PlayInfo);
+        if (playInfo.bombNum <= 0) {
+            button.setOpacity(85);
+            button.ableTouch = false;
+            playInfo.bombNum = 0;
+            ULS.set(USK.PlayInfo, playInfo);
         }
-        var str = ULS.get(USK.PlayInfo).bombNum;
 
+
+        button.onTouchBegan = function (touch, type) {
+            button.ableTouch = false;
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_BOMB);
+            //
+            var playInfo = ULS.get(USK.PlayInfo);
+            playInfo.bombNum--;
+            ULS.set(USK.PlayInfo, playInfo);
+            this._bombNumPannle.setString(playInfo.bombNum, true);
+            //
+            this._bombCDMask.runAction(
+                cc.sequence(
+                    cc.progressFromTo(Math.round(6000 / 1000), 100, 0),
+                    cc.callFunc(function () {
+
+                        if (playInfo.bombNum <= 0) {
+                            button.setOpacity(85);
+                            button.ableTouch = false;
+                        } else {
+                            button.setOpacity(255);
+                            button.ableTouch = true;
+                        }
+
+
+                    }.bind(this), this)
+                )
+            );
+
+        }.bind(this)
+
+
+        var str = ULS.get(USK.PlayInfo).bombNum;
         var bomb = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
         bomb.setScale(.7);
         bomb.setPosition(cc.p(button.x + 20, button.y + 20));
         this.addChild(bomb);
+        this._bombNumPannle = bomb;
+
+        //CD
+        var view = new cc.Sprite("#controLayerUI_skillBt_1.png");
+        view.setColor(cc.color(0, 0, 0, 255));
+        view.setOpacity(130);
+        var mask = new cc.ProgressTimer(view);
+        mask.setReverseDirection(true);
+        mask.type = cc.ProgressTimer.TYPE_RADIAL;
+        mask.setPosition(cc.p(bomb.x - 20, bomb.y - 20));
+        this.addChild(mask);
+        this._bombCDMask = mask;
+
     },
 
     //冰冻
     initSkillBtn_2: function () {
         var button = new ButtonNoEdg("controLayerUI_skillBt_2.png");
         button.attr({
-            x:cc.winSize.width*0.93,
-            y:cc.winSize.height*0.54
+            x: cc.winSize.width * 0.93,
+            y: cc.winSize.height * 0.54
         });
         this.addChild(button);
 
-        button.onTouchBegan = function (touch, type) {
-            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_FREEZE);
-        }
-        var str = ULS.get(USK.PlayInfo).freezeNum;
 
+        var playInfo = ULS.get(USK.PlayInfo);
+        if (playInfo.freezeNum <= 0) {
+            button.setOpacity(85);
+            button.ableTouch = false;
+            playInfo.freezeNum = 0;
+            ULS.set(USK.PlayInfo, playInfo);
+        }
+
+        button.onTouchBegan = function (touch, type) {
+            button.ableTouch = false;
+            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_FREEZE);
+            var playInfo = ULS.get(USK.PlayInfo);
+            playInfo.freezeNum--;
+            ULS.set(USK.PlayInfo, playInfo);
+            this._freezeCDMask.runAction(
+                cc.sequence(
+                    cc.progressFromTo(Math.round(7000 / 1000), 100, 0),
+                    cc.callFunc(function () {
+                        if (playInfo.freezeNum <= 0) {
+                            button.setOpacity(85);
+                            button.ableTouch = false;
+                        } else {
+                            button.setOpacity(255);
+                            button.ableTouch = true;
+                        }
+                    }.bind(this), this)
+                )
+            );
+            this._freezeNumPannle.setString(playInfo.freezeNum, true);
+        }.bind(this)
+        var str = ULS.get(USK.PlayInfo).freezeNum;
         var freeze = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
         freeze.setScale(.7);
         freeze.setPosition(cc.p(button.x + 20, button.y + 20));
         this.addChild(freeze);
+        this._freezeNumPannle = freeze;
+        //CD
+        var view = new cc.Sprite("#controLayerUI_skillBt_2.png");
+        view.setColor(cc.color(0, 0, 0, 255));
+        view.setOpacity(130);
+        var mask = new cc.ProgressTimer(view);
+        mask.setRotation(90);
+        mask.setScaleY(.7);
+        mask.setScaleX(-1.5);
+        mask.setReverseDirection(true);
+        mask.type = cc.ProgressTimer.TYPE_RADIAL;
+        mask.setPosition(cc.p(freeze.x - 20, freeze.y - 20));
+        this.addChild(mask);
+        this._freezeCDMask = mask;
+
     },
 
     //护盾
     initSkillBtn_3: function () {
         var button = new ButtonNoEdg("controLayerUI_skillBt_3.png");
         button.attr({
-            x:cc.winSize.width*0.93,
-            y:cc.winSize.height*0.38
+            x: cc.winSize.width * 0.93,
+            y: cc.winSize.height * 0.38
         });
         this.addChild(button);
+        var playInfo = ULS.get(USK.PlayInfo);
+        if (playInfo.shieldNum <= 0) {
+            button.setOpacity(85);
+            button.ableTouch = false;
+            playInfo.shieldNum = 0;
+            ULS.set(USK.PlayInfo, playInfo);
+        }
 
         button.onTouchBegan = function (touch, type) {
+            button.ableTouch = false;
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SHIEL);
-        }
+            var playInfo = ULS.get(USK.PlayInfo);
+            playInfo.shieldNum--;
+            ULS.set(USK.PlayInfo, playInfo);
+            this._shieldCDMask.runAction(
+                cc.sequence(
+                    cc.progressFromTo(Math.round(6000 / 1000), 100, 0),
+                    cc.callFunc(function () {
+                        if (playInfo.shieldNum <= 0) {
+                            button.setOpacity(85);
+                            button.ableTouch = false;
+                        } else {
+                            button.setOpacity(255);
+                            button.ableTouch = true;
+                        }
+                    }.bind(this), this)
+                )
+            );
+            this._shieldNumPannle.setString(playInfo.shieldNum, true);
+        }.bind(this)
         var str = ULS.get(USK.PlayInfo).shieldNum;
 
         var shield = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
         shield.setScale(.7);
         shield.setPosition(cc.p(button.x + 20, button.y + 20));
         this.addChild(shield);
+        this._shieldNumPannle = shield;
+        //CD
+        var view = new cc.Sprite("#controLayerUI_skillBt_3.png");
+        view.setColor(cc.color(0, 0, 0, 255));
+        view.setOpacity(130);
+        var mask = new cc.ProgressTimer(view);
+        mask.setReverseDirection(true);
+        mask.type = cc.ProgressTimer.TYPE_RADIAL;
+        mask.setPosition(cc.p(shield.x - 20, shield.y - 20));
+        this.addChild(mask);
+        this._shieldCDMask = mask;
     },
 
     onTouchesBegan: function (touches, event) {

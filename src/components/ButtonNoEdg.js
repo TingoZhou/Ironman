@@ -1,5 +1,5 @@
 var ButtonNoEdg = cc.Sprite.extend({
-    ctor: function(normal, press) {
+    ctor: function (normal, press) {
 
         this._super("#" + normal);
 
@@ -8,7 +8,7 @@ var ButtonNoEdg = cc.Sprite.extend({
 
         this.onTouchBegan = null;
         this.onTouchEnded = null;
-
+        this.ableTouch = true;
         var touchListener = cc.EventListener.create({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches: true,
@@ -18,9 +18,11 @@ var ButtonNoEdg = cc.Sprite.extend({
         cc.eventManager.addListener(touchListener, this);
     },
 
-    onTouchBeganEvent: function(touch, type) {
+    onTouchBeganEvent: function (touch, type) {
+
+        if (!this.ableTouch) return;
         var hit = false;
-        if (this.isVisible()){
+        if (this.isVisible()) {
             var touchPoint = touch.getLocation();
             var touchBeganPosition = {};
             touchBeganPosition.x = touchPoint.x;
@@ -42,7 +44,7 @@ var ButtonNoEdg = cc.Sprite.extend({
 
     },
 
-    onTouchEndedEvent: function(touch, type) {
+    onTouchEndedEvent: function (touch, type) {
         if (this._press) {
             this.setSpriteFrame(this._normal);
         } else {
