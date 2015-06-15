@@ -34,7 +34,8 @@ var ButtonNoEdg = cc.Sprite.extend({
             if (this._press) {
                 this.setSpriteFrame(this._press);
             } else {
-                this.setScale(.9);
+                this.setScale(1.2);
+                //UI点击后要变大 by Caesar
             }
             this.onTouchBegan && this.onTouchBegan(touch, type);
             return true;

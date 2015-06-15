@@ -10,6 +10,7 @@ var USK = UMStorageKey = {
         name: "GameInfo",
         type: "json"
     },
+
     /**
      *    玩家总分数
      *    {

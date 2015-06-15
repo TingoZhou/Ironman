@@ -35,7 +35,7 @@ var MainMenuLayer = cc.Layer.extend({
 
     initImages: function () {
         var size = cc.winSize;
-        var mainMenuScenebg = new cc.Sprite("#mainMenu_Bg.png");
+        var mainMenuScenebg = new cc.Sprite(MainRes.mainMenu.mainMenu_Bg_jpg);
         this.addChild(mainMenuScenebg);
         mainMenuScenebg.attr({
             x: size.width * 0.5,

@@ -36,7 +36,7 @@ var StarGameLayer = cc. Layer.extend({
 
     initImages:function(){
         var size = cc.winSize;
-        var bg = new cc.Sprite("#bg.png");
+        var bg = new cc.Sprite(GameRes.starGameUILayer.StarGameUIbg_jpg);
         this.addChild(bg);
         bg.attr({
                 x:size.width*0.50,
@@ -81,7 +81,6 @@ var StarGameLayer = cc. Layer.extend({
         });
 
         var str = ULS.get(USK.PlayInfo).score;
-
         var starnumber = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_2_fnt);
         starnumber.setScale(.9);
         starnumber.setPosition(cc.p(star.x + 85, star.y+5));

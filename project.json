@@ -66,17 +66,15 @@
         "src/scenes/MainLoadingScene.js",
         "src/scenes/MainMenuScene.js",
         "src/scenes/StarGameScene.js",
+
         "src/scenes/UserFilesScene.js",
-
-        "src/scenes/gameScenes/subBattleLayer/ScriptLayer.js",
-
         "src/scenes/gameScenes/BgLayer.js",
         "src/scenes/gameScenes/BattleLayer.js",
         "src/scenes/gameScenes/DropItemLayer.js",
         "src/scenes/gameScenes/ControllLayer.js",
         "src/scenes/gameScenes/GameUILayer.js",
         "src/scenes/gameScenes/ExplosionMaskLayer.js",
-
+        "src/scenes/gameScenes/subBattleLayer/ScriptLayer.js",
         "src/scenes/gameScenes/PauseLayer.js",
         "src/scenes/gameScenes/GameOverLayer.js",
 

@@ -52,11 +52,20 @@ var GameLayer = cc.Layer.extend({
     },
 
     addListeners: function () {
-
         cc.eventManager.addCustomListener(SC.IRONMAN_DIE, _.bind(function (e) {
             this.initGameOverLayer();
         }, this));
     },
+
+    initGameOverLayer: function () {
+        if (this.gameOverLayer) return;
+        var bgLayer = new GameOverLayer();
+        this.addChild(bgLayer);
+        this.gameOverLayer = bgLayer;
+    },
+
+
+
 
     initGameOverLayer: function () {
         var gameOverLayer = new GameOverLayer();
@@ -65,6 +74,7 @@ var GameLayer = cc.Layer.extend({
 
 
     },
+
 
     initBgLayer: function () {
         var bgLayer = new BgLayer();

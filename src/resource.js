@@ -8,18 +8,24 @@ var MainRes = {
         customBMFont_3_png: "res/font/f3_0.png"
     },
     mainMenu: {
-        i_mainMenu: "res/gameUI/mainMenuUI.png",
-        p_mainMenu: "res/gameUI/mainMenuUI.plist"
+
+        //****************************************重新修改资源 by Caesar 613周六下午
+        i_mainMenu: "res/gameUI/MainMenuUI.png",
+        p_mainMenu: "res/gameUI/MainMenuUI.plist",
+        mainMenu_Bg_jpg:"res/gameUI/mainMenu_Bg.jpg"
+        //*************************************************
+
+     //  i_mainMenu: "res/gameUI/MainMenuUI.png",
+     //   p_mainMenu: "res/gameUI/mainMenuUI.plist"
     }
 };
 var LoadingRes = {};
 var GameRes = {
-        drowItem: {
+       }
+        },
+ drowItem: {
             png: "res/gameUI/treasure_icon.png"
-        },
-        skills: {
-            png: "res/skills/Shield.png"
-        },
+        
         monsterFreezeExplode: {
             plist: "res/monsters/freeze.plist",
             png: "res/monsters/freeze.png"
@@ -36,12 +42,12 @@ var GameRes = {
             i_bg: "res/bg.jpg",
             i_character: "res/characters/character.png",
             p_character: "res/characters/character.plist",
-            i_test: "res/test.png",
-            p_test: "res/test.plist"
+           
         },
         starGameUILayer: {
             i_starGameUILayer: "res/StarGameUI/StarGameUI.png",
-            p_starGameUILayer: "res/StarGameUI/StarGameUI.plist"
+        p_starGameUILayer: "res/StarGameUI/StarGameUI.plist",
+        StarGameUIbg_jpg:  "res/StarGameUI/StarGameUIbg.jpg"
         },
         userFiles: {
             i_userfiles: "res/userFilesScene/userFilesScene.png",
