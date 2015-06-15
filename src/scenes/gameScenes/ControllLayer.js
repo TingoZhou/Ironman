@@ -253,7 +253,7 @@ var ControllLayer = cc.Layer.extend({
             ULS.set(USK.PlayInfo, playInfo);
             this._shieldCDMask.runAction(
                 cc.sequence(
-                    cc.progressFromTo(Math.round(6000 / 1000), 100, 0),
+                    cc.progressFromTo(Math.round(8000 / 1000), 100, 0),
                     cc.callFunc(function () {
                         if (playInfo.shieldNum <= 0) {
                             button.setOpacity(85);
