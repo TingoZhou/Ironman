@@ -45,6 +45,9 @@ Temporary Items
 nbuilder/
 runtime/
 tools/
+pack_files/
+res.pack/
+src.config/
 frameworks/cocos2d-html5/
 frameworks/js-bindings/
 frameworks/runtime-src/proj.ios_mac/

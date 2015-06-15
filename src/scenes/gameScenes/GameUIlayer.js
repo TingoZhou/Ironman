@@ -24,6 +24,7 @@ var GameUILayer = cc.Layer.extend(
             cc.eventManager.addCustomListener(SC.HP_UPDATE, _.bind(function (e) {
                 this.updateHp(e);
             }, this));
+
         },
 
         updateHp: function (e) {
@@ -33,6 +34,7 @@ var GameUILayer = cc.Layer.extend(
             var str = data.HP + "/" + data.TotalHP;
             this._hpBarLabel.setString(str, true);
         },
+
 
         //血槽
         initHpBar: function () {
@@ -73,36 +75,7 @@ var GameUILayer = cc.Layer.extend(
                 x: 0.04 * size.width,
                 y: 0.92 * size.height
             });
- //<开始----------------------------------------------------需要删除代码 by Caesar
-           /* var star = new cc.Sprite("#gameLayerUI_star.png");
-            this.addChild(star);
-            star.attr({
-                x: 0.45 * size.width,
-                y: 0.92 * size.height
-            });
 
-            var bullet_1 = new cc.Sprite("#gameLayerUI_bullet_1.png");
-            this.addChild(bullet_1);
-            bullet_1.attr({
-                x: 0.04 * size.width,
-                y: 0.82 * size.height
-            });
-
-            var bullet_2 = new cc.Sprite("#gameLayerUI_bullet_2.png");
-            this.addChild(bullet_2);
-            bullet_2.attr({
-                x: 0.04 * size.width,
-                y: 0.72 * size.height
-            });
-
-            var bullet_3 = new cc.Sprite("#gameLayerUI_bullet_3.png");
-            this.addChild(bullet_3);
-            bullet_3.attr({
-                x: 0.04 * size.width,
-                y: 0.62 * size.height
-            });
-           */
-  //------------------------------------------------------------------------------结束> by Caesar
         },
 
 
@@ -179,6 +152,7 @@ var GameUILayer = cc.Layer.extend(
 
         },
  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++结束> by Caesar
+
 
         initButtons: function () {
             var size = cc.winSize;

@@ -381,10 +381,3 @@ Monsters.preset = function (parent) {
     MonsterCharlie.preset(parent, MonsterConfig.Charlie);
 };
 
-Monsters.resetAll = function () {
-    for (var i = 0; i < Monsters.monstersOnStage.length; ++i) {
-        Monsters.monstersOnStage[i].disable();
-        Monsters.monstersOnStage[i].release();
-    }
-    Monsters.monstersOnStage = [];
-};

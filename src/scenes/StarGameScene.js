@@ -81,7 +81,6 @@ var StarGameLayer = cc. Layer.extend({
         });
 
         var str = ULS.get(USK.PlayInfo).score;
-
         var starnumber = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_2_fnt);
         starnumber.setScale(.9);
         starnumber.setPosition(cc.p(star.x + 85, star.y+5));

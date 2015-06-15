@@ -47,6 +47,7 @@
  *
  */
 cc.game.onStart = function() {
+    cc.log("cc.game.onStart");
     cc.view.adjustViewPort(true);
     cc.view.setDesignResolutionSize(960, 540, cc.ResolutionPolicy.SHOW_ALL);
     cc.view.resizeWithBrowserSize(true);

@@ -10,8 +10,7 @@ var GameOverLayer = cc.Layer.extend({
     },
 
     initImages: function () {
-
-        var color   = new cc.Color(0, 0, 0, 105);
+        var color = new cc.Color(0, 0, 0, 105);
         var colorbg = new cc.LayerColor(color, 960, 540);
         this.addChild(colorbg);
 
@@ -22,12 +21,21 @@ var GameOverLayer = cc.Layer.extend({
             y: cc.winSize.height / 7 * 5
         });
 
+
         var bigStar = new cc.Sprite("#bigStar.png");
         this.addChild(bigStar);
         bigStar.attr({
             x: cc.winSize.width / 8 * 3,
             y: cc.winSize.height / 2
         });
+
+        var str = ULS.get(USK.PlayInfo).score;
+        var starnumber =  new cc.LabelBMFont(str.toString(),MainRes.customFont.customBMFont_2_fnt);
+        starnumber.attr({
+            x:bigStar.x+85,
+            y:bigStar.y+5
+        });
+        this.addChild(starnumber);
     },
 
     initButtons: function () {
@@ -43,7 +51,6 @@ var GameOverLayer = cc.Layer.extend({
         }
     },
 
-    //*****************************************************添加代码6.13星期六下午 by Caesar
     onEnter: function () {
         this._super();
         var listener = cc.EventListener.create({
@@ -61,5 +68,4 @@ var GameOverLayer = cc.Layer.extend({
         cc.eventManager.removeListener(this._listener);
         this._super();
     }
-    //********************************************************************防止游戏结束时的触摸穿透
 });

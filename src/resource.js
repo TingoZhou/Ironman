@@ -8,11 +8,15 @@ var MainRes = {
         customBMFont_3_png: "res/font/f3_0.png"
     },
     mainMenu: {
+
         //****************************************重新修改资源 by Caesar 613周六下午
         i_mainMenu: "res/gameUI/MainMenuUI.png",
         p_mainMenu: "res/gameUI/MainMenuUI.plist",
         mainMenu_Bg_jpg:"res/gameUI/mainMenu_Bg.jpg"
         //*************************************************
+
+     //  i_mainMenu: "res/gameUI/MainMenuUI.png",
+     //   p_mainMenu: "res/gameUI/mainMenuUI.plist"
     }
 };
 var LoadingRes = {};
@@ -37,10 +41,12 @@ var GameRes = {
         i_bg: "res/bg.jpg",
         i_character: "res/characters/character.png",
         p_character: "res/characters/character.plist"
+
         //************************************6.13星期6下午删除 by Caesar
        // i_test: "res/test.png",
        // p_test: "res/test.plist"
        //++++++++++++++++++++++++++++++++++++
+
     },
     starGameUILayer: {
         //+++++++++++++++++++++++++++++++++++6.13(6)

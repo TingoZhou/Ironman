@@ -33,7 +33,8 @@ var MainLoadingLayer = (function () {
         },
 
         init: function () {
-            this.playLoading();
+            //this.playLoading();
+            this.loadGameConfig();
         },
 
         playLoading: function () {

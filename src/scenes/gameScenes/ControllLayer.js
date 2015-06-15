@@ -110,6 +110,7 @@ var ControllLayer = cc.Layer.extend({
         this.addChild(button);
 
        button.onTouchBegan = function (touch, type) {
+
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
            var vo = ULS.get(USK.PlayInfo);
            if(vo.bombNum != 0 ){
@@ -125,11 +126,13 @@ var ControllLayer = cc.Layer.extend({
         var str = vo.bombNum;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         var bomb = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
         bomb.setScale(.7);
         bomb.setPosition(cc.p(button.x + 20, button.y + 20));
         this.addChild(bomb);
         this._bombLabel = bomb;
+
     },
 
     //冰冻
@@ -153,11 +156,14 @@ var ControllLayer = cc.Layer.extend({
 
         var vo  = ULS.get(USK.PlayInfo);
         var str = vo.freezeNum;
+
         var freeze = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
         freeze.setScale(.7);
         freeze.setPosition(cc.p(button.x + 20, button.y + 20));
         this.addChild(freeze);
+
         this._freezeLabel = freeze ;
+
     },
 
     //护盾
@@ -170,6 +176,7 @@ var ControllLayer = cc.Layer.extend({
         this.addChild(button);
 
         button.onTouchBegan = function (touch, type) {
+
             var vo = ULS.get(USK.PlayInfo);
             if(vo.shieldNum != 0){
                 cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SHIEL);
@@ -181,11 +188,14 @@ var ControllLayer = cc.Layer.extend({
 
         var vo = ULS.get(USK.PlayInfo);
         var str =vo.shieldNum;
+
         var shield = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
         shield.setScale(.7);
         shield.setPosition(cc.p(button.x + 20, button.y + 20));
         this.addChild(shield);
+
         this._shieldLabel = shield;
+
     },
 
     onTouchesBegan: function (touches, event) {

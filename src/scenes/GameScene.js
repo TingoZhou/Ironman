@@ -15,15 +15,11 @@ var GameScene = cc.Scene.extend({
 
     onExitTransitionDidStart: function () {
 
-        /*
-         this.removeListeners();
-         this.layer.unscheduleUpdate();
-         //      Creature.resetAll();
-         Bullet.resetAll();
-         //      Weapon.resetAll();
 
-
-         */
+        this.removeListeners();
+        this.layer.unscheduleUpdate();
+        Monsters.resetAll();
+        Bullet.resetAll();
 
     },
 
@@ -60,11 +56,23 @@ var GameLayer = cc.Layer.extend({
             this.initGameOverLayer();
         }, this));
     },
+
     initGameOverLayer: function () {
         if (this.gameOverLayer) return;
         var bgLayer = new GameOverLayer();
         this.addChild(bgLayer);
         this.gameOverLayer = bgLayer;
+    },
+
+
+
+
+    initGameOverLayer: function () {
+        var gameOverLayer = new GameOverLayer();
+        this.addChild(gameOverLayer);
+        this.gameOverLayer = gameOverLayer;
+
+
     },
 
 
