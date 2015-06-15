@@ -4,8 +4,8 @@ var ScriptsConfig = {
             "time": 2,
             "interval": 300,
             "amount": [
-                6,
-                16
+                3,
+                6
             ],
             "level": 1,
             "monsters": [

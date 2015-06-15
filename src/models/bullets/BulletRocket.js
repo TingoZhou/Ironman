@@ -48,7 +48,7 @@ var BulletRocket = Bullet.extend({
         this._explodeObj.visible = true;
         var pos = cc.p(this._viewObj.getPosition().x, this._viewObj.getPosition().y);
         this._explodeObj.setPosition(pos);
-        var explodeAnimate = this._getAnimation("BulletRocket");          //播放动画
+        var explodeAnimate = this._getAnimation("BulletRocketEffect");          //播放动画
         this._explodeObj.runAction(
             cc.sequence(
                 explodeAnimate,
@@ -74,10 +74,10 @@ var BulletRocket = Bullet.extend({
         }
 
         switch (name) {
-            case "BulletRocket":
+            case "BulletRocketEffect":
                 delay = 1 / (WeaponConfig.Rocket.bullets.explode.frames.length * WeaponConfig.Rocket.bullets.explode.speed);
                 for (var i = 0, m = WeaponConfig.Rocket.bullets.explode.frames.length; i < m; i++) {
-                    var frame = cc.spriteFrameCache.getSpriteFrame(WeaponConfig.Rocket.bullets.explode.frames.length[i]);
+                    var frame = cc.spriteFrameCache.getSpriteFrame(WeaponConfig.Rocket.bullets.explode.frames[i]);
                     moreFrames.push(frame);
                 }
                 break;
@@ -105,7 +105,9 @@ BulletRocket.bullets = [];
 
 BulletRocket.preset = function (parent) {
     for (var i = 0; i < WeaponConfig.Rocket.bullets.presetAmount; ++i) {
-        BulletRocket.bullets.push(new BulletRocket(parent));
+        var bullet = new BulletRocket(parent);
+        bullet.unuse();
+        BulletRocket.bullets.push(bullet);
     }
 }
 

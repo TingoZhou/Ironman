@@ -116,24 +116,27 @@ var Monsters = Creature.extend({
     },
 
     disable: function () {
+
         if (!this.active) return;
         this._viewObj.visible = false;
         this.active = false;
         if (this._weapon) {
             this._weapon.removeDisplayWeapon();
         }
-
         this.unuse();
     },
 
     unuse: function () {
-        var viewObj = this._viewObj;
-        viewObj.stopAllActions();
-        viewObj.visible = false;
-        viewObj.retain();
-        viewObj.removeFromParent(true);
+        this._viewObj.stopAllActions();
+        this._viewObj.visible = false;
+        this._viewObj.retain();
+        this._viewObj.removeFromParent(true);
         this._hitStatusRecover();
         this.active = false;
+
+        if (this._freeze)
+            this._viewObj.removeChild(this._freeze);
+        this._freeze = null;
 
         for (var i = 0, len = Monsters.monstersOnStage.length; i < len; ++i) {
             var monster = Monsters.monstersOnStage[i];
@@ -146,7 +149,7 @@ var Monsters = Creature.extend({
 
     //移动
     _move: function () {
-
+        if (this._target.isDead) return;
         if (this._target._isShiel) {
             //保护罩
             var d = cc.pDistance(cc.p(this.getPosition().x, this.getPosition().y), cc.p(this._target.getPosition().x, this._target.getPosition().y));
@@ -170,8 +173,7 @@ var Monsters = Creature.extend({
      * 冰冻恢复
      */
     freezeRelease: function () {
-
-
+        if (!this._isFreezing)return;
         this._viewObj.runAction(
             cc.sequence(
                 cc.callFunc(function () {
@@ -249,6 +251,7 @@ var Monsters = Creature.extend({
                 }, this)
             )
         )
+
     },
 
     /**
@@ -259,6 +262,10 @@ var Monsters = Creature.extend({
         this._viewObj.setColor(cc.color(118, 233, 241, 255));
         this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
         this._isFreezing = true;
+
+        var freeze = new MonsterFreezeEffect(this);
+        freeze.start();
+        this._freeze = freeze;
 
     },
 
@@ -304,6 +311,7 @@ var Monsters = Creature.extend({
         this._parent.addChild(explode);
         explode.play(this._DamageByType);
         this.disable();
+
     },
 
     reuse: function (parent, data) {

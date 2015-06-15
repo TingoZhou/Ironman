@@ -28,6 +28,7 @@ var MainLoadingLayer = (function () {
 
             this._resourceIndex = 0;
             this._finishIndex = 0;
+
             this.init();
         },
 
@@ -125,6 +126,8 @@ var MainLoadingLayer = (function () {
         loadResource: function () {
             if (!main_resources[this._resourceIndex]) return;
             var self = this;
+
+
             cc.loader.load(main_resources[this._resourceIndex], function (result, count, loadedCount) {
                 //self.loadingBar.setPercent(40 + Math.floor(50 * (self.resourceIndex / main_resources.length)));
                 //self.loadingIcon.setPositionX(self.loadingBg.getPosition().x - self.loadingBg.width / 2 + self.loadingBar.width * self.loadingBar.getPercent() / 100);

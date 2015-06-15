@@ -4,109 +4,109 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>MatchGirlDie00.png</key>
+            <key>freeze000.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{682,2},{130,140}}</string>
+                <string>{{4,1566},{114,133}}</string>
                 <key>offset</key>
-                <string>{-1,6}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{134,109},{130,140}}</string>
+                <string>{{0,0},{114,133}}</string>
                 <key>sourceSize</key>
-                <string>{400,370}</string>
+                <string>{114,133}</string>
             </dict>
-            <key>MatchGirlDie01.png</key>
+            <key>freeze_00001.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{288,640},{262,274}}</string>
+                <string>{{4,870},{212,178}}</string>
                 <key>offset</key>
-                <string>{-2,3}</string>
+                <string>{0,4}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{67,45},{262,274}}</string>
+                <string>{{30,43},{212,178}}</string>
                 <key>sourceSize</key>
-                <string>{400,370}</string>
+                <string>{272,272}</string>
             </dict>
-            <key>MatchGirlDie02.png</key>
+            <key>freeze_00002.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,640},{284,292}}</string>
+                <string>{{4,654},{212,178}}</string>
                 <key>offset</key>
-                <string>{-1,7}</string>
+                <string>{0,3}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{57,32},{284,292}}</string>
+                <string>{{30,44},{212,178}}</string>
                 <key>sourceSize</key>
-                <string>{400,370}</string>
+                <string>{272,272}</string>
             </dict>
-            <key>MatchGirlDie03.png</key>
+            <key>freeze_00003.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,320},{332,318}}</string>
+                <string>{{4,438},{212,178}}</string>
                 <key>offset</key>
-                <string>{-2,11}</string>
+                <string>{0,3}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{32,15},{332,318}}</string>
+                <string>{{30,44},{212,178}}</string>
                 <key>sourceSize</key>
-                <string>{400,370}</string>
+                <string>{272,272}</string>
             </dict>
-            <key>MatchGirlDie04.png</key>
+            <key>freeze_00004.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{344,316}}</string>
+                <string>{{4,222},{212,178}}</string>
                 <key>offset</key>
-                <string>{-1,10}</string>
+                <string>{0,4}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{27,17},{344,316}}</string>
+                <string>{{30,43},{212,178}}</string>
                 <key>sourceSize</key>
-                <string>{400,370}</string>
+                <string>{272,272}</string>
             </dict>
-            <key>MatchGirlDie05.png</key>
+            <key>freeze_00005.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{336,320},{332,310}}</string>
+                <string>{{4,4},{214,178}}</string>
                 <key>offset</key>
-                <string>{6,9}</string>
+                <string>{-1,3}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{40,21},{332,310}}</string>
+                <string>{{28,44},{214,178}}</string>
                 <key>sourceSize</key>
-                <string>{400,370}</string>
+                <string>{272,272}</string>
             </dict>
-            <key>MatchGirlDie06.png</key>
+            <key>freeze_00006.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{348,2},{332,316}}</string>
+                <string>{{4,1326},{236,168}}</string>
                 <key>offset</key>
-                <string>{6,8}</string>
+                <string>{-12,8}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{40,19},{332,316}}</string>
+                <string>{{6,44},{236,168}}</string>
                 <key>sourceSize</key>
-                <string>{400,370}</string>
+                <string>{272,272}</string>
             </dict>
-            <key>MatchGirlDie07.png</key>
+            <key>freeze_00007.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{552,632},{314,312}}</string>
+                <string>{{4,1086},{236,176}}</string>
                 <key>offset</key>
-                <string>{15,10}</string>
+                <string>{-18,-1}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{58,19},{314,312}}</string>
+                <string>{{0,49},{236,176}}</string>
                 <key>sourceSize</key>
-                <string>{400,370}</string>
+                <string>{272,272}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -114,13 +114,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>MatchGirlDie.png</string>
+            <string>freeze.png</string>
             <key>size</key>
-            <string>{886,947}</string>
+            <string>{186,1684}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7ff013a657e4aa7a5df197842031271b$</string>
+            <string>$TexturePacker:SmartUpdate:5dcbd8c948de853519b289b54a3e630d:1/1$</string>
             <key>textureFileName</key>
-            <string>MatchGirlDie.png</string>
+            <string>freeze.png</string>
         </dict>
     </dict>
 </plist>

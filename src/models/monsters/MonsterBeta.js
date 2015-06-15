@@ -61,6 +61,7 @@ var MonsterBeta = Monsters.extend({
     //移动
     _move: function () {
         this._super();
+        if (this._target.isDead) return;
         if (this._currentStatus == MonsterStatus.ATTACK)return;
         if (this._currentStatus == MonsterStatus.BEFORE_ATTACK)return;
         if (this._currentStatus == MonsterStatus.BACK_ATTACK)return;
@@ -124,7 +125,7 @@ var MonsterBeta = Monsters.extend({
         this._currentStatus = MonsterStatus.ATTACK;
         this._viewObj.runAction(
             cc.sequence(
-                cc.moveTo(0.05, cc.p(this._saveTargetPosition.x, this._saveTargetPosition.y)),
+                cc.moveTo(0.3, cc.p(this._saveTargetPosition.x, this._saveTargetPosition.y)),
                 cc.callFunc(function () {
                     this._doAttackBack();
                 }, this)
@@ -139,15 +140,16 @@ var MonsterBeta = Monsters.extend({
         if (this._currentStatus == MonsterStatus.BACK_ATTACK) return;
         this._currentStatus = MonsterStatus.BACK_ATTACK;
 
-        this._viewObj.runAction(
-            cc.sequence(
-                cc.moveTo(0.2, cc.p(this._backPosition.x, this._backPosition.y)),
-                cc.callFunc(function () {
-                    this._attackCD = this._ATTACK_COOLDOWN;   //攻击CD
-                    this.doMoveToTarget();
-                }, this)
+        if (this._backPosition)
+            this._viewObj.runAction(
+                cc.sequence(
+                    cc.moveTo(0.2, cc.p(this._backPosition.x, this._backPosition.y)),
+                    cc.callFunc(function () {
+                        this._attackCD = this._ATTACK_COOLDOWN;   //攻击CD
+                        this.doMoveToTarget();
+                    }, this)
+                )
             )
-        )
     },
 
     //override
@@ -163,7 +165,9 @@ var MonsterBeta = Monsters.extend({
     //碰撞目标
     _checkCollideTarget: function () {
         if (cc.rectIntersectsRect(this.getDamageBoundingBox(), this._target.getCollideBoundingBox())) {
-
+            var character = Character.current;    //当前角色
+            character.doHitByMonster(this._properties.dps, this);
+            cc.eventManager.dispatchCustomEvent(SC.MONSTER_HIT_CHARACTER);
         }
     },
 
@@ -174,7 +178,7 @@ var MonsterBeta = Monsters.extend({
         switch (this._currentStatus) {
             case MonsterStatus.MOVE_TO_TARGET:
 
-                if (this._movable) {
+                if (this._movable && !this._target.isDead) {
                     var targetPos = this._target.getPosition();
                     var normalVect = cc.pNormalize(cc.pSub(targetPos, this.getPosition()));
                     this._stepX = normalVect.x * this._speed;
@@ -182,7 +186,7 @@ var MonsterBeta = Monsters.extend({
 
                     var d = cc.pDistance(cc.p(this._viewObj.x, this._viewObj.y), cc.p(targetPos.x, targetPos.y));
                     this._attackCD -= dt;
-                    if (this._attackCD <= 0 && d <= 400 && !this._target._isShiel) {
+                    if (this._attackCD <= 0 && d <= 300 && !this._target._isShiel) {
                         this._attackBeforeCD = this._ATTACKBEFORE_COOLDOWN;
                         this._backPosition = null;
                         this._saveTargetPosition = null;
@@ -201,11 +205,9 @@ var MonsterBeta = Monsters.extend({
                 break;
 
         }
-
         this._checkCollideTarget();
         this._move();     //移动
         this._direction();  //方向
-
     }
 
 })
@@ -214,7 +216,9 @@ MonsterBeta.monsters = [];
 
 MonsterBeta.preset = function (parent, data) {
     for (var i = 0; i < MonsterConfig.Beta.presetAmount; i++) {
-        MonsterBeta.monsters.push(new MonsterBeta(parent, data))
+        var m = new MonsterBeta(parent, data);
+        m.unuse();
+        MonsterBeta.monsters.push(m);
     }
 };
 

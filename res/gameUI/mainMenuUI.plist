@@ -4,23 +4,10 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>mainMenu_Bg.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,2},{950,540}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{950,540}}</string>
-                <key>sourceSize</key>
-                <string>{950,540}</string>
-            </dict>
             <key>mainMenu_soundBt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,823},{77,77}}</string>
+                <string>{{2,145},{77,77}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,11 +20,11 @@
             <key>mainMenu_startBt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,544},{277,141}}</string>
+                <string>{{2,2},{277,141}}</string>
                 <key>offset</key>
                 <string>{-1,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,1},{277,141}}</string>
                 <key>sourceSize</key>
@@ -51,9 +38,9 @@
             <key>realTextureFileName</key>
             <string>MainMenuUI.png</string>
             <key>size</key>
-            <string>{1024,1024}</string>
+            <string>{512,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:5be6f8fa997d7d92aedde37cf4834f65:3117bfd803c2e7575c80bc9826866455:20cc21d964cd4a56ad1de2e03cf7d4d4$</string>
+            <string>$TexturePacker:SmartUpdate:1b249bc3336781a2ace4b6c1728dbbcc:1/1$</string>
             <key>textureFileName</key>
             <string>MainMenuUI.png</string>
         </dict>

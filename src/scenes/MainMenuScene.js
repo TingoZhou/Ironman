@@ -16,6 +16,7 @@ var MainMenuScene = cc.Scene.extend({
         cc.eventManager.removeCustomListeners(cc.game.EVENT_HIDE);
         cc.eventManager.removeCustomListeners(cc.game.EVENT_SHOW);
     }
+
 });
 
 var MainMenuLayer = cc.Layer.extend({
@@ -28,36 +29,36 @@ var MainMenuLayer = cc.Layer.extend({
 
     init: function () {
 
-       this.initImages();
-       this.initButtons();
+        this.initImages();
+        this.initButtons();
     },
 
-    initImages:function(){
+    initImages: function () {
         var size = cc.winSize;
-        var mainMenuScenebg = new cc.Sprite("#mainMenu_Bg.png");
+        var mainMenuScenebg = new cc.Sprite(MainRes.mainMenu.mainMenu_Bg_jpg);
         this.addChild(mainMenuScenebg);
         mainMenuScenebg.attr({
-            x:size.width*0.5,
-            y:size.height*0.5
+            x: size.width * 0.5,
+            y: size.height * 0.5
         });
     },
 
-    initButtons:function(){
+    initButtons: function () {
         this.initSoundBt();
         this.initStarGameBt();
     },
 
-    initStarGameBt:function(){
+    initStarGameBt: function () {
         var size = cc.winSize;
         var button = new ButtonNoEdg("mainMenu_startBt.png");
         button.attr({
-            x:size.width*0.55,
-            y:size.height*0.15
+            x: size.width * 0.55,
+            y: size.height * 0.15
         });
         this.addChild(button);
 
         button.onTouchBegan = function (touch, type) {
-            cc.director.runScene(new cc.TransitionFade(0.1,new GameLoadingScene()));
+            cc.director.runScene(new cc.TransitionFade(0.1, new GameLoadingScene()));
         }
 
         button.onTouchEnded = function (touch, type) {
@@ -65,12 +66,12 @@ var MainMenuLayer = cc.Layer.extend({
         }
     },
 
-    initSoundBt:function(){
+    initSoundBt: function () {
         var size = cc.winSize;
         var button = new ButtonNoEdg("mainMenu_soundBt.png");
         button.attr({
-            x:size.width*0.90,
-            y:size.height*0.15
+            x: size.width * 0.90,
+            y: size.height * 0.15
         });
         this.addChild(button);
     },

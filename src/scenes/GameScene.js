@@ -43,14 +43,30 @@ var GameLayer = cc.Layer.extend({
         this.controllLayer = null;
         this.gameUILayer = null;
         this.explosionMaskLayer = null;
+
         this.initBgLayer();
         this.initBattleLayer();
         this.initDropItemLayer();
         this.initControllLayer();
         this.initGameUIlayer();
         this.initExplosionMaskLayer();
+        this.addListeners();
+
         this.scheduleUpdate();
     },
+
+    addListeners: function () {
+        cc.eventManager.addCustomListener(SC.IRONMAN_DIE, _.bind(function (e) {
+            this.initGameOverLayer();
+        }, this));
+    },
+    initGameOverLayer: function () {
+        if (this.gameOverLayer) return;
+        var bgLayer = new GameOverLayer();
+        this.addChild(bgLayer);
+        this.gameOverLayer = bgLayer;
+    },
+
 
     initBgLayer: function () {
         var bgLayer = new BgLayer();

@@ -1,4 +1,5 @@
 var Character = Creature.extend({
+    isDead: null,
     ctor: function (parent) {
         this._super();
 
@@ -9,10 +10,13 @@ var Character = Creature.extend({
         this._speed = 0;
         this._weapon = null;
         this._velocity = {x: 0, y: 0};
-        this._HP = 100;
+        this._TotalHP = 100
+        this._HP = this._TotalHP;
+
         this._moveBuffer = {x: 0, y: 0};
         this._shadowObjs = [];
         this._isShowBegin = false;
+        this.isDead = false;
     },
 
     init: function () {
@@ -57,9 +61,31 @@ var Character = Creature.extend({
     doHitByMonster: function (dps, bullet) {
 
         if (this._isShiel) return;
+        if (this.isDead) return;
         this._HP -= dps;
         this.strike();
 
+        //扣血
+        cc.eventManager.dispatchCustomEvent(SC.HP_UPDATE, {
+            HP: Math.max(this._HP, 0), TotalHP: this._TotalHP
+        });
+
+        //死亡
+        if (this._HP <= 0) {
+            this._doDie();
+        }
+    },
+
+    _doDie: function () {
+        this.isDead = true;
+        cc.eventManager.dispatchCustomEvent(SC.IRONMAN_DIE);
+
+        this._viewObj.runAction(
+            cc.spawn(
+                cc.moveBy(.5, cc.p(cc.randomMinus1To1() * 50, -100)),
+                cc.rotateBy(.5, 220)
+            ).repeat(5)
+        )
     },
 
     getCollideBoundingBox: function () {
@@ -81,6 +107,7 @@ var Character = Creature.extend({
     },
 
     _move: function () {
+        if (this.isDead) return;
         if (this._velocity.x != 0 || this._velocity.y != 0) {
             this._viewObj.x += this._velocity.x;
             this._viewObj.y += this._velocity.y;

@@ -1,35 +1,54 @@
 var MainRes = {
+    customFont: {
+        customBMFont_1_fnt: "res/font/f1.fnt",
+        customBMFont_1_png: "res/font/f1_0.png",
+        customBMFont_2_fnt: "res/font/f2.fnt",
+        customBMFont_2_png: "res/font/f2_0.png",
+        customBMFont_3_fnt: "res/font/f3.fnt",
+        customBMFont_3_png: "res/font/f3_0.png"
+    },
     mainMenu: {
-        i_mainMenu: "res/gameUI/mainMenuUI.png",
-        p_mainMenu: "res/gameUI/mainMenuUI.plist"
+        //****************************************重新修改资源 by Caesar 613周六下午
+        i_mainMenu: "res/gameUI/MainMenuUI.png",
+        p_mainMenu: "res/gameUI/MainMenuUI.plist",
+        mainMenu_Bg_jpg:"res/gameUI/mainMenu_Bg.jpg"
+        //*************************************************
     }
-
 };
 var LoadingRes = {};
 var GameRes = {
     skills: {
         png: "res/skills/Shield.png"
     },
+    monsterFreezeExplode: {
+        plist: "res/monsters/freeze.plist",
+        png: "res/monsters/freeze.png"
+    },
     monsterBombExplode: {
-        plist: "res/monsters/BombEffect.png",
-        png: "res/monsters/BombEffect.plist"
+        plist: "res/monsters/BombEffect.plist",
+        png: "res/monsters/BombEffect.png"
     },
     monsterExplode: {
-        plist: "res/monsters/weaponEffect.png",
-        png: "res/monsters/weaponEffect.plist"
+        plist: "res/monsters/weaponEffect.plist",
+        png: "res/monsters/weaponEffect.png"
     },
+
     test: {
         i_bg: "res/bg.jpg",
         i_character: "res/characters/character.png",
-        p_character: "res/characters/character.plist",
-        i_test: "res/test.png",
-        p_test: "res/test.plist"
+        p_character: "res/characters/character.plist"
+        //************************************6.13星期6下午删除 by Caesar
+       // i_test: "res/test.png",
+       // p_test: "res/test.plist"
+       //++++++++++++++++++++++++++++++++++++
     },
     starGameUILayer: {
+        //+++++++++++++++++++++++++++++++++++6.13(6)
         i_starGameUILayer: "res/StarGameUI/StarGameUI.png",
-        p_starGameUILayer: "res/StarGameUI/StarGameUI.plist"
+        p_starGameUILayer: "res/StarGameUI/StarGameUI.plist",
+        StarGameUIbg_jpg:  "res/StarGameUI/StarGameUIbg.jpg"
+        //+++++++++++++++++++++++++++++++++++6.13(6)
     },
-
     userFiles: {
         i_userfiles: "res/userFilesScene/userFilesScene.png",
         p_userfiles: "res/userFilesScene/userFilesScene.plist"
@@ -49,20 +68,17 @@ var GameRes = {
     gameLayerUI: {
         i_gameLayerUI: "res/gameLayerUI/gameLayerUI.png",
         p_gameLayerUI: "res/gameLayerUI/gameLayerUI.plist"
-        // j_gameLayerUI:"res/gameLayerUI/gameLayer_UI.json"
     },
     characterRifleWeapon: {
         plist: "res/characters/CharacterWeapon.png",
         png: "res/characters/CharacterWeapon.plist",
-        rocketExplodePng: "res/characters/MatchGirlDie.png",
-        rocketExplodePlist: "res/characters/MatchGirlDie.plist"
+        rocketExplodePng: "res/characters/RocketEffect.png",
+        rocketExplodePlist: "res/characters/RocketEffect.plist"
     },
-
     characterElectricWeapon: {
         plist: "res/characters/electric.png",
         png: "res/characters/electric.plist"
     },
-
     shaders: {
         whiteHit: {
             fsh: "res/shaders/whiteHit.fsh",

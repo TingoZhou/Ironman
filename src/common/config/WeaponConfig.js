@@ -15,14 +15,14 @@ var WeaponConfig = {
             res: "#RocketBullet.png",
             speed: 5,
             explode: {
-                frames: ["MatchGirlDie00.png",
-                    "MatchGirlDie01.png",
-                    "MatchGirlDie02.png",
-                    "MatchGirlDie03.png",
-                    "MatchGirlDie04.png",
-                    "MatchGirlDie05.png",
-                    "MatchGirlDie06.png",
-                    "MatchGirlDie07.png"
+                frames: [
+                    "rocketEffect00.png",
+                    "rocketEffect01.png",
+                    "rocketEffect02.png",
+                    "rocketEffect03.png",
+                    "rocketEffect04.png",
+                    "rocketEffect05.png",
+                    "rocketEffect06.png"
                 ],
                 speed: 2.5
             }
@@ -44,13 +44,13 @@ var WeaponConfig = {
         }
     },
     MonsterRifle: {
-        shootStep: 30,
+        shootStep: 60,
         bullets: {
             dps: 1,
-            scale: 0.5,
+            scale: 0.4,
             presetAmount: 10,
             res: "#bulletRifle.png",
-            speed: 15
+            speed: 5
         }
     }
 

@@ -15,13 +15,37 @@ var BattleLayer = cc.Layer.extend({
         cc.eventManager.addCustomListener(SC.GAME_START, _.bind(function (e) {
             this._scriptLayer.start('1000');
         }, this));
+
+        cc.eventManager.addCustomListener(SC.CHARACTER_BOMB, _.bind(function (e) {
+            this._shock();
+        }, this));
+    },
+
+    _shock: function () {
+        var time = .02;
+        this.runAction(
+            cc.sequence(
+                cc.sequence(
+                        cc.moveBy(time, cc.p(-10, -10)),
+                        cc.delayTime(time),
+                        cc.moveBy(time, cc.p(10, 10)),
+                        cc.delayTime(time)
+                    ).
+                    repeat(14),
+                cc.callFunc(function () {
+                    this.x = 0;
+                    this.y = 0;
+                }, this)
+            )
+        )
+
     },
 
     initScriptLayer: function () {
         var scriptLayer = new ScriptLayer();
         this.addChild(scriptLayer);
         this._scriptLayer = scriptLayer;
-       // cc.log("the number of Moster is"+getAllMosterInBattleLayer());
+        // cc.log("the number of Moster is"+getAllMosterInBattleLayer());
     },
 
     /**
@@ -40,7 +64,6 @@ var BattleLayer = cc.Layer.extend({
                 }
             }
         }
-        //cc.log("the number is "+allChildren.length);
         return monsters;
     },
 

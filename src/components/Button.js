@@ -54,7 +54,8 @@ var Button = cc.Sprite.extend({
 	},
 
 	hitTest: function (pt) {
-        var bb = cc.rect(0, 0, this._contentSize.width, this._contentSize.height);
+//        var bb = cc.rect(0, 0, this._contentSize.width, this._contentSize.height);
+        var bb = cc.rect(0, 0, this.width, this.height);
         return cc.rectContainsPoint(bb, this.convertToNodeSpace(pt));
     }
 })

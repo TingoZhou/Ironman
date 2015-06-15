@@ -7,37 +7,24 @@
             <key>backBt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{76,859},{106,73}}</string>
+                <string>{{317,76},{106,73}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{106,73}}</string>
                 <key>sourceSize</key>
                 <string>{106,73}</string>
             </dict>
-            <key>bg.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,2},{950,540}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{950,540}}</string>
-                <key>sourceSize</key>
-                <string>{950,540}</string>
-            </dict>
             <key>boxHomeBt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{184,859},{106,90}}</string>
+                <string>{{393,2},{106,90}}</string>
                 <key>offset</key>
                 <string>{-1,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{106,90}}</string>
                 <key>sourceSize</key>
@@ -46,7 +33,7 @@
             <key>boxRedPoint.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1000,2},{22,22}}</string>
+                <string>{{471,94},{22,22}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +46,7 @@
             <key>musicBt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,935},{77,77}}</string>
+                <string>{{392,94},{77,77}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +59,7 @@
             <key>star.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{954,2},{44,43}}</string>
+                <string>{{392,173},{44,43}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,11 +72,11 @@
             <key>starBg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,544},{389,72}}</string>
+                <string>{{2,2},{389,72}}</string>
                 <key>offset</key>
                 <string>{-2,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{389,72}}</string>
                 <key>sourceSize</key>
@@ -98,11 +85,11 @@
             <key>starFightingBt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{291,544},{313,213}}</string>
+                <string>{{2,291},{313,213}}</string>
                 <key>offset</key>
                 <string>{-1,-1}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,2},{313,213}}</string>
                 <key>sourceSize</key>
@@ -111,11 +98,11 @@
             <key>userFilesBt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{76,544},{313,213}}</string>
+                <string>{{2,76},{313,213}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{1,2},{313,213}}</string>
                 <key>sourceSize</key>
@@ -129,9 +116,9 @@
             <key>realTextureFileName</key>
             <string>StarGameUI.png</string>
             <key>size</key>
-            <string>{1024,1024}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:67518d51e514756006ddc2e36b4f80ab:0c102460de2b0bd068a5545ece35797a:bcbf195c7d4af25d92822634a9a65d4b$</string>
+            <string>$TexturePacker:SmartUpdate:3890651504a6fbc070823e0447321acd:1/1$</string>
             <key>textureFileName</key>
             <string>StarGameUI.png</string>
         </dict>

@@ -31,26 +31,20 @@ var ExplosionMaskLayer = cc.LayerColor.extend({
     _doFreeze: function () {
         this.setColor(cc.color(118, 233, 241, 255));
         this.visible = true;
-        var time = 0.04;
+        var time = 0.03;
         this.runAction(
             cc.sequence(
-                cc.fadeIn(time),
-                cc.delayTime(time),
-                cc.fadeOut(time),
-                cc.delayTime(time),
-                cc.fadeIn(time),
-                cc.delayTime(time),
-                cc.fadeOut(time),
-                cc.delayTime(time),
-                cc.fadeIn(time),
-                cc.delayTime(time),
-                cc.fadeOut(time),
-                cc.delayTime(time),
-                cc.fadeIn(time),
+                cc.sequence(
+                    cc.fadeIn(time),
+                    cc.delayTime(time),
+                    cc.fadeOut(time),
+                    cc.delayTime(time)
+                ).repeat(2),
                 cc.callFunc(function () {
                     this.visible = false;
                     this._FreezeMonster();
-                }, this))
+                }, this)
+            )
         )
     },
     /**
@@ -60,26 +54,20 @@ var ExplosionMaskLayer = cc.LayerColor.extend({
     _doExplosion: function () {
         this.setColor(cc.color(255, 255, 255, 255));
         this.visible = true;
-        var time = 0.04;
+        var time = 0.03;
         this.runAction(
             cc.sequence(
-                cc.fadeIn(time),
-                cc.delayTime(time),
-                cc.fadeOut(time),
-                cc.delayTime(time),
-                cc.fadeIn(time),
-                cc.delayTime(time),
-                cc.fadeOut(time),
-                cc.delayTime(time),
-                cc.fadeIn(time),
-                cc.delayTime(time),
-                cc.fadeOut(time),
-                cc.delayTime(time),
-                cc.fadeIn(time),
+                cc.sequence(
+                    cc.fadeIn(time),
+                    cc.delayTime(time),
+                    cc.fadeOut(time),
+                    cc.delayTime(time)
+                ).repeat(8),
                 cc.callFunc(function () {
                     this.visible = false;
                     this._killMonster();
-                }, this))
+                }, this)
+            )
         )
     },
 
@@ -88,20 +76,17 @@ var ExplosionMaskLayer = cc.LayerColor.extend({
         var monsters = Monsters.monstersOnStage;
         for (var i = 0, len = monsters.length; i < len; ++i) {
             var monster = monsters[i];
-            if (monster.active) {
-                monster.freezeMonstersByBomb();
-            }
+            // if (monster.active) {
+            monster.freezeMonstersByBomb();
+            //  }
         }
 
         this.scheduleOnce(
             function () {
                 for (var i = 0, len = monsters.length; i < len; ++i) {
                     var monster = monsters[i];
-                    if (monster.active) {
-                        monster.freezeRelease();
-                    }
+                    monster.freezeRelease();
                 }
-
             },
             5
         );

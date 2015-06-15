@@ -39,6 +39,7 @@ var Shield = cc.Sprite.extend({
             function () {
 
                 this.stopAction();
+
                 this.runAction(
                     cc.sequence(
 

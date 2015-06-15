@@ -45,6 +45,7 @@
         "src/models/monsters/MonsterBeta.js",
         "src/models/monsters/MonsterCharlie.js",
         "src/models/monsters/effect/MonsterExplodeEffect.js",
+        "src/models/monsters/effect/MonsterFreezeEffect.js",
 
         "src/models/weapons/WeaponRifle.js",
         "src/models/weapons/WeaponRocket.js",

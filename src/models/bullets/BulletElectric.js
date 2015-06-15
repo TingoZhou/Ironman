@@ -55,7 +55,9 @@ BulletElectric.bullets = [];
 
 BulletElectric.preset = function (parent) {
     for (var i = 0; i < WeaponConfig.Electric.bullets.presetAmount; ++i) {
-        BulletElectric.bullets.push(new BulletElectric(parent));
+        var bullet = new BulletElectric(parent);
+        bullet.unuse();
+        BulletElectric.bullets.push(bullet);
     }
 }
 
