@@ -47,9 +47,9 @@
  *
  */
 cc.game.onStart = function() {
-    cc.log("cc.game.onStart");
+    cc.log("game_Start");
     cc.view.adjustViewPort(true);
-    cc.view.setDesignResolutionSize(960, 540, cc.ResolutionPolicy.EXACT_FIT);
+    cc.view.setDesignResolutionSize(960, 540, cc.ResolutionPolicy.SHOW_ALL);
     cc.view.resizeWithBrowserSize(true);
 
     cc.director.setProjection(cc.Director.PROJECTION_2D);
@@ -63,7 +63,6 @@ cc.game.onStart = function() {
         }
         jsb.fileUtils.setSearchPaths(searchPaths);
     }
-    
     cc.director.runScene(new cc.TransitionFade(0.1, new AppScene()));
 };
 cc.game.run();

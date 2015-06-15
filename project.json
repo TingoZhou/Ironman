@@ -47,6 +47,8 @@
         "src/models/monsters/effect/MonsterExplodeEffect.js",
         "src/models/monsters/effect/MonsterFreezeEffect.js",
 
+        "src/models/monsters/drowItems/DropItem.js",
+
         "src/models/weapons/WeaponRifle.js",
         "src/models/weapons/WeaponRocket.js",
         "src/models/weapons/WeaponElectric.js",

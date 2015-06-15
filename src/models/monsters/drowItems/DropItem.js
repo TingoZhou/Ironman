@@ -3,7 +3,27 @@
  */
 var DropItem = cc.Sprite.extend({
 
-    ctor: function () {
+    ctor: function (monster) {
+        this._super(GameRes.drowItem.png);
+        g_gamelayer.dropItemLayer.addChild(this);
+        this.x = monster.getPosition().x;
+        this.y = monster.getPosition().y;
+
+        this.setScale(0);
+        this.runAction(
+            cc.sequence(
+                cc.spawn(
+                    cc.scaleTo(.3, .8),
+                    cc.moveBy(.3, cc.p(10, 40))
+                ).easing(cc.easeBackOut(.3)),
+                cc.callFunc(
+                    function () {
+
+                    }
+                    , this)
+            )
+        )
+
 
     },
 
@@ -28,7 +48,7 @@ var DropItem = cc.Sprite.extend({
     //销毁
     _disable: function () {
 
-    },
+    }
 
 
 });

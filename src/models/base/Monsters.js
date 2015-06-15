@@ -118,12 +118,19 @@ var Monsters = Creature.extend({
     disable: function () {
 
         if (!this.active) return;
+        //爆道具
+        this._doDrowItem();
+
         this._viewObj.visible = false;
         this.active = false;
         if (this._weapon) {
             this._weapon.removeDisplayWeapon();
         }
         this.unuse();
+    },
+
+    _doDrowItem: function () {
+        cc.eventManager.dispatchCustomEvent(SC.MONSTER_DIE, {monster: this});
     },
 
     unuse: function () {

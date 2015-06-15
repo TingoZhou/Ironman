@@ -14,87 +14,91 @@ var MainRes = {
 };
 var LoadingRes = {};
 var GameRes = {
-    skills: {
-        png: "res/skills/Shield.png"
-    },
-    monsterFreezeExplode: {
-        plist: "res/monsters/freeze.plist",
-        png: "res/monsters/freeze.png"
-    },
-    monsterBombExplode: {
-        plist: "res/monsters/BombEffect.plist",
-        png: "res/monsters/BombEffect.png"
-    },
-    monsterExplode: {
-        plist: "res/monsters/weaponEffect.plist",
-        png: "res/monsters/weaponEffect.png"
-    },
-    test: {
-        i_bg: "res/bg.jpg",
-        i_character: "res/characters/character.png",
-        p_character: "res/characters/character.plist",
-        i_test: "res/test.png",
-        p_test: "res/test.plist"
-    },
-    starGameUILayer: {
-        i_starGameUILayer: "res/StarGameUI/StarGameUI.png",
-        p_starGameUILayer: "res/StarGameUI/StarGameUI.plist"
-    },
-    userFiles: {
-        i_userfiles: "res/userFilesScene/userFilesScene.png",
-        p_userfiles: "res/userFilesScene/userFilesScene.plist"
-    },
-    controlLayerUI: {
-        i_controlLayerUI: "res/controlLayerUI/controlLayerUI.png",
-        p_controlLayerUI: "res/controlLayerUI/controlLayerUI.plist"
-    },
-    pauseSceneUI: {
-        i_pauseSceneUI: "res/PauseSceneUI/PauseSceneUI.png",
-        p_pauseSceneUI: "res/PauseSceneUI/PauseSceneUI.plist"
-    },
-    gameOverLayerUI: {
-        i_gameOverLayerUI: "res/gameOverLayerUI/gameOverLayer.png",
-        p_gameOverLayerUI: "res/gameOverLayerUI/gameOverLayer.plist"
-    },
-    gameLayerUI: {
-        i_gameLayerUI: "res/gameLayerUI/gameLayerUI.png",
-        p_gameLayerUI: "res/gameLayerUI/gameLayerUI.plist"
-    },
-    characterRifleWeapon: {
-        plist: "res/characters/CharacterWeapon.png",
-        png: "res/characters/CharacterWeapon.plist",
-        rocketExplodePng: "res/characters/RocketEffect.png",
-        rocketExplodePlist: "res/characters/RocketEffect.plist"
-    },
-    characterElectricWeapon: {
-        plist: "res/characters/electric.png",
-        png: "res/characters/electric.plist"
-    },
-    shaders: {
-        whiteHit: {
-            fsh: "res/shaders/whiteHit.fsh",
-            vsh: "res/shaders/whiteHit.vsh",
-            vsh_noMVP: "res/shaders/whiteHit_noMVP.vsh"
+        drowItem: {
+            png: "res/gameUI/treasure_icon.png"
         },
-        whiteHitRecover: {
-            fsh: "res/shaders/whiteHitRecover.fsh",
-            vsh: "res/shaders/whiteHitRecover.vsh",
-            vsh_noMVP: "res/shaders/whiteHitRecover_noMVP.vsh"
+        skills: {
+            png: "res/skills/Shield.png"
+        },
+        monsterFreezeExplode: {
+            plist: "res/monsters/freeze.plist",
+            png: "res/monsters/freeze.png"
+        },
+        monsterBombExplode: {
+            plist: "res/monsters/BombEffect.plist",
+            png: "res/monsters/BombEffect.png"
+        },
+        monsterExplode: {
+            plist: "res/monsters/weaponEffect.plist",
+            png: "res/monsters/weaponEffect.png"
+        },
+        test: {
+            i_bg: "res/bg.jpg",
+            i_character: "res/characters/character.png",
+            p_character: "res/characters/character.plist",
+            i_test: "res/test.png",
+            p_test: "res/test.plist"
+        },
+        starGameUILayer: {
+            i_starGameUILayer: "res/StarGameUI/StarGameUI.png",
+            p_starGameUILayer: "res/StarGameUI/StarGameUI.plist"
+        },
+        userFiles: {
+            i_userfiles: "res/userFilesScene/userFilesScene.png",
+            p_userfiles: "res/userFilesScene/userFilesScene.plist"
+        },
+        controlLayerUI: {
+            i_controlLayerUI: "res/controlLayerUI/controlLayerUI.png",
+            p_controlLayerUI: "res/controlLayerUI/controlLayerUI.plist"
+        },
+        pauseSceneUI: {
+            i_pauseSceneUI: "res/PauseSceneUI/PauseSceneUI.png",
+            p_pauseSceneUI: "res/PauseSceneUI/PauseSceneUI.plist"
+        },
+        gameOverLayerUI: {
+            i_gameOverLayerUI: "res/gameOverLayerUI/gameOverLayer.png",
+            p_gameOverLayerUI: "res/gameOverLayerUI/gameOverLayer.plist"
+        },
+        gameLayerUI: {
+            i_gameLayerUI: "res/gameLayerUI/gameLayerUI.png",
+            p_gameLayerUI: "res/gameLayerUI/gameLayerUI.plist"
+        },
+        characterRifleWeapon: {
+            plist: "res/characters/CharacterWeapon.png",
+            png: "res/characters/CharacterWeapon.plist",
+            rocketExplodePng: "res/characters/RocketEffect.png",
+            rocketExplodePlist: "res/characters/RocketEffect.plist"
+        },
+        characterElectricWeapon: {
+            plist: "res/characters/electric.png",
+            png: "res/characters/electric.plist"
+        },
+        shaders: {
+            whiteHit: {
+                fsh: "res/shaders/whiteHit.fsh",
+                vsh: "res/shaders/whiteHit.vsh",
+                vsh_noMVP: "res/shaders/whiteHit_noMVP.vsh"
+            },
+            whiteHitRecover: {
+                fsh: "res/shaders/whiteHitRecover.fsh",
+                vsh: "res/shaders/whiteHitRecover.vsh",
+                vsh_noMVP: "res/shaders/whiteHitRecover_noMVP.vsh"
+            }
+        },
+        monsterAlpha: {
+            plist: 'res/monsters/Alpha.plist',
+            png: 'res/monsters/Alpha.png'
+        },
+        monsterBeta: {
+            plist: 'res/monsters/Beta.plist',
+            png: 'res/monsters/Beta.png'
+        },
+        monsterCharlie: {
+            plist: 'res/monsters/monsters.plist',
+            png: 'res/monsters/monsters.png'
         }
-    },
-    monsterAlpha: {
-        plist: 'res/monsters/Alpha.plist',
-        png: 'res/monsters/Alpha.png'
-    },
-    monsterBeta: {
-        plist: 'res/monsters/Beta.plist',
-        png: 'res/monsters/Beta.png'
-    },
-    monsterCharlie: {
-        plist: 'res/monsters/monsters.plist',
-        png: 'res/monsters/monsters.png'
     }
-};
+    ;
 
 var main_resources = [];
 var game_resources = [];

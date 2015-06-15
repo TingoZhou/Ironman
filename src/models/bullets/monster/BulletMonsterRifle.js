@@ -24,7 +24,6 @@ var BulletMonsterRifle = Bullet.extend({
         }
     },
 
-
     /**
      * @param monster
      */
