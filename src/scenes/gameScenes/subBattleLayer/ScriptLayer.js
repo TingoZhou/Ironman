@@ -164,6 +164,7 @@ var ScriptLayer = cc.Layer.extend({
     },
 
     refreshLevel: function () {
+        cc.log("refreshLevel");
         var flushTime = 0;
         if (this.currentLevel == -1) {
             flushTime = 0.5;
@@ -184,13 +185,14 @@ var ScriptLayer = cc.Layer.extend({
             this.currentAmount = 0;
             this.tempStep = 0;
             this.warningStep = SH.FPS;
+            cc.log("如果所有波数用完了，就一直循环最后一波，怪物的等级不断增加");
             this.currentStatus = 'MonsterBorn';
             this.initLevelMonsters();
-            cc.eventManager.dispatchCustomEvent(SC.BATTLE_ROUND_UPDATE, {
-                'currentLevel': this.currentLevel,
-                'monsters4CurrentLevel': this.monsters4CurLvl,
-                'hasBoss': this.currentLevelHasBoss
-            });
+            /*cc.eventManager.dispatchCustomEvent(SC.BATTLE_ROUND_UPDATE, {
+             'currentLevel': this.currentLevel,
+             'monsters4CurrentLevel': this.monsters4CurLvl,
+             'hasBoss': this.currentLevelHasBoss
+             });*/
         }
     },
 
@@ -201,6 +203,7 @@ var ScriptLayer = cc.Layer.extend({
     update: function () {
         switch (this.currentStatus) {
             case 'MonsterBorn':
+                cc.log('MonsterBorn');
                 if (Monsters.monstersOnStage.length >= 10 || this.stop) return;
                 if (this.tempStep == this.flushMonsterStep && this.monsters4CurLvl.length > 0) {
                     this.tempStep = 0;
@@ -210,11 +213,12 @@ var ScriptLayer = cc.Layer.extend({
                     var halfWinWidth = cc.winSize.width / 2;
                     var halfWinHeight = cc.winSize.height / 2;
                     var monster4CurLvl = this.monsters4CurLvl.pop();
+
                     var bornPlace = cc.p(halfWinWidth + randomX * (halfWinWidth + 100), halfWinHeight + randomY * (halfWinHeight + 100));
                     if (bornPlace.x < 0 || bornPlace.x > cc.winSize.width) {
-                        bornPlace.y += _.random(-300, 300);
+                        bornPlace.y += _.random(-100, 100);
                     } else if (bornPlace.y < 0 || bornPlace.y > cc.winSize.height) {
-                        bornPlace.x += _.random(-300, 300);
+                        bornPlace.x += _.random(-100, 100);
                     }
                     var monster = Monsters.create(this.parent, {
                         name: monster4CurLvl.key,
@@ -233,6 +237,7 @@ var ScriptLayer = cc.Layer.extend({
                 }
                 break;
             case 'MonsterBornFinished':
+                cc.log('MonsterBornFinished');
                 var monstersAmountOnStage = 0;
                 if (Monsters.monstersOnStage.length > 5) return;
                 else {
@@ -240,7 +245,10 @@ var ScriptLayer = cc.Layer.extend({
                         monstersAmountOnStage++;
                     }
                 }
-                if (this.shouldAddMonster && this.monsters4CurLvl.length == 0 && monstersAmountOnStage <= 0 && this.currentLevel >= 0) {
+                if (this.shouldAddMonster &&
+                    this.monsters4CurLvl.length == 0 &&
+                    monstersAmountOnStage <= 0 &&
+                    this.currentLevel >= 0) {
                     var targetLevel = this.currentLevel;
                     if (targetLevel >= this.scriptConfig.length) {
                         targetLevel = this.scriptConfig.length - 1;

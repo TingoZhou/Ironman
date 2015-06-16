@@ -134,10 +134,7 @@ var MonsterAlpha = Monsters.extend({
         //碰撞目标
         _checkCollideTarget: function () {
             if (cc.rectIntersectsRect(this.getDamageBoundingBox(), this._target.getCollideBoundingBox())) {
-
-
                 this._doAttack(); //攻击
-
             }
         },
 
@@ -158,12 +155,9 @@ var MonsterAlpha = Monsters.extend({
                     break;
 
             }
-
             this._checkCollideTarget();
             this._move();     //移动
             this._direction();  //方向
-
-
         }
     })
     ;

@@ -91,14 +91,14 @@ var Monsters = Creature.extend({
         var box = this._viewObj.getBoundingBox();
         var rect = cc.rect(box.x + 20, box.y + 20, box.width - 20, box.height - 20);
         //
-       /* if (this._drawNode) {
-            this._drawNode.clear();
-            this._drawNode.drawRect(cc.p(rect.x, rect.y), cc.p(rect.x + rect.width, rect.y + rect.height), cc.color(155, 255, 155, 60), 0);
-        } else {
-            this._drawNode = new cc.DrawNode();
-            this._drawNode.drawRect(cc.p(rect.x, rect.y), cc.p(rect.x + rect.width, rect.y + rect.height), cc.color(155, 255, 155, 60), 0);
-            this._parent.addChild(this._drawNode);
-        }*/
+        /* if (this._drawNode) {
+         this._drawNode.clear();
+         this._drawNode.drawRect(cc.p(rect.x, rect.y), cc.p(rect.x + rect.width, rect.y + rect.height), cc.color(155, 255, 155, 60), 0);
+         } else {
+         this._drawNode = new cc.DrawNode();
+         this._drawNode.drawRect(cc.p(rect.x, rect.y), cc.p(rect.x + rect.width, rect.y + rect.height), cc.color(155, 255, 155, 60), 0);
+         this._parent.addChild(this._drawNode);
+         }*/
 
 
         return rect;
@@ -340,7 +340,9 @@ var Monsters = Creature.extend({
         this.active = true;
         this.initData(parent, data);
         Monsters.monstersOnStage.push(this);
-
+        this._viewObj.setColor(cc.color(255, 255, 255, 255));
+        this._viewObj.setBlendFunc(cc.SRC_ALPHA, cc.ONE_MINUS_SRC_ALPHA);
+        this._isFreezing = false;
         if (!this._hasEvent) {
             this._hasEvent = true;
             this.addListeners();
