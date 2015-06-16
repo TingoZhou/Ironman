@@ -164,7 +164,6 @@ var ScriptLayer = cc.Layer.extend({
     },
 
     refreshLevel: function () {
-        cc.log("refreshLevel");
         var flushTime = 0;
         if (this.currentLevel == -1) {
             flushTime = 0.5;
@@ -185,7 +184,6 @@ var ScriptLayer = cc.Layer.extend({
             this.currentAmount = 0;
             this.tempStep = 0;
             this.warningStep = SH.FPS;
-            cc.log("如果所有波数用完了，就一直循环最后一波，怪物的等级不断增加");
             this.currentStatus = 'MonsterBorn';
             this.initLevelMonsters();
             /*cc.eventManager.dispatchCustomEvent(SC.BATTLE_ROUND_UPDATE, {
@@ -203,7 +201,6 @@ var ScriptLayer = cc.Layer.extend({
     update: function () {
         switch (this.currentStatus) {
             case 'MonsterBorn':
-                cc.log('MonsterBorn');
                 if (Monsters.monstersOnStage.length >= 10 || this.stop) return;
                 if (this.tempStep == this.flushMonsterStep && this.monsters4CurLvl.length > 0) {
                     this.tempStep = 0;
