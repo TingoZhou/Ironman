@@ -34,7 +34,7 @@ var BulletRocket = Bullet.extend({
         var monsters = Monsters.monstersOnStage;
         for (var i = 0, len = monsters.length; i < len; ++i) {
             var monster = monsters[i];
-            if (monster.active && cc.rectIntersectsRect(this._viewObj.getBoundingBox(), monster.getCollideBoundingBox())) {
+            if (monster.active && cc.rectIntersectsRect(this.getCollideBoundingBox(), monster.getCollideBoundingBox())) {
                 monster.hitMonstersByBullet(this);
                 this._explode();
                 this._viewObj.visible = false;

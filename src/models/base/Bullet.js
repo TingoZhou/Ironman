@@ -45,7 +45,7 @@ var Bullet = cc.Class.extend({
     },
 
     update: function () {
-        if(!this.active) return;
+        if (!this.active) return;
         ++this._step;
         this._checkOverBorder();
     },
@@ -57,6 +57,25 @@ var Bullet = cc.Class.extend({
             this._destroy();
             this._disable();
         }
+    },
+
+    getCollideBoundingBox: function () {
+
+        var box = this._viewObj.getBoundingBox();
+        var rect = cc.rect(box.x + 30, box.y + 30, box.width - 60, box.height - 60);
+        //
+        /*
+         if (this._drawNode) {
+         this._drawNode.clear();
+         this._drawNode.drawRect(cc.p(rect.x, rect.y), cc.p(rect.x + rect.width, rect.y + rect.height), cc.color(155, 255, 155, 60), 0);
+         } else {
+         this._drawNode = new cc.DrawNode();
+         this._drawNode.drawRect(cc.p(rect.x, rect.y), cc.p(rect.x + rect.width, rect.y + rect.height), cc.color(155, 255, 155, 60), 0);
+         this._parent.addChild(this._drawNode);
+         }*/
+
+
+        return rect;
     },
 
     _destroy: function () {
@@ -110,7 +129,7 @@ Bullet.preset = function (parent, type) {
 Bullet.resetAll = function () {
     for (var i = 0; i < Bullet.bulletsOnStage.length; ++i) {
         var b = Bullet.bulletsOnStage[i];
-        (function(bullet) {
+        (function (bullet) {
             bullet.unuse();
             bullet.release();
         })(b);

@@ -79,7 +79,7 @@ var Monsters = Creature.extend({
     },
 
     getPosition: function () {
-        return this._viewObj.getPosition();
+        return  this._viewObj.getPosition();
     },
 
     getDamageBoundingBox: function () {
@@ -87,7 +87,22 @@ var Monsters = Creature.extend({
     },
 
     getCollideBoundingBox: function () {
-        return this._viewObj.getBoundingBox();
+
+        var box = this._viewObj.getBoundingBox();
+        var rect = cc.rect(box.x + 20, box.y + 20, box.width - 20, box.height - 20);
+        //
+       /* if (this._drawNode) {
+            this._drawNode.clear();
+            this._drawNode.drawRect(cc.p(rect.x, rect.y), cc.p(rect.x + rect.width, rect.y + rect.height), cc.color(155, 255, 155, 60), 0);
+        } else {
+            this._drawNode = new cc.DrawNode();
+            this._drawNode.drawRect(cc.p(rect.x, rect.y), cc.p(rect.x + rect.width, rect.y + rect.height), cc.color(155, 255, 155, 60), 0);
+            this._parent.addChild(this._drawNode);
+        }*/
+
+
+        return rect;
+
     },
 
     /* hurt: function (dps, bullet) {

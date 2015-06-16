@@ -13,7 +13,7 @@ var WeaponConfig = {
         bullets: {
             presetAmount: 10,
             res: "#RocketBullet.png",
-            speed: 5,
+            speed: 8,
             explode: {
                 frames: [
                     "rocketEffect00.png",
