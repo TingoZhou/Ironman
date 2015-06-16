@@ -18,7 +18,7 @@ var MonsterFreezeEffect = cc.Sprite.extend({
     start: function () {
         this._target._viewObj.addChild(this);
 
-        this.setScale(cc.random0To1() + 4.2);
+        this.setScale(cc.random0To1() +.5);
         this.setPosition(cc.p(this._target._viewObj.width / 2, this._target._viewObj.height / 2));
 
         this.scheduleOnce(

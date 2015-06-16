@@ -234,7 +234,6 @@ var ScriptLayer = cc.Layer.extend({
                 }
                 break;
             case 'MonsterBornFinished':
-                cc.log('MonsterBornFinished');
                 var monstersAmountOnStage = 0;
                 if (Monsters.monstersOnStage.length > 5) return;
                 else {

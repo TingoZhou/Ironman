@@ -103,8 +103,8 @@ var GameRes = {
         png: 'res/monsters/Beta.png'
     },
     monsterCharlie: {
-        plist: 'res/monsters/monsters.plist',
-        png: 'res/monsters/monsters.png'
+        plist: 'res/monsters/Charlie.plist',
+        png: 'res/monsters/Charlie.png'
     }
 }
 

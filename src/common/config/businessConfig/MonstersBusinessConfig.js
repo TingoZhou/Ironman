@@ -6,7 +6,7 @@ var MonstersBusinessConfig = {
         "defence": 0,
         "speed": 3,
         "score": 12,
-        "scale": 0.2,
+        "scale": 1,
         "isBoss": 0,
         "levelEnhance": {
             "HP": 4,
@@ -31,7 +31,7 @@ var MonstersBusinessConfig = {
         "defence": 0,
         "speed": 5,
         "score": 12,
-        "scale": 0.2,
+        "scale": 1,
         "isBoss": 0,
         "levelEnhance": {
             "HP": 4,
@@ -56,7 +56,7 @@ var MonstersBusinessConfig = {
         "defence": 0,
         "speed": 1,
         "score": 12,
-        "scale": 0.3,
+        "scale": 1,
         "isBoss": 0,
         "levelEnhance": {
             "HP": 4,
