@@ -20,6 +20,8 @@ var Bullet = cc.Class.extend({
     },
 
     unuse: function () {
+        if (this._emitter)
+            this._parent.removeChild(this._emitter);
         this.active = false;
         this._viewObj.unscheduleAllCallbacks();
         this._viewObj.stopAllActions();
@@ -62,7 +64,7 @@ var Bullet = cc.Class.extend({
     getCollideBoundingBox: function () {
 
         var box = this._viewObj.getBoundingBox();
-        var rect = cc.rect(box.x + 30, box.y + 30, box.width - 60, box.height - 60);
+        var rect = cc.rect(box.x + 20, box.y + 20, box.width - 30, box.height - 30);
         //
         /*
          if (this._drawNode) {

@@ -203,7 +203,7 @@ var MonsterBeta = Monsters.extend({
         if (!this._isDead) {
 
             // 减特效
-            if (this._shadowObjs.length > 0) {
+            if (this._shadowObjs && this._shadowObjs.length > 0) {
                 for (var i = 0; i < this._shadowObjs.length; ++i) {
                     this._parent.removeChild(this._shadowObjs[i]);
                 }

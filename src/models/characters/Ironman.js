@@ -13,6 +13,7 @@ var Ironman = Character.extend({
         this._weaponFire.visible = false;
         this._viewObj.addChild(this._weaponFire);
 
+
         this.init();
         this.addListeners();
 
@@ -40,6 +41,7 @@ var Ironman = Character.extend({
 
     update: function () {
         this._super();
+//        this._emitter.setPosition(cc.p(this._viewObj.x, this._viewObj.y-30))
     },
 
     //护盾
@@ -140,3 +142,18 @@ var Ironman = Character.extend({
         this._weaponFire.stopAllActions();
     }
 });
+
+/*
+ var DemoFire = ParticleDemo.extend({
+ onEnter: function () {
+ this._super();
+ this._emitter = new cc.ParticleFire();
+ this._emitter.texture = cc.textureCache.addImage("res/characters/fire.png");
+ if (this._emitter.setShapeType)
+ this._emitter.setShapeType(cc.ParticleSystem.BALL_SHAPE);
+
+ },
+ title: function () {
+ return "ParticleFire";
+ }
+ });*/

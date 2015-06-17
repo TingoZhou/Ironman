@@ -89,7 +89,7 @@ var Monsters = Creature.extend({
     getCollideBoundingBox: function () {
 
         var box = this._viewObj.getBoundingBox();
-        var rect = cc.rect(box.x + 20, box.y + 20, box.width - 20, box.height - 20);
+        var rect = cc.rect(box.x + 10, box.y + 10, box.width - 10, box.height - 10);
         //
         /* if (this._drawNode) {
          this._drawNode.clear();

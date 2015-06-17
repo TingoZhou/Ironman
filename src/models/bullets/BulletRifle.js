@@ -19,11 +19,27 @@ var BulletRifle = Bullet.extend({
             y: speed * Math.cos(rotation * Math.PI / 180) * (Math.abs(scaleX) / scaleX)
         }
         this._parent.addChild(this._viewObj);
+
+        this._emitter = new cc.ParticleMeteor();
+        this._emitter.setStartColor(cc.color(31, 64, 194, 255));
+        this._emitter.setStartColorVar(cc.color(0, 0, 0, 0));
+        this._emitter.setEndColor(cc.color(0, 0, 0, 10));
+        this._emitter.setEndColorVar(cc.color(0, 0, 0, 0));
+        this._emitter.setSpeed(20);
+        this._emitter.setSpeedVar(1);
+        this._emitter.setScale(.7);
+        this._emitter.setLife(.2);
+        this._emitter.setLifeVar(.1);
+        this._emitter.texture = cc.textureCache.addImage("res/characters/fire.png");
+        if (this._emitter.setShapeType)
+            this._emitter.setShapeType(cc.ParticleSystem.STAR_SHAPE);
+        this._parent.addChild(this._emitter);
     },
 
     _move: function () {
         this._viewObj.x += this._velocity.x;
         this._viewObj.y += this._velocity.y;
+        this._emitter.setPosition(cc.p(this._viewObj.x, this._viewObj.y));
     },
 
     /**

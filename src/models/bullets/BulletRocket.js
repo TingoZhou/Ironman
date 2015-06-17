@@ -24,6 +24,22 @@ var BulletRocket = Bullet.extend({
         this._explodeObj = new cc.Sprite('#' + WeaponConfig.Rocket.bullets.explode.frames[0]);
         this._explodeObj.visible = false;
         this._parent.addChild(this._explodeObj);
+
+
+        this._emitter = new cc.ParticleMeteor();
+        this._emitter.setStartColor(cc.color(194, 64, 31, 255));
+        this._emitter.setStartColorVar(cc.color(0, 0, 0, 0));
+        this._emitter.setEndColor(cc.color(0, 0, 0, 110));
+        this._emitter.setEndColorVar(cc.color(0, 0, 0, 0));
+        this._emitter.setSpeed(40);
+        this._emitter.setSpeedVar(1);
+        this._emitter.setScale(.6);
+        this._emitter.setLife(.4);
+        this._emitter.setLifeVar(.1);
+        this._emitter.texture = cc.textureCache.addImage("res/characters/fire.png");
+        if (this._emitter.setShapeType)
+            this._emitter.setShapeType(cc.ParticleSystem.STAR_SHAPE);
+        this._parent.addChild(this._emitter);
     },
 
     /**
@@ -90,8 +106,11 @@ var BulletRocket = Bullet.extend({
     },
 
     _move: function () {
+
+        if (this._viewObj.visible == false) return;
         this._viewObj.x += this._velocity.x;
         this._viewObj.y += this._velocity.y;
+        this._emitter.setPosition(cc.p(this._viewObj.x, this._viewObj.y));
     },
 
     update: function () {
