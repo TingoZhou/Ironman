@@ -1,0 +1,42 @@
+var DropItemConfig={
+    CacheCounts:15,
+    DropRifleWeaponValue:70,
+    DropExItemValue:95,
+    DropType:{
+        Rifle:{
+            TypeName:"Rifle",
+            MaxNum:10,
+            MinNum:1
+        },
+        Rocket: {
+            TypeName:"Rocket",
+            MaxNum:5,
+            MinNum:1
+        },
+        Electric:{
+            TypeName:"Electric",
+            MaxNum:5,
+            MinNum:1
+        },
+        HP:{
+            TypeName:"HP",
+            MaxNum:10,
+            MinNum:5
+        },
+        Bomb:{
+            TypeName:"bomb",
+            MaxNum:1,
+            MinNum:1
+        },
+        Freeze:{
+            TypeName:"freeze",
+            MaxNum:1,
+            MinNum:1
+        },
+        Shield:{
+            TypeName:"shield",
+            MaxNum:1,
+            MinNum:1
+        }
+}
+}

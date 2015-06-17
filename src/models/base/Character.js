@@ -104,6 +104,9 @@ var Character = Creature.extend({
         this._move();
         this._changeDirection();
         this._weapon && this._weapon.update();
+
+
+        cc.eventManager.dispatchCustomEvent(SC.DROPITEM_GET,{character:this});
     },
 
     _move: function () {
@@ -161,7 +164,6 @@ var Character = Creature.extend({
         if (weaponName == "Rocket") {     //导弹位置改变
             this._weaponFire.setPosition(cc.p(CharacterConfig[this.name].weaponFire.buffer.x + 25, CharacterConfig[this.name].weaponFire.buffer.y + 40));
         }
-
         this._weapon.addDisplayWeapon(this._viewObj);
     },
 

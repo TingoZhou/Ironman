@@ -17,6 +17,7 @@ var ControllLayer = cc.Layer.extend({
         this.initSkillBtn_1();
         this.initSkillBtn_2();
         this.initSkillBtn_3();
+        this.addListeners();
     },
 
 
@@ -336,5 +337,39 @@ var ControllLayer = cc.Layer.extend({
 
     update: function (dt) {
         this._moveJoyStickPannel.update(dt);
+    },
+
+    //新增
+    addListeners:function(){
+      cc.eventManager.addCustomListener(SC.DROPITEM_EX_GET, _.bind(
+          function(e){
+             this.updateNumPannle(e);
+          }
+          ,this));
+    },
+    updateNumPannle:function(e){
+        var type = e.getUserData().typeName;
+        //var addNum= e.getUserData().addNum;
+        var addNum=1;
+        var playInfo=ULS.get(USK.PlayInfo);
+        switch (type){
+            case DropItemConfig.DropType.Bomb.TypeName:
+                playInfo.bombNum+=addNum;
+                ULS.set(USK.PlayInfo,playInfo);
+                this._bombNumPannle.setString(playInfo.bombNum.toString(),true);
+                break;
+            case DropItemConfig.DropType.Freeze.TypeName:
+                playInfo.freezeNum+=addNum;
+                ULS.set(USK.PlayInfo,playInfo);
+                this._freezeNumPannle.setString(playInfo.freezeNum.toString(),true);
+                break;
+            case DropItemConfig.DropType.Shield.TypeName:
+                playInfo.shieldNum+=addNum;
+                ULS.set(USK.PlayInfo,playInfo);
+                this._shieldNumPannle.setString(playInfo.shieldNum.toString(),true);
+                break;
+            default :
+                break;
+        }
     }
 })

@@ -2,6 +2,9 @@
 //********************************************************************
 var GameUILayer = cc.Layer.extend(
     {
+        rifleNum:null,
+        rocketNum:null,
+        electricNum:null,
         _hpBarwidth: 120,
         _hpBar: null,
         ctor: function () {
@@ -25,8 +28,30 @@ var GameUILayer = cc.Layer.extend(
                 this.updateHp(e);
             }, this));
 
+            cc.eventManager.addCustomListener(SC.CHARACTER_WEAPON, _.bind(function(e){
+                 this.updateBulletNum(e)
+            },this));
+
         },
 
+        //新增
+        updateBulletNum:function(e){
+            var str=null;
+            switch (e.getUserData().weaponName){
+                case SH.Weapon.Characters.Rifle:
+                    str= e.getUserData().Num;
+                    this.rifleNum.setString(str.toString(),true);
+                    break;
+                case SH.Weapon.Characters.Rocket:
+                    str=e.getUserData().Num;
+                    this.rocketNum.setString(str.toString(),true);
+                    break;
+                case SH.Weapon.Characters.Electric:
+                    str=e.getUserData().Num;
+                    this.electricNum.setString(str.toString(),true);
+                    break;
+            }
+        },
         updateHp: function (e) {
             var data = e.getUserData();
             var hp = data.HP / data.TotalHP;
@@ -90,47 +115,46 @@ var GameUILayer = cc.Layer.extend(
             });
 
             var str = ULS.get(USK.PlayInfo).rifle;
-
-            var rifle = new cc.LabelBMFont(str, MainRes.customFont.customBMFont_1_fnt);
-            rifle.setScale(.9);
-            rifle.setPosition(cc.p(buttle_1.x + 50, buttle_1.y - 11));
-            this.addChild(rifle);
+            this.rifleNum = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+            this.rifleNum.setScale(.9);
+            this.rifleNum.setPosition(cc.p(buttle_1.x + 50, buttle_1.y - 11));
+            this.addChild(this.rifleNum);
 
         },
 
         _initBulletElectric: function () {
             var size = cc.winSize;
-            var buttle_2 = new cc.Sprite("#gameLayerUI_bullet_2.png");
+            var buttle_2 = new cc.Sprite("#gameLayerUI_bullet_3.png");
             this.addChild(buttle_2);
             buttle_2.attr({
                 x: 0.04 * size.width,
-                y: 0.72 * size.height
+                y: 0.62 * size.height
             });
 
             var str = ULS.get(USK.PlayInfo).electric;
 
-            var electric = new cc.LabelBMFont(str, MainRes.customFont.customBMFont_1_fnt);
-            electric.setScale(.9);
-            electric.setPosition(cc.p(buttle_2.x + 50, buttle_2.y - 10));
-            this.addChild(electric);
+            this.electricNum = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+            this.electricNum.setScale(.9);
+            this.electricNum.setPosition(cc.p(buttle_2.x + 50, buttle_2.y - 10));
+            this.addChild(this.electricNum);
 
         },
 
         _initBulletRocket: function () {
             var size = cc.winSize;
-            var buttle_3 = new cc.Sprite("#gameLayerUI_bullet_3.png");
+            var buttle_3 = new cc.Sprite("#gameLayerUI_bullet_2.png");
             this.addChild(buttle_3);
             buttle_3.attr({
                 x: 0.04 * size.width,
-                y: 0.62 * size.height
+                y: 0.72 * size.height
             });
 
-            var str = ULS.get(USK.PlayInfo).rifle;
+            var str = ULS.get(USK.PlayInfo).rocket;
 
-            var rocket = new cc.LabelBMFont(str, MainRes.customFont.customBMFont_1_fnt);
-            rocket.setScale(.9);
-            rocket.setPosition(cc.p(buttle_3.x + 50, buttle_3.y - 11));
-            this.addChild(rocket);
+            this.rocketNum = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+            this.rocketNum.setScale(.9);
+            this.rocketNum.setPosition(cc.p(buttle_3.x + 50, buttle_3.y - 11));
+            this.addChild(this.rocketNum);
         },
 
         _initStar: function () {

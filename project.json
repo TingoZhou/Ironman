@@ -17,6 +17,8 @@
         "src/common/config/MonsterConfig.js",
         "src/common/config/WeaponConfig.js",
         "src/common/config/Event.js",
+        "src/common/config/DropItemConfig.js",
+
 
         "src/common/Md5.js",
         "src/common/Common.js",

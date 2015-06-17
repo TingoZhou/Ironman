@@ -47,7 +47,13 @@ var WeaponRocket = Weapon.extend({
                     cc.rotateTo(.1, 0),
                     cc.callFunc(function () {
                         var p = this._viewObj.convertToWorldSpace(this._viewObj.getPosition());
+                        var playInfo=ULS.get(USK.PlayInfo);
+                        if(playInfo.rocket>0){
+                        playInfo.rocket--;
+                        ULS.set(USK.PlayInfo, playInfo);
+                        cc.eventManager.dispatchCustomEvent(SC.CHARACTER_WEAPON,{weaponName: SH.Weapon.Characters.Rocket,Num:playInfo.rocket});
                         Bullet.create(this._parent, SH.Bullet.Characters.Rocket,p);
+                        }
                     }, this)
                 )
             )

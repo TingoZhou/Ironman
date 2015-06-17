@@ -1,4 +1,5 @@
 var DropItemLayer = cc.Layer.extend({
+    DropItems:null,
     ctor: function () {
         this._super();
         this.init();
@@ -6,7 +7,8 @@ var DropItemLayer = cc.Layer.extend({
     },
 
     init: function () {
-
+        DropItem.preset(this);
+        this.DropItems=DropItem.Items;
     },
 
     addListeners: function () {
@@ -18,10 +20,13 @@ var DropItemLayer = cc.Layer.extend({
     _doDrowItem: function (e) {
 
         var monster = e.getUserData().monster;
-        var dropitem = new DropItem(monster);
-
+       //var dropitem = new DropItem(monster);
+        var dropitem=DropItem.create(monster);
     },
 
     update: function (dt) {
+        for(var i=0;i<this.DropItems.length;i++){
+            this.DropItems[i].update();
+        }
     }
 })
