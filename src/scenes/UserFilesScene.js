@@ -1,3 +1,5 @@
+var g_userFilesLayer = null;
+
 var UserFilesScene = cc.Scene.extend({
     onEnterTransitionDidFinish: function () {
         this._super();
@@ -10,7 +12,9 @@ var UserFilesScene = cc.Scene.extend({
     },
     init: function () {
         var userfileslayer = new UserfilesLayer();
+        g_userFilesLayer = userfileslayer;
         this.addChild(userfileslayer);
+
     }
 });
 
@@ -29,9 +33,7 @@ var UserfilesLayer = cc.Layer.extend({
         this._initBomb();
         this._initFreeze();
         this._initShield();
-        //<+++++++++++++++++++++++++++++++++++添加星星 by Caesar
         this._initStar();
-        //+++++++++++++++++++++++++++++++++++++++++++++>
     },
 
     _initBulletRifle: function () {
@@ -70,10 +72,8 @@ var UserfilesLayer = cc.Layer.extend({
 
     },
 
-//<开始++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++添加代码 By Caesar
     _initBulletRocket: function () {
 
-
         var size = cc.winSize;
         var buttle_3 = new cc.Sprite("#bullet_3.png");
         this.addChild(buttle_3);
@@ -170,25 +170,6 @@ var UserfilesLayer = cc.Layer.extend({
         this.addChild(starnumber);
 
     },
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++结束>
-    initImages: function () {
-
-        var size = cc.winSize;
-        var buttle_3 = new cc.Sprite("#bullet_3.png");
-        this.addChild(buttle_3);
-        buttle_3.attr({
-            x: size.width * 0.11,
-            y: size.height * 0.36
-        });
-
-        var str = ULS.get(USK.PlayInfo).rifle;
-
-        var rocket = new cc.LabelBMFont(str, MainRes.customFont.customBMFont_1_fnt);
-        rocket.setScale(.9);
-        rocket.setPosition(cc.p(buttle_3.x + 50, buttle_3.y - 11));
-        this.addChild(rocket);
-    },
-
 
     _initBomb: function () {
         var size = cc.winSize;
@@ -236,7 +217,6 @@ var UserfilesLayer = cc.Layer.extend({
         });
 
         var str = ULS.get(USK.PlayInfo).shieldNum;
-
         var shield = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
         shield.setScale(.9);
         shield.setPosition(cc.p(skill_3.x + 60, skill_3.y - 11));
@@ -269,7 +249,7 @@ var UserfilesLayer = cc.Layer.extend({
         this.addChild(starnumber);
 
     },
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++结束>
+
     initImages: function () {
         var size = cc.winSize;
         var bgImage = new cc.Sprite(GameRes.starGameUILayer.StarGameUIbg_jpg);
@@ -369,59 +349,6 @@ var UserfilesLayer = cc.Layer.extend({
             scaleY: 1.1
         });
 
-//<-------------------------------------------------------------------注释删掉
- /*       var buttle_3 = new cc.Sprite("#bullet_3.png");
-        this.addChild(buttle_3);
-        buttle_3.attr({
-            x: size.width * 0.11,
-            y: size.height * 0.39
-        });
-
-        var skill_1 = new cc.Sprite("#skill_1.png");
-        this.addChild(skill_1);
-        skill_1.attr({
-            x: size.width * 0.60,
-            y: size.height * 0.67
-        });
-
-        var skill_2 = new cc.Sprite("#skill_2.png");
-        this.addChild(skill_2);
-        skill_2.attr({
-            x: size.width * 0.60,
-            y: size.height * 0.52
-        });
-
-        var skill_3 = new cc.Sprite("#skill_3.png");
-        this.addChild(skill_3);
-        skill_3.attr({
-            x: size.width * 0.60,
-            y: size.height * 0.36
-        });
-
-        var starBg = new cc.Sprite("#starBg.png");
-        this.addChild(starBg);
-        starBg.attr({
-            x: size.width * 0.21,
-            y: size.height * 0.92,
-            scaleY: 0.9
-        });
-
-        var star = new cc.Sprite("#star.png");
-        this.addChild(star);
-        star.attr({
-            x: size.width * 0.07,
-            y: size.height * 0.93
-        });
-  */
-//----------------------------------------------------------------------------->
-
-        var boxRedPoint = new cc.Sprite("#boxRedPoint.png");
-        this.addChild(boxRedPoint, 1);
-        boxRedPoint.attr({
-            x: size.width * 0.93,
-            y: size.height * 0.95
-        });
-
     },
 
     initButtons: function () {
@@ -444,14 +371,10 @@ var UserfilesLayer = cc.Layer.extend({
         });
         this.addChild(button);
         button.onTouchBegan = function (touch, type) {
-            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SET_WEAPON, {
-                weaponName: SH.Weapon.Characters.Rifle
-            });
-        }
-
-        button.onTouchEnded = function (touch, type) {
-            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
-        }
+            var test1 = new ExtenPropUILayer(IMAGETYPE.skill_1,10);
+            test1.setTag(1);
+            g_userFilesLayer.addChild(test1);
+        };
     },
 
     initSkillPlusBt_2: function () {
@@ -462,6 +385,11 @@ var UserfilesLayer = cc.Layer.extend({
             y: size.height * 0.51
         });
         this.addChild(button);
+        button.onTouchBegan = function (touch, type) {
+            var test1 = new ExtenPropUILayer(IMAGETYPE.skill_2,10);
+            test1.setTag(1);
+            g_userFilesLayer.addChild(test1);
+        };
     },
 
     initSkillPlusBt_3: function () {
@@ -472,6 +400,11 @@ var UserfilesLayer = cc.Layer.extend({
             y: size.height * 0.35
         });
         this.addChild(button);
+        button.onTouchBegan = function (touch, type) {
+            var test1 = new ExtenPropUILayer(IMAGETYPE.skill_3,10);
+            test1.setTag(1);
+            g_userFilesLayer.addChild(test1);
+        };
     },
 
     initBulletPlusBt_1: function () {
@@ -482,6 +415,11 @@ var UserfilesLayer = cc.Layer.extend({
             y: size.height * 0.65
         });
         this.addChild(button);
+        button.onTouchBegan = function (touch, type) {
+            var test1 = new ExtenPropUILayer(IMAGETYPE.bullet_1,600);
+            test1.setTag(1);
+            g_userFilesLayer.addChild(test1);
+        };
     },
 
     initBulletPlusBt_2: function () {
@@ -492,6 +430,11 @@ var UserfilesLayer = cc.Layer.extend({
             y: size.height * 0.51
         });
         this.addChild(button);
+        button.onTouchBegan = function (touch, type) {
+            var test1 = new ExtenPropUILayer(IMAGETYPE.bullet_2,150);
+            test1.setTag(1);
+            g_userFilesLayer.addChild(test1);
+        };
     },
 
     initBulletPlusBt_3: function () {
@@ -502,6 +445,11 @@ var UserfilesLayer = cc.Layer.extend({
             y: size.height * 0.35
         });
         this.addChild(button);
+        button.onTouchBegan = function (touch, type) {
+            var test1 = new ExtenPropUILayer(IMAGETYPE.bullet_3,150);
+            test1.setTag(1);
+            g_userFilesLayer.addChild(test1);
+        };
     },
 
     initBoxHomeBt: function () {
@@ -511,7 +459,25 @@ var UserfilesLayer = cc.Layer.extend({
             x: size.width * 0.90,
             y: size.height * 0.90
         });
+
+        var scale1 = new cc.ScaleTo(0.5,0.7);
+        var scale2 = new cc.scaleTo(0.5,1);
+        button.runAction(new cc.sequence(scale1,scale2).repeatForever());
         this.addChild(button);
+
+        var boxRedPoint = new cc.Sprite("#boxRedPoint.png");
+        button.addChild(boxRedPoint, 1);
+        boxRedPoint.attr({
+                x: button.width/7*6,
+                y: button.height/7*5
+        });
+
+        button.onTouchEnded = function(){
+            //var giftboxlayer = new GiftBoxLayer(SHOWSTYLETYPE.ALLITEMS);
+            var giftboxlayer = new GiftBoxLayer(SHOWSTYLETYPE.ALLITEMS);
+            this.getParent().addChild(giftboxlayer);
+            giftboxlayer.setTag(1);
+        }
     },
 
     initBackBt: function () {
@@ -528,7 +494,6 @@ var UserfilesLayer = cc.Layer.extend({
         }
 
         button.onTouchEnded = function (touch, type) {
-            //cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
         }
     }
 });

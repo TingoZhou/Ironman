@@ -220,6 +220,16 @@ var GameUILayer = cc.Layer.extend(
                 x: 0.80 * size.width,
                 y: 0.90 * size.height
             });
+
+            var scale1 = new cc.ScaleTo(0.5,0.7);
+            var scale2 = new cc.scaleTo(0.5,1);
+            gameLayerUI_boxHome.runAction(new cc.sequence(scale1,scale2).repeatForever());
+
+            gameLayerUI_boxHome.onTouchEnded = function(){
+                var giftboxlayer = new GiftBoxLayer(SHOWSTYLETYPE.ALLITEMS);
+                this.getParent().addChild(giftboxlayer);
+                giftboxlayer.setTag(1);
+            }
             //add boxRedPoint
             var gameLayerUI_boxRedPoint = new cc.Sprite("#gameLayerUI_boxRedPoint.png");
             this.addChild(gameLayerUI_boxRedPoint);
