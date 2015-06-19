@@ -44,7 +44,8 @@ var AppLayer = cc.Layer.extend({
                 rifle: 100,        // 子弹数
                 bombNum: 5,        // 大招数量
                 freezeNum: 5,         // 冰冻数量
-                shieldNum: 3          // 护盾数
+                shieldNum: 3,          // 护盾数
+                healthBoxNum:5      //医疗箱
             });
         }
 

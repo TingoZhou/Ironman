@@ -68,7 +68,7 @@ var ExtenPropUILayer = cc.Layer.extend({
             x:test1.x,
             y:test1.y-120
         });
-        bottomTitle.setColor(new cc.Color(255,155,15,255));
+        bottomTitle.setColor(new cc.Color(105,139,34,155));
 
         var testImage = new cc.Sprite(type);
         this.addChild(testImage);

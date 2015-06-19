@@ -17,6 +17,7 @@ var ControllLayer = cc.Layer.extend({
         this.initSkillBtn_1();
         this.initSkillBtn_2();
         this.initSkillBtn_3();
+        this.initHealthBoxBt();
         this.addListeners();
     },
 
@@ -66,8 +67,15 @@ var ControllLayer = cc.Layer.extend({
 
         button.onTouchEnded = function (touch, type) {
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
-        }
+        };
+
+        var str = ULS.get(USK.PlayInfo).rifle;
+        this.rifleNum = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+        this.rifleNum.setScale(1.1);
+        this.rifleNum.setPosition(cc.p(45, 25));
+        button.addChild(this.rifleNum);
     },
+
     initRocketShootBtn: function () {
         var button = new ButtonNoEdg("controLayerUI_bulletBt_2.png");
         button.setPosition(cc.p(cc.winSize.width * 6 / 8, 80));
@@ -81,7 +89,15 @@ var ControllLayer = cc.Layer.extend({
 
         button.onTouchEnded = function (touch, type) {
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
-        }
+        };
+
+        var str = ULS.get(USK.PlayInfo).rocket;
+
+        this.rocketNum = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+        this.rocketNum.setScale(1.1);
+        this.rocketNum.setPosition(cc.p(30,5));
+        button.addChild(this.rocketNum);
+
     },
 
     initElectricShootBtn: function () {
@@ -97,8 +113,14 @@ var ControllLayer = cc.Layer.extend({
 
         button.onTouchEnded = function (touch, type) {
             cc.eventManager.dispatchCustomEvent(SC.CHARACTER_RESET_WEAPON);
-        }
+        };
 
+        var str = ULS.get(USK.PlayInfo).electric;
+
+        this.electricNum = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+        this.electricNum.setScale(1.1);
+        this.electricNum.setPosition(cc.p(40,5));
+        button.addChild(this.electricNum);
     },
 
     initSkillBtn_1: function () {
@@ -287,6 +309,70 @@ var ControllLayer = cc.Layer.extend({
         this._shieldCDMask = mask;
     },
 
+    //血箱
+    initHealthBoxBt: function () {
+        var button = new ButtonNoEdg("healthBag.png");
+        button.attr({
+            x: cc.winSize.width * 0.05,
+            y: cc.winSize.height * 0.6
+        });
+        this.addChild(button);
+
+        var playInfo = ULS.get(USK.PlayInfo);
+        if (playInfo.healthBoxNum <= 0) {
+            button.setOpacity(85);
+            button.ableTouch = false;
+            playInfo.healthBoxNum = 0;
+            ULS.set(USK.PlayInfo, playInfo);
+        }
+
+        button.onTouchBegan = function (touch, type) {
+            button.ableTouch = false;
+            //cc.eventManager.dispatchCustomEvent(SC.CHARACTER_SHIEL);//加血事件
+            var playInfo = ULS.get(USK.PlayInfo);
+            playInfo.healthBoxNum--;
+            ULS.set(USK.PlayInfo, playInfo);
+
+            this._healthCDMask.runAction(//冷却
+                cc.sequence(
+                    cc.progressFromTo(Math.round(8000 / 1000), 100, 0),
+                    cc.callFunc(function () {
+                        if (playInfo.healthBoxNum <= 0) {
+                            button.setOpacity(85);
+                            button.ableTouch = false;
+                        } else {
+                            button.setOpacity(255);
+                            button.ableTouch = true;
+                        }
+                    }.bind(this), this)
+                )
+            );
+
+
+            this._healthNumPannle.setString(playInfo.healthBoxNum, true);
+        }.bind(this)
+        var str = ULS.get(USK.PlayInfo).healthBoxNum;
+
+        var health = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+        health.setScale(.8);
+        health.setPosition(cc.p(button.x + 30, button.y + 20));
+        this.addChild(health);
+        this._healthNumPannle = health;
+        //CD
+
+        var view = new cc.Sprite("#controLayerUI_skillBt_3.png");
+        view.setColor(cc.color(0, 0, 0, 255));
+        view.setOpacity(130);
+        var mask = new cc.ProgressTimer(view);
+        mask.setReverseDirection(true);
+        mask.type = cc.ProgressTimer.TYPE_RADIAL;
+        mask.setPosition(cc.p(health.x - 20, health.y - 20));
+        this.addChild(mask);
+        this._healthCDMask = mask;
+
+    },
+
+
     onTouchesBegan: function (touches, event) {
         var target = event.getCurrentTarget();
         for (var i = 0, len = touches.length; i < len; ++i) {
@@ -341,12 +427,17 @@ var ControllLayer = cc.Layer.extend({
 
     //新增
     addListeners:function(){
-      cc.eventManager.addCustomListener(SC.DROPITEM_EX_GET, _.bind(
+        cc.eventManager.addCustomListener(SC.DROPITEM_EX_GET, _.bind(
           function(e){
              this.updateNumPannle(e);
           }
           ,this));
+
+        cc.eventManager.addCustomListener(SC.CHARACTER_WEAPON, _.bind(function(e){
+            this.updateBulletNum(e)
+        },this));
     },
+
     updateNumPannle:function(e){
         var type = e.getUserData().typeName;
         //var addNum= e.getUserData().addNum;
@@ -371,5 +462,24 @@ var ControllLayer = cc.Layer.extend({
             default :
                 break;
         }
+    },
+
+    updateBulletNum:function(e){
+        var str=null;
+        switch (e.getUserData().weaponName){
+            case SH.Weapon.Characters.Rifle:
+                str= e.getUserData().Num;
+                this.rifleNum.setString(str.toString(),true);
+                break;
+            case SH.Weapon.Characters.Rocket:
+                str=e.getUserData().Num;
+                this.rocketNum.setString(str.toString(),true);
+                break;
+            case SH.Weapon.Characters.Electric:
+                str=e.getUserData().Num;
+                this.electricNum.setString(str.toString(),true);
+                break;
+        }
     }
+
 })

@@ -4,19 +4,6 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>gameLayerUI_addHpBt.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,156},{33,34}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{33,34}}</string>
-                <key>sourceSize</key>
-                <string>{33,34}</string>
-            </dict>
             <key>gameLayerUI_boxHomeBt.png</key>
             <dict>
                 <key>frame</key>
@@ -46,7 +33,7 @@
             <key>gameLayerUI_bullet_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,192},{25,32}}</string>
+                <string>{{2,156},{25,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -157,7 +144,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:958f444a7e002bc5b091739abd051100:dfd26a5ce94fbea888a2f23993ed5f10:3b358265ae78b08c21ce1cf7dfb9c123$</string>
+            <string>$TexturePacker:SmartUpdate:09cbfdf680c312511e3ddbe6c8bf30de:1/1$</string>
             <key>textureFileName</key>
             <string>gameLayerUI.png</string>
         </dict>
