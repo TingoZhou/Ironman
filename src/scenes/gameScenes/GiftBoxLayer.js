@@ -191,7 +191,7 @@ var GiftBoxLayer = cc.Layer.extend({//参数分别为显示种类，改变对象
     initLable:function(){
         var lable = new cc.LabelTTF("你们看不到我，你们快点把钱都交出来！！！！",2,10);
         this.addChild(lable);
-        lable.setColor(new cc.Color(255,246,145,155));
+        lable.setColor(new cc.Color(0,155,155,255));
         lable.attr({
             x:cc.winSize.width/2,
             y:cc.winSize.height/6-10

@@ -17,6 +17,9 @@ var GameUILayer = cc.Layer.extend(
             this.initButtons();
             this.initHpBar();
             this.addEventListener();
+            this._initBulletRifle();
+            this._initBulletElectric();
+            this._initBulletRocket();
             this._initStar();
         },
 
@@ -24,8 +27,31 @@ var GameUILayer = cc.Layer.extend(
             cc.eventManager.addCustomListener(SC.HP_UPDATE, _.bind(function (e) {
                 this.updateHp(e);
             }, this));
+
+            cc.eventManager.addCustomListener(SC.CHARACTER_WEAPON, _.bind(function(e){
+                 this.updateBulletNum(e)
+            },this));
+
         },
 
+        //新增
+        updateBulletNum:function(e){
+            var str=null;
+            switch (e.getUserData().weaponName){
+                case SH.Weapon.Characters.Rifle:
+                    str= e.getUserData().Num;
+                    this.rifleNum.setString(str.toString(),true);
+                    break;
+                case SH.Weapon.Characters.Rocket:
+                    str=e.getUserData().Num;
+                    this.rocketNum.setString(str.toString(),true);
+                    break;
+                case SH.Weapon.Characters.Electric:
+                    str=e.getUserData().Num;
+                    this.electricNum.setString(str.toString(),true);
+                    break;
+            }
+        },
         updateHp: function (e) {
             var data = e.getUserData();
             var hp = data.HP / data.TotalHP;
@@ -77,6 +103,60 @@ var GameUILayer = cc.Layer.extend(
 
         },
 
+
+  //<开始++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ by Caesar
+        _initBulletRifle: function () {
+            var size = cc.winSize;
+            var buttle_1 = new cc.Sprite("#gameLayerUI_bullet_1.png");
+            this.addChild(buttle_1);
+            buttle_1.attr({
+                x: 0.04 * size.width,
+                y: 0.82 * size.height
+            });
+
+            var str = ULS.get(USK.PlayInfo).rifle;
+            this.rifleNum = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+            this.rifleNum.setScale(.9);
+            this.rifleNum.setPosition(cc.p(buttle_1.x + 50, buttle_1.y - 11));
+            this.addChild(this.rifleNum);
+
+        },
+
+        _initBulletElectric: function () {
+            var size = cc.winSize;
+            var buttle_2 = new cc.Sprite("#gameLayerUI_bullet_3.png");
+            this.addChild(buttle_2);
+            buttle_2.attr({
+                x: 0.04 * size.width,
+                y: 0.62 * size.height
+            });
+
+            var str = ULS.get(USK.PlayInfo).electric;
+
+            this.electricNum = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+            this.electricNum.setScale(.9);
+            this.electricNum.setPosition(cc.p(buttle_2.x + 50, buttle_2.y - 10));
+            this.addChild(this.electricNum);
+
+        },
+
+        _initBulletRocket: function () {
+            var size = cc.winSize;
+            var buttle_3 = new cc.Sprite("#gameLayerUI_bullet_2.png");
+            this.addChild(buttle_3);
+            buttle_3.attr({
+                x: 0.04 * size.width,
+                y: 0.72 * size.height
+            });
+
+            var str = ULS.get(USK.PlayInfo).rocket;
+
+            this.rocketNum = new cc.LabelBMFont(str.toString(), MainRes.customFont.customBMFont_1_fnt);
+            this.rocketNum.setScale(.9);
+            this.rocketNum.setPosition(cc.p(buttle_3.x + 50, buttle_3.y - 11));
+            this.addChild(this.rocketNum);
+        },
+
         _initStar: function () {
             var size = cc.winSize;
 
@@ -95,6 +175,7 @@ var GameUILayer = cc.Layer.extend(
             this.addChild(starnumber);
 
         },
+ //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++结束> by Caesar
 
 
         initButtons: function () {
@@ -112,6 +193,25 @@ var GameUILayer = cc.Layer.extend(
                 pauselayer.setTag(1);
                 pauselayer.setOpacity(255);
                 g_gamelayer.addChild(pauselayer);
+            };
+            var gameLayerUI_addHpBt = new ButtonNoEdg("gameLayerUI_addHpBt.png");
+            this.addChild(gameLayerUI_addHpBt);
+            gameLayerUI_addHpBt.attr({
+                x: 0.20 * size.width,
+                y: 0.90 * size.height
+            });
+
+            gameLayerUI_addHpBt.onTouchBegan = function () {
+                if (g_gamelayer.gameUILayer._hpBarwidth + 5 > 127) {
+                    g_gamelayer.gameUILayer._hpBarwidth = 127;
+                }
+                else {
+                    g_gamelayer.gameUILayer._hpBarwidth += 5;
+                }
+                var percent = g_gamelayer.gameUILayer._hpBarwidth;
+                g_gamelayer.gameUILayer._hpBar.setTextureRect(
+                    cc.rect(0, 0, percent, 20));
+
             };
 
             var gameLayerUI_boxHome = new ButtonNoEdg("gameLayerUI_boxHomeBt.png");
@@ -132,10 +232,10 @@ var GameUILayer = cc.Layer.extend(
             }
             //add boxRedPoint
             var gameLayerUI_boxRedPoint = new cc.Sprite("#gameLayerUI_boxRedPoint.png");
-            gameLayerUI_boxHome.addChild(gameLayerUI_boxRedPoint);
+            this.addChild(gameLayerUI_boxRedPoint);
             gameLayerUI_boxRedPoint.attr({
-                x: gameLayerUI_boxHome.width/7*6,
-                y: gameLayerUI_boxHome.height/7*5
+                x: 0.83 * size.width,
+                y: 0.93 * size.height
             });
         },
 
