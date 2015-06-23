@@ -8,11 +8,8 @@ var DropItem = cc.Sprite.extend({
         //g_gamelayer.dropItemLayer.addChild(this);
         //this.x = monster.getPosition().x;
         //this.y = monster.getPosition().y;
-
         this.setScale(0);
         this.addListeners();
-
-
     },
     addListeners:function (){
          cc.eventManager.addCustomListener(SC.DROPITEM_GET, _.bind(function(e){
@@ -28,7 +25,13 @@ var DropItem = cc.Sprite.extend({
                 ).easing(cc.easeBackOut(.3)),
                 cc.callFunc(
                     function () {
-
+                        var distance = cc.winSize.width- this.x
+                        if(distance>cc.winSize.width/2){
+                            this.runAction(new cc.jumpBy((distance+50)/40,distance+50,0,5,8));
+                        }
+                        else{
+                            this.runAction(new cc.jumpBy((this.x+50)/40,-this.x-50,0,5,8));
+                        }
                     }
                     , this)
             )

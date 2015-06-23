@@ -7,7 +7,7 @@
             <key>controLayerUI_bulletBt_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{157,92},{130,88}}</string>
+                <string>{{2,377},{130,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -17,7 +17,33 @@
                 <key>sourceSize</key>
                 <string>{130,88}</string>
             </dict>
+            <key>controLayerUI_bulletBt_1_0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,287},{130,88}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{130,88}}</string>
+                <key>sourceSize</key>
+                <string>{130,88}</string>
+            </dict>
             <key>controLayerUI_bulletBt_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{157,92},{88,89}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{88,89}}</string>
+                <key>sourceSize</key>
+                <string>{88,89}</string>
+            </dict>
+            <key>controLayerUI_bulletBt_2_0.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{157,2},{88,89}}</string>
@@ -43,10 +69,23 @@
                 <key>sourceSize</key>
                 <string>{139,131}</string>
             </dict>
+            <key>controLayerUI_bulletBt_3_0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{137,182},{121,105}}</string>
+                <key>offset</key>
+                <string>{-6,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{3,13},{121,105}}</string>
+                <key>sourceSize</key>
+                <string>{139,131}</string>
+            </dict>
             <key>controLayerUI_skillBt_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,287},{60,60}}</string>
+                <string>{{154,441},{60,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,11 +98,11 @@
             <key>controLayerUI_skillBt_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{137,224},{48,71}}</string>
+                <string>{{92,378},{48,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{48,71}}</string>
                 <key>sourceSize</key>
@@ -72,11 +111,11 @@
             <key>controLayerUI_skillBt_3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{200,274},{51,60}}</string>
+                <string>{{92,451},{51,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{51,60}}</string>
                 <key>sourceSize</key>
@@ -85,7 +124,7 @@
             <key>controlLayerUI_crossStickBt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{137,274},{61,61}}</string>
+                <string>{{142,378},{61,61}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -108,6 +147,19 @@
                 <key>sourceSize</key>
                 <string>{153,152}</string>
             </dict>
+            <key>healthBag.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{134,305},{87,71}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{87,71}}</string>
+                <key>sourceSize</key>
+                <string>{87,71}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -118,7 +170,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e3026e2abaaefc459c07c2c346fb4fc7:9fc16cee253109bb3785d9cbfae300aa:b1f72def5d8db9ddfd95c142ae6e080b$</string>
+            <string>$TexturePacker:SmartUpdate:aa2047387c8683634f6c1f66cfdbce30:1/1$</string>
             <key>textureFileName</key>
             <string>controlLayerUI.png</string>
         </dict>

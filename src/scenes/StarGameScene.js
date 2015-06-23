@@ -5,6 +5,7 @@
  * Time: 下午3.34
  * To change this template use File | Settings | File Templates.
  */
+var g_starGameLayer =  null;
 var StarGameScene = cc.Scene.extend({
     onEnterTransitionDidFinish:function(){
         this._super();
@@ -13,6 +14,7 @@ var StarGameScene = cc.Scene.extend({
 
     init:function(){
         var layer = new StarGameLayer();
+        g_starGameLayer = layer;
         this.addChild(layer);
     },
 
@@ -42,24 +44,6 @@ var StarGameLayer = cc. Layer.extend({
                 x:size.width*0.50,
                 y:size.height*0.50
         });
-
-        //---------------------------------------------------------------需要删除的代码 by Caesar
-      /*  var starBg = new cc.Sprite("#starBg.png");
-        this.addChild(starBg);
-        starBg.attr({
-            x:size.width*0.21,
-            y:size.height*0.90
-        });
-
-        var star = new cc.Sprite("#star.png");
-        this.addChild(star);
-        star.attr({
-            x:size.width*0.07,
-            y:size.height*0.91
-        });*/
-        //-------------------------------------------------------------------------删除结束------------
-
-
 
     },
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++需要添加的代码++++by Caesar
@@ -169,11 +153,20 @@ var StarGameLayer = cc. Layer.extend({
         });
         this.addChild(button);
 
-        var redPoint = new cc.Sprite("#boxRedPoint.png");
-        this.addChild(redPoint);
-        redPoint.attr({
-            x:size.width*0.93,
-            y:size.height*0.90
+        var scale1 = new cc.ScaleTo(0.5,0.7);
+        var scale2 = new cc.scaleTo(0.5,1);
+        button.runAction(new cc.sequence(scale1,scale2).repeatForever());
+        button.onTouchEnded = function(){
+            var giftboxlayer = new GiftBoxLayer(SHOWSTYLETYPE.ALLITEMS);
+            this.getParent().addChild(giftboxlayer);
+            giftboxlayer.setTag(1);
+        }
+
+        var boxRedPoint = new cc.Sprite("#boxRedPoint.png");
+        button.addChild(boxRedPoint, 1);
+        boxRedPoint.attr({
+            x: button.width/7*6,
+            y: button.height/7*5
         });
     }
 });

@@ -80,6 +80,8 @@
         "src/scenes/gameScenes/subBattleLayer/ScriptLayer.js",
         "src/scenes/gameScenes/PauseLayer.js",
         "src/scenes/gameScenes/GameOverLayer.js",
+        "src/scenes/gameScenes/ExtenPropUILayer.js",
+        "src/scenes/gameScenes/GiftBoxLayer.js",
 
         "src/resource.js",
         "src/app.js"
