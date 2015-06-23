@@ -1,42 +1,50 @@
 var DropItemConfig={
     CacheCounts:15,
+    ShowDropItemCacheTimes:3,
     DropRifleWeaponValue:70,
     DropExItemValue:95,
-    DropType:{
-        Rifle:{
+    DropType:[
+        {
             TypeName:"Rifle",
+            ShowImg:"gameLayerUI_bullet_1.png",
             MaxNum:10,
             MinNum:1
         },
-        Rocket: {
+        {
             TypeName:"Rocket",
+            ShowImg:"gameLayerUI_bullet_2.png",
             MaxNum:5,
             MinNum:1
         },
-        Electric:{
+        {
             TypeName:"Electric",
+            ShowImg:"gameLayerUI_bullet_3.png",
             MaxNum:5,
             MinNum:1
         },
-        HP:{
+        {
             TypeName:"HP",
+            ShowImg:"gameLayerUI_addHpBt.png",
             MaxNum:10,
             MinNum:5
         },
-        Bomb:{
+        {
             TypeName:"bomb",
+            ShowImg:"controLayerUI_skillBt_1",
             MaxNum:1,
             MinNum:1
         },
-        Freeze:{
+        {
             TypeName:"freeze",
+            ShowImg:"controLayerUI_skillBt_2.png",
             MaxNum:1,
             MinNum:1
         },
-        Shield:{
+        {
             TypeName:"shield",
+            ShowImg:"controLayerUI_skillBt_3.png",
             MaxNum:1,
             MinNum:1
         }
-}
+]
 }

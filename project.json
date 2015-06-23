@@ -50,6 +50,7 @@
         "src/models/monsters/effect/MonsterFreezeEffect.js",
 
         "src/models/monsters/drowItems/DropItem.js",
+        "src/models/monsters/drowItems/ShowDropItem.js",
 
         "src/models/weapons/WeaponRifle.js",
         "src/models/weapons/WeaponRocket.js",

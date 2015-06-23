@@ -8,6 +8,7 @@ var DropItemLayer = cc.Layer.extend({
 
     init: function () {
         DropItem.preset(this);
+        ShowDropItem.preset(this);
         this.DropItems=DropItem.Items;
     },
 

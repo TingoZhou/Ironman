@@ -9,8 +9,8 @@
 
 
 var MonsterBeta = Monsters.extend({
-    _ATTACK_COOLDOWN: 1.2,
-    _ATTACKBEFORE_COOLDOWN: .3,
+    _ATTACK_COOLDOWN: 1.5,
+    _ATTACKBEFORE_COOLDOWN: .5,
 
     ctor: function (parent, data) {
         this._super(parent, data);
@@ -77,9 +77,6 @@ var MonsterBeta = Monsters.extend({
     },
     //方向
     _direction: function () {
-        if (this._currentStatus == MonsterStatus.ATTACK)return;
-        if (this._currentStatus == MonsterStatus.BEFORE_ATTACK)return;
-        if (this._currentStatus == MonsterStatus.BACK_ATTACK)return;
         var targetPos = this._target.getPosition();
         var angle = Math.atan2((targetPos.y - this.getPosition().y), (targetPos.x - this.getPosition().x)) * 180 / Math.PI;
         if (angle < 0) angle += 360;
@@ -101,10 +98,7 @@ var MonsterBeta = Monsters.extend({
             this._backPosition = this.getPosition();
             this._saveTargetPosition = this._target.getPosition();  //记录玩家位置；
 
-            var d = cc.pDistance(
-                cc.p(this._backPosition.x, this._backPosition.y),
-                cc.p(this._saveTargetPosition.x, this._saveTargetPosition.y));
-
+            var d = cc.pDistance(cc.p(this._backPosition.x, this._backPosition.y), cc.p(this._saveTargetPosition.x, this._saveTargetPosition.y));
             if (d <= 120) {
                 var winSize = cc.director.getWinSize();
                 this._backPosition = cc.p(
@@ -121,56 +115,17 @@ var MonsterBeta = Monsters.extend({
 
         this._attackBeforeCD -= dt;
         if (this._attackBeforeCD <= 0) {
-
-            // 加特效
-            if (!this._shadowObjs) {
-                this._shadowObjs = [];
-                for (var i = 0; i < 10; ++i) {
-                    var shadow = cc.Sprite.create("#" + this._framesData.Attack[0]);
-                    shadow.visible = false;
-                    shadow.setOpacity(255);
-                    this._parent.addChild(shadow);
-                    this._shadowObjs.push(shadow);
-                }
-            }
             this._doAttack();
         }
     },
 
     //攻击
     _doAttack: function () {
-
-        var shadow;
-        for (var i = 0, len = this._shadowObjs.length; i < len; ++i) {
-            if (!this._shadowObjs[i].visible) {
-                shadow = this._shadowObjs[i];
-                shadow.visible = true;
-                break;
-            }
-        }
-
-        if (shadow) {
-            shadow.setOpacity(40);
-            shadow.setScaleX(this._viewObj.scaleX);
-            shadow.setScaleY(this._viewObj.scaleY);
-            shadow.setPosition(this._viewObj.getPosition());
-            shadow.setRotation(this._viewObj.getRotation());
-            shadow.runAction(cc.sequence(
-                cc.fadeOut(0.2),
-                cc.callFunc((function (shadow) {
-                    return function () {
-                        shadow.visible = false;
-                    }
-                })(shadow), this)
-            ));
-        }
-
-
         if (this._currentStatus == MonsterStatus.ATTACK) return;
         this._currentStatus = MonsterStatus.ATTACK;
         this._viewObj.runAction(
             cc.sequence(
-                cc.moveTo(0.3, cc.p(this._saveTargetPosition.x, this._saveTargetPosition.y)).easing(cc.easeSineOut()),
+                cc.moveTo(0.3, cc.p(this._saveTargetPosition.x, this._saveTargetPosition.y)),
                 cc.callFunc(function () {
                     this._doAttackBack();
                 }, this)
@@ -188,7 +143,7 @@ var MonsterBeta = Monsters.extend({
         if (this._backPosition)
             this._viewObj.runAction(
                 cc.sequence(
-                    cc.moveTo(0.15, cc.p(this._backPosition.x, this._backPosition.y)),
+                    cc.moveTo(0.2, cc.p(this._backPosition.x, this._backPosition.y)),
                     cc.callFunc(function () {
                         this._attackCD = this._ATTACK_COOLDOWN;   //攻击CD
                         this.doMoveToTarget();

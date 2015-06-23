@@ -10,7 +10,6 @@ var DropItem = cc.Sprite.extend({
         //this.y = monster.getPosition().y;
 
         this.setScale(0);
-         this._play();
         this.addListeners();
 
 
@@ -41,15 +40,15 @@ var DropItem = cc.Sprite.extend({
         var targetBox=character.getCollideBoundingBox();
         var selfBox=this._getSelfBox();
         if(cc.rectIntersectsRect(selfBox, targetBox)){
-            //this._getDropItemChild();
-            //this._disable();
-            this.runAction(cc.sequence(
+            this._getDropItemChild();
+            this._disable();
+            /*this.runAction(cc.sequence(
                 cc.scaleTo(0.3,1.05),
                 cc.callFunc(
                     function(){
                         this._getDropItemChild();
                         this._disable();
-                    },this)));
+                    },this))); */
 
         }
         }
@@ -65,40 +64,44 @@ var DropItem = cc.Sprite.extend({
        var character=Character.current;
        var MinNum=null,MaxNum=null;
        if(ran<DropItemConfig.DropRifleWeaponValue){
-           MinNum=DropItemConfig.DropType.Rifle.MinNum;
-           MaxNum=DropItemConfig.DropType.Rifle.MaxNum;
+           MinNum=DropItemConfig.DropType[0].MinNum;
+           MaxNum=DropItemConfig.DropType[0].MaxNum;
            playInfo.rifle+= _.random(MinNum,MaxNum);
            ULS.set(USK.PlayInfo,playInfo);
            cc.eventManager.dispatchCustomEvent(SC.CHARACTER_WEAPON,{
-               weaponName: DropItemConfig.DropType.Rifle.TypeName,Num:playInfo.rifle});
+               weaponName: DropItemConfig.DropType[0].TypeName,Num:playInfo.rifle});
+           ShowDropItem.create(this,DropItemConfig.DropType[0].TypeName,DropItemConfig.DropType[0].ShowImg);
        }
        else if(DropItemConfig.DropRifleWeaponValue<=ran<DropItemConfig.DropExItemValue) {
            ran= _.random(0,2);
        switch (ran){
            case 0:
-               MinNum=DropItemConfig.DropType.Rocket.MinNum;
-               MaxNum=DropItemConfig.DropType.Rocket.MaxNum;
+               MinNum=DropItemConfig.DropType[1].MinNum;
+               MaxNum=DropItemConfig.DropType[1].MaxNum;
                playInfo.rocket+= _.random(MinNum,MaxNum);
                ULS.set(USK.PlayInfo,playInfo);
                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_WEAPON,{
-                   weaponName: DropItemConfig.DropType.Rocket.TypeName,Num:playInfo.rocket});
+                   weaponName: DropItemConfig.DropType[1].TypeName,Num:playInfo.rocket});
+               ShowDropItem.create(this,DropItemConfig.DropType[1].TypeName,DropItemConfig.DropType[1].ShowImg);
                break;
            case 1:
-               MinNum=DropItemConfig.DropType.Rocket.MinNum;
-               MaxNum=DropItemConfig.DropType.Rocket.MaxNum;
+               MinNum=DropItemConfig.DropType[2].MinNum;
+               MaxNum=DropItemConfig.DropType[2].MaxNum;
                playInfo.electric+= _.random(MinNum,MaxNum);
                ULS.set(USK.PlayInfo,playInfo);
                cc.eventManager.dispatchCustomEvent(SC.CHARACTER_WEAPON,{
-                   weaponName: DropItemConfig.DropType.Rocket.TypeName,Num:playInfo.electric});
+                   weaponName: DropItemConfig.DropType[2].TypeName,Num:playInfo.electric});
+               ShowDropItem.create(this,DropItemConfig.DropType[2].TypeName,DropItemConfig.DropType[2].ShowImg);
                break;
            case 2:
-               MinNum=DropItemConfig.DropType.HP.MinNum;
-               MaxNum=DropItemConfig.DropType.HP.MaxNum;
+               MinNum=DropItemConfig.DropType[3].MinNum;
+               MaxNum=DropItemConfig.DropType[3].MaxNum;
                character._HP+= _.random(MinNum,MaxNum);
                if(character._HP>100)
                    character._HP=100;
                cc.eventManager.dispatchCustomEvent(SC.HP_UPDATE,{
                    HP:character._HP ,TotalHP:character._TotalHP});
+               ShowDropItem.create(this,DropItemConfig.DropType[3].TypeName,DropItemConfig.DropType[3].ShowImg);
                break;
        }
        }
@@ -107,15 +110,18 @@ var DropItem = cc.Sprite.extend({
            switch (ran){
                case 0:
                    cc.eventManager.dispatchCustomEvent(SC.DROPITEM_EX_GET,{
-                       typeName: DropItemConfig.DropType.Bomb.TypeName});
+                       typeName: DropItemConfig.DropType[4].TypeName});
+                   ShowDropItem.create(this,DropItemConfig.DropType[4].TypeName,DropItemConfig.DropType[4].ShowImg);
                    break;
                case 1:
                    cc.eventManager.dispatchCustomEvent(SC.DROPITEM_EX_GET,{
-                       typeName: DropItemConfig.DropType.Freeze.TypeName});
+                       typeName: DropItemConfig.DropType[5].TypeName});
+                   ShowDropItem.create(this,DropItemConfig.DropType[5].TypeName,DropItemConfig.DropType[5].ShowImg);
                    break;
                case 2:
                    cc.eventManager.dispatchCustomEvent(SC.DROPITEM_EX_GET,{
-                       typeName: DropItemConfig.DropType.Shield.TypeName});
+                       typeName: DropItemConfig.DropType[6].TypeName});
+                   ShowDropItem.create(this,DropItemConfig.DropType[6].TypeName,DropItemConfig.DropType[6].ShowImg);
                    break;
            }
        }
@@ -166,21 +172,25 @@ DropItem.preset=function(layer){
         DropItem.Items.push(item);
         drop_layer.addChild(item);
     }
+    drop_layer=null;
     item=null;
 };
 DropItem.create=function(monster){
-    var dropItemRifle=null;
+    var dropItemUses=null;
     for(var j= 0,len=DropItem.Items.length;j<len;j++){
         var dropItem=DropItem.Items[j];
         if(!dropItem.active){
-            dropItemRifle=dropItem;
+            dropItemUses=dropItem;
+            dropItemUses.reuse(monster);
+            dropItemUses._play();
+            return dropItemUses;
         }
     }
-    if(!dropItemRifle){
-        dropItemRifle=new DropItem();
-        dropItemRifle._disable();
+    if(!dropItemUses){
+        dropItemUses=new DropItem();
+        dropItemUses._disable();
     }
-    dropItemRifle.reuse(monster);
-    dropItemRifle._play();
-    return dropItemRifle;
+    dropItemUses.reuse(monster);
+    dropItemUses._play();
+    return dropItemUses;
 };
